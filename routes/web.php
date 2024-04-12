@@ -2,6 +2,7 @@
 
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
+use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
