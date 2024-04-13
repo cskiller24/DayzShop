@@ -5,6 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/tests/results.xml
 .env
 .env.backup
 .env.production
