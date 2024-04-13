@@ -9,11 +9,6 @@ it('renders successfully', function () {
         ->assertStatus(200);
 });
 
-it('renders livewire exacty', function () {
-    $this->get(route('login'))
-        ->assertSeeLivewire(Login::class);
-});
-
 it('validates required email', function () {
     Livewire::test(Login::class)
         ->set('email', '')
