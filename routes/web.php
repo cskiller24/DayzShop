@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use Flasher\Prime\Notification\NotificationInterface;
@@ -16,3 +17,7 @@ Route::get('login', Login::class)
 Route::get('/register', Register::class)
     ->middleware('guest')
     ->name('register');
+
+Route::get('/forgot-password', ForgotPassword::class)
+    ->middleware('guest')
+    ->name('password.request');
