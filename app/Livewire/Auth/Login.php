@@ -24,7 +24,7 @@ class Login extends Component
     public function login()
     {
         $this->validate();
-        if(! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+        if(Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $this->addError('email', 'Credentials provided does not match.');
         }
 
