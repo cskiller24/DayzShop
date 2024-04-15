@@ -4,7 +4,6 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
-use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

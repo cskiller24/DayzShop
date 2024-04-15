@@ -2,10 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Models\User;
-use App\Notifications\TestNotification;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -24,8 +21,9 @@ class Login extends Component
     public function login()
     {
         $this->validate();
-        if(! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
             $this->addError('email', 'Credentials provided does not match.');
+
             return;
         }
 

@@ -3,9 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
-use App\Notifications\TestNotification;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -43,7 +41,7 @@ class ResetPassword extends Component
             'email' => $this->email,
             'password' => $this->password,
             'password_confirmation' => $this->password_confirmation,
-            'token' => $this->token
+            'token' => $this->token,
         ], function (User $user, string $password) {
             $user->forceFill([
                 'password' => bcrypt($password),

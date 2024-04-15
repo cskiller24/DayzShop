@@ -24,7 +24,7 @@ class ForgotPassword extends Component
             ['email' => $this->email],
         );
 
-        if(Password::RESET_LINK_SENT !== $status) {
+        if ($status !== Password::RESET_LINK_SENT) {
             $this->addError('email', $status);
         }
 

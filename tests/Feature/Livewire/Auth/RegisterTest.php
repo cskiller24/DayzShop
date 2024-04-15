@@ -47,7 +47,7 @@ it('validates email is invalid email', function () {
         ->set('password_confirmation', 'password')
         ->call('register')
         ->assertHasErrors(['email' => ['email']])
-        ->assertHasErrors(['email' => 'The email field must be a valid email address.']);;
+        ->assertHasErrors(['email' => 'The email field must be a valid email address.']);
 });
 
 it('validates email must be unique', function () {
