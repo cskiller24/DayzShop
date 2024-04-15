@@ -18,6 +18,8 @@ class ForgotPassword extends Component
 
     public function sendPasswordReset()
     {
+        $this->validate();
+
         $status = Password::sendResetLink(
             ['email' => $this->email],
         );

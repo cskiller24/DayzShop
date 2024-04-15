@@ -3,9 +3,10 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use App\Notifications\TestNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
