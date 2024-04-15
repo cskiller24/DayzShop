@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -14,10 +16,11 @@ use Livewire\Component;
 #[Title('Password Reset | DayzShop')]
 class ResetPassword extends Component
 {
-    #[Validate('required')]
+    #[Rule('required')]
     public string $token;
 
-    #[Validate('required|email')]
+    #[Url]
+    #[Rule('required|email')]
     public string $email;
 
     #[Validate('required')]
@@ -26,11 +29,9 @@ class ResetPassword extends Component
     #[Validate('required_with:password|same:password')]
     public string $password_confirmation;
 
-    public function mount(Request $request, $token)
+    public function mount($token)
     {
         $this->token = $token;
-
-        $this->email = $request->get('email', null);
     }
 
     public function passwordReset()

@@ -49,12 +49,12 @@ it('validates that the password is required', function () {
         ->assertHasErrors(['password' => 'The password field is required.']);
 });
 
-it('it succesfully logs in the user', function () {
+it('succesfully logs in the user', function () {
     User::factory()->create(['email' => 'email@example.com']);
 
     Livewire::test(Login::class)
         ->set('email', 'email@example.com')
-        ->set('password', 'passsword')
+        ->set('password', 'password')
         ->call('login')
         ->assertRedirect('/');
 });
