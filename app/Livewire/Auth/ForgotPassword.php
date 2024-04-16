@@ -28,7 +28,7 @@ class ForgotPassword extends Component
             $this->addError('email', $status);
         }
 
-        toast('Successfully resend password, please check your email.');
+        $this->dispatch('flash-message', message: __($status));
 
         return $this->redirect(route('login'), true);
     }

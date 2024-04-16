@@ -10,6 +10,7 @@
 </head>
 
 <body class="dark:bg-secondary-800 bg-white">
+    @livewire('components.toaster')
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         {{ $slot }}
     </div>

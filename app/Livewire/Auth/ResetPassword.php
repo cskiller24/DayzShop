@@ -51,7 +51,7 @@ class ResetPassword extends Component
             $user->save();
         });
 
-        toast(__($status));
+        $this->dispatch('flash-message', message: __($status));
 
         return $this->redirect(route('login'), true);
     }

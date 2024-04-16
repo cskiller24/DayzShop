@@ -34,7 +34,7 @@ class Register extends Component
             'password' => $this->password,
         ]);
 
-        toast('Succesfully registered.', 'Success!');
+        $this->dispatch('flash-message', message: 'Succesfully registered.', title: 'Success!');
 
         return $this->redirect('/', navigate: true);
     }
