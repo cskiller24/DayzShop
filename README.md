@@ -1,13 +1,10 @@
 <p align="center">
    <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cskiller24/DayzShop/536ce6b2e77de1566331d03d2e7d5f764b599854/public/assets/banner/secondary_transparent.svg">
-   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cskiller24/DayzShop/536ce6b2e77de1566331d03d2e7d5f764b599854/public/assets/banner/primary_transparent.svg">
-    <img alt="Dayzshop banner">
-
-</picture>
+       <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cskiller24/DayzShop/536ce6b2e77de1566331d03d2e7d5f764b599854/public/assets/banner/secondary_transparent.svg">
+       <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/cskiller24/DayzShop/536ce6b2e77de1566331d03d2e7d5f764b599854/public/assets/banner/primary_transparent.svg">
+       <img alt="Dayzshop banner">
+   </picture>
 </p>
-
-
 
 ## Dayzshop
 
