@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -18,7 +19,7 @@ class Login extends Component
     #[Validate('required')]
     public string $password = '';
 
-    public function login()
+    public function login(): void
     {
         $this->validate();
         if (! Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
@@ -27,10 +28,10 @@ class Login extends Component
             return;
         }
 
-        return $this->redirect('/', navigate: true);
+        $this->redirect('/', navigate: true);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.auth.login');
     }

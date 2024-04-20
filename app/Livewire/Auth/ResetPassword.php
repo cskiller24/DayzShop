@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Attributes\Title;
@@ -28,12 +29,12 @@ class ResetPassword extends Component
     #[Validate('required_with:password|same:password')]
     public string $password_confirmation;
 
-    public function mount($token)
+    public function mount(?string $token = null): void
     {
         $this->token = $token;
     }
 
-    public function passwordReset()
+    public function passwordReset(): void
     {
         $this->validate();
 
@@ -52,10 +53,10 @@ class ResetPassword extends Component
 
         $this->dispatch('flash-message', message: __($status));
 
-        return $this->redirect(route('login'), true);
+        $this->redirect(route('login'), true);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.auth.reset-password');
     }

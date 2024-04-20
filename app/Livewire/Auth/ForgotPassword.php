@@ -16,7 +16,7 @@ class ForgotPassword extends Component
     #[Validate('required|email|exists:users,email')]
     public string $email;
 
-    public function sendPasswordReset()
+    public function sendPasswordReset(): void
     {
         $this->validate();
 
@@ -30,7 +30,7 @@ class ForgotPassword extends Component
 
         $this->dispatch('flash-message', message: __($status));
 
-        return $this->redirect(route('login'), true);
+        $this->redirect(route('login'), true);
     }
 
     public function render(): View

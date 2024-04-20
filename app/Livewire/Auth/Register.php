@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -24,7 +25,7 @@ class Register extends Component
     #[Validate('required_with:password|same:password')]
     public string $password_confirmation;
 
-    public function register()
+    public function register(): void
     {
         $this->validate();
 
@@ -36,10 +37,10 @@ class Register extends Component
 
         $this->dispatch('flash-message', message: 'Succesfully registered.', title: 'Success!');
 
-        return $this->redirect('/', navigate: true);
+        $this->redirect('/', navigate: true);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.auth.register');
     }
