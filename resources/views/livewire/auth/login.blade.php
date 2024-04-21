@@ -1,8 +1,11 @@
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company">
-        <h2 class="dark:text-primary text-secondary mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">
+        <picture class="w-auto h-48 mx-auto">
+            <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
+            <source srcset="{{ asset('assets/logo/primary.svg') }}" media="(prefers-color-scheme: light)">
+            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo" >
+        </picture>
+        <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
             Sign in to your account
         </h2>
     </div>
@@ -21,7 +24,7 @@
                             'ring-red-800 ring-2' => $errors->has('email'),
                         ])>
                     @if ($errors->has('email'))
-                        <p class="text-red-700 text-sm">
+                        <p class="text-sm text-red-700">
                             {{ $errors->first('email') }}
                         </p>
                     @endif
@@ -33,7 +36,7 @@
                     <label for="password"
                         class="block text-sm font-medium leading-6 dark:text-primary text-secondary">Password</label>
                     <div class="text-sm">
-                        <a href="#" class="font-semibold text-secondary dark:text-primary">Forgot
+                        <a href="{{ route('password.request') }}" wire:navigate class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">Forgot
                             password?</a>
                     </div>
                 </div>
@@ -45,7 +48,7 @@
                             'ring-red-800' => $errors->has('email'),
                         ])>
                     @if ($errors->has('password'))
-                        <p class="text-red-700 text-sm">
+                        <p class="text-sm text-red-700">
                             {{ $errors->first('password') }}
                         </p>
                     @endif
@@ -59,10 +62,10 @@
             </div>
         </form>
 
-        <p class="mt-10 text-center text-sm text-gray-500">
+        <p class="mt-5 text-sm text-center text-gray-500">
             Not a member?
-            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                Start a 14 day free trial
+            <a href="{{ route('register') }}" wire:navigate class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">
+                Register
             </a>
         </p>
     </div>

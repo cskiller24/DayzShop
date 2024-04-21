@@ -1,8 +1,11 @@
 <div class="text-white">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company">
-        <h2 class="dark:text-primary text-secondary mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">
+        <picture class="w-auto h-48 mx-auto">
+            <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
+            <source srcset="{{ asset('assets/logo/primary.svg') }}" media="(prefers-color-scheme: light)">
+            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo">
+        </picture>
+        <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
             Forgot Password
         </h2>
     </div>
@@ -22,7 +25,7 @@
                             'ring-red-800 ring-2' => $errors->has('email'),
                         ])>
                     @if ($errors->has('email'))
-                        <p class="text-red-700 text-sm">
+                        <p class="text-sm text-red-700">
                             {{ $errors->first('email') }}
                         </p>
                     @endif
