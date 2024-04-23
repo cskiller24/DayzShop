@@ -11,7 +11,7 @@ class Toaster extends Component
 {
     #[On('flash-message')]
     /**
-     * @param array<int, mixed> $options
+     * @param  array<int, mixed>  $options
      */
     public function flashToast(
         ?string $message = null,

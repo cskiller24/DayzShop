@@ -3,7 +3,7 @@
         <picture class="w-auto h-48 mx-auto">
             <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
             <source srcset="{{ asset('assets/logo/primary.svg') }}" media="(prefers-color-scheme: light)">
-            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo" >
+            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo">
         </picture>
         <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
             Sign in to your account
@@ -36,7 +36,8 @@
                     <label for="password"
                         class="block text-sm font-medium leading-6 dark:text-primary text-secondary">Password</label>
                     <div class="text-sm">
-                        <a href="{{ route('password.request') }}" wire:navigate class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">Forgot
+                        <a href="{{ route('password.request') }}" wire:navigate
+                            class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">Forgot
                             password?</a>
                     </div>
                 </div>
@@ -64,7 +65,8 @@
 
         <p class="mt-5 text-sm text-center text-gray-500">
             Not a member?
-            <a href="{{ route('register') }}" wire:navigate class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">
+            <a href="{{ route('register') }}" wire:navigate
+                class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">
                 Register
             </a>
         </p>

@@ -100,7 +100,8 @@
 
         <p class="mt-5 text-sm text-center text-gray-500">
             Already signed in?
-            <a href="{{ route('login') }}" wire:navigate class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">
+            <a href="{{ route('login') }}" wire:navigate
+                class="font-semibold leading-6 underline text-tertiary-600 hover:text-tertiary-500">
                 Login
             </a>
         </p>
