@@ -6,12 +6,12 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Welcome | DayzShop')]
+#[Title('Test')]
 #[Layout('components.layouts.app')]
-class Welcome extends Component
+class Test extends Component
 {
     public function render()
     {
-        return view('livewire.welcome');
+        return view('livewire.test');
     }
 }

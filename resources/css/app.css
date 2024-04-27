@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slideout {
+    position: fixed;
+    left: 100%;
+    top: 10%;
+    transition: left 0.3s ease-out;
+}
+
+.slideout.active {
+    left: 10%;
+}
+
+.slideout-handle {
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: darkred;
+    cursor: pointer;
+}
+
+.slideout-body {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+}

@@ -9,8 +9,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="dark:bg-secondary">
+    @env('local')
+        <x-development.theme-toggle />
+    @endenv
     {{ $slot }}
+
 </body>
 
 </html>

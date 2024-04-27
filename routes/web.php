@@ -4,6 +4,7 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Test;
 use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,5 @@ Route::get('/forgot-password', ForgotPassword::class)
 Route::get('/reset-password/{token}', ResetPassword::class)
     ->middleware('guest')
     ->name('password.reset');
+
+Route::get('test', Test::class);
