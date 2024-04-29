@@ -10,11 +10,18 @@
 </head>
 
 <body class="dark:bg-secondary">
-    @env('local')
-        <x-development.theme-toggle />
-    @endenv
-    {{ $slot }}
-
+    <main class="min-h-screen flex flex-col justify-between">
+        <div class="d-flex flex-col">
+            <header class="container mx-auto mb-3">
+                <x-nav />
+            </header>
+            <section class="container mx-auto mb-auto">
+                {{ $slot }}
+            </section>
+        </div>
+        <footer class="h-auto mt-8">
+        </footer>
+    </main>
 </body>
 
 </html>
