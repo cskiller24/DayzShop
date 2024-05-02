@@ -10,16 +10,16 @@
 </head>
 
 <body class="dark:bg-secondary">
+    <x-development.theme-toggle />
     <main class="min-h-screen flex flex-col justify-between">
-        <div class="d-flex flex-col">
-            <header class="container mx-auto mb-3">
-                <x-nav />
-            </header>
-            <section class="container mx-auto mb-auto">
-                {{ $slot }}
-            </section>
-        </div>
+        <header>
+            <x-nav />
+        </header>
+        <section class="container mx-auto mb-auto">
+            {{ $slot }}
+        </section>
         <footer class="h-auto mt-8">
+            <x-footer />
         </footer>
     </main>
 </body>

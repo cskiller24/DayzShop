@@ -1,5 +1,5 @@
-<nav class="bg-secondary dark:bg-primary fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<nav class=" bg-secondary dark:bg-primary fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="flex flex-wrap items-center justify-between mx-auto py-2 container">
         <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
             {{-- <picture class="w-auto h-0 mx-auto">
                 <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
