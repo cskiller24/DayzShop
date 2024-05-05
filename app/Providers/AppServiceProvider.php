@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerBladeComponents();
+        $this->registerBladeDirectives();
     }
 
     private function registerBladeComponents(): void
@@ -35,5 +37,13 @@ class AppServiceProvider extends ServiceProvider
         foreach($this->componentPaths() as $name => $path) {
             Blade::anonymousComponentPath($path, $name);
         }
+    }
+
+    private function registerBladeDirectives(): void
+    {
+        Blade::directive('viteimage', function (string $expression) {
+            $expression = trim($expression, "'");
+            return Vite::asset("resources/images/{$expression}");
+        });
     }
 }
