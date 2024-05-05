@@ -15,10 +15,10 @@
         <header>
             <x-nav />
         </header>
-        <section class="container mx-auto mb-auto">
+        <section class="">
             {{ $slot }}
         </section>
-        <footer class="h-auto mt-8">
+        <footer class="h-auto">
             <x-footer />
         </footer>
     </main>

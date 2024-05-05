@@ -27,7 +27,7 @@
                 </section>
             </div>
         </div>
-        <hr class="my-3">
-        <div class="text-center text-2xl font-bold">&copy;DayzShop 2024</div>
     </div>
+    <hr class="my-2 bg-black">
+    <div class="text-white dark:text-secondary text-center text-2xl font-bold">&copy;DayzShop 2024</div>
 </div>

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 export default {
     content: [
@@ -23,9 +24,8 @@ export default {
                     ...colors.orange,
                     DEFAULT: colors.orange['500']
                 }
-            }
+            },
         },
-
     },
     plugins: [
         require('flowbite/plugin')
