@@ -1,8 +1,9 @@
 <div class="text-secondary dark:text-white">
-    <section class="bg-white dark:bg-secondary mb-3">
+    <section class="bg-white dark:bg-secondary my-8">
         <div class="container mx-auto">
-            <h2 class="text-4xl font-bold mt-20 text-center mx-auto md:w-2/3 my-6">Ultimate online destination for all
-                your urgent supply and essential needs!</h2>
+            <h2 class="text-4xl font-bold text-center mx-auto md:w-2/3 mb-6">
+                Ultimate online destination for all your urgent supply and essential needs!
+            </h2>
             <div class="flex flex-col md:flex-row justify-around items-center">
                 <div>
                     <img src="@viteimage('computer.svg')" alt="Computer Image">
@@ -12,7 +13,7 @@
                     <p class="text-justify text-2xl">A platform that is meticulously designed to cater those moments when
                         time is of the essence, ensuring you get what you need when you need it. All within a single
                         day.</p>
-                    <x-base::button class="mt-4 w-full bg-secondary border-primary text-white uppercase text-xl">
+                    <x-base::button class="mt-4 w-full bg-secondary border-primary-100 text-white uppercase text-xl">
                         Get Started
                     </x-base::button>
                 </div>

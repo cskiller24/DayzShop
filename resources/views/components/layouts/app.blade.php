@@ -12,10 +12,10 @@
 <body class="dark:bg-secondary">
     <x-development.theme-toggle />
     <main class="min-h-screen flex flex-col justify-between">
-        <header>
+        <header class="">
             <x-nav />
         </header>
-        <section class="">
+        <section>
             {{ $slot }}
         </section>
         <footer class="h-auto">
