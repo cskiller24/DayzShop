@@ -1,4 +1,4 @@
-<div class="bg-secondary dark:bg-primary py-3">
+<div class="bg-secondary dark:bg-primary pb-3 pt-5">
     <div class="container mx-auto text-white dark:text-secondary">
         <div class="flex justify-between">
             <div class="grid grid-cols-3 md:space-x-10 space-x-5">
