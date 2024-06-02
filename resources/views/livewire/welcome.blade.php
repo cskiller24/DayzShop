@@ -80,7 +80,7 @@
             ],
         ];
     @endphp
-    <section class="dark:bg-secondary bg-primary-100 dark:text-white text-secondary py-4">
+    <section class="dark:bg-secondary bg-primary-100 dark:text-white text-secondary py-4 my-5">
         <div class="container mx-auto text-center">
             <h1 class="text-3xl text-center mb-4">How it Works</h1>
             <div class="flex justify-evenly flex-col md:flex-row">
@@ -113,11 +113,17 @@
                                 'ring-gray-300' => !$errors->has('email'),
                                 'ring-red-800 ring-2' => $errors->has('email'),
                             ])></textarea>
+                        <x-base::button
+                            class="mt-4 w-full bg-secondary border-primary-100 text-white uppercase text-xl">
+                            Submit
+                        </x-base::button>
                     </div>
                 </div>
-                <div>
+                <picture>
+                    <source srcset="@viteimage('horn-dark.svg')" media="(prefers-color-scheme: dark)">
+                    <source srcset="@viteimage('horn.svg')" media="(prefers-color-scheme: light)">
                     <img src="@viteimage('horn.svg')" alt="Horn">
-                </div>
+                </picture>
             </div>
         </div>
     </section>
@@ -145,7 +151,8 @@
                         <div
                             class="p-5 dark:bg-secondary bg-white border-2 dark:border-white border-secondary border-t-0 ">
                             <p>
-                                Emergency delivery service is offered for unexpected situations to give you the supplies you need as soon as possible.
+                                Emergency delivery service is offered for unexpected situations to give you the supplies
+                                you need as soon as possible.
                             </p>
                         </div>
                     </div>
@@ -155,8 +162,8 @@
                             data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                             aria-controls="accordion-collapse-body-2">
                             <span class="uppercase text-black dark:text-white">Is there a Figma file available?</span>
-                            <svg data-accordion-icon class="w-3 h-3 dark:text-white text-black rotate-180 shrink-0" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <svg data-accordion-icon class="w-3 h-3 dark:text-white text-black rotate-180 shrink-0"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M9 5 5 1 1 5" />
                             </svg>
@@ -164,9 +171,12 @@
                     </h2>
                     <div id="accordion-collapse-body-2" class="hidden"
                         aria-labelledby="accordion-collapse-heading-2">
-                        <div class="p-5 dark:bg-secondary bg-white border-2 dark:border-white border-secondary border-t-0 ">
+                        <div
+                            class="p-5 dark:bg-secondary bg-white border-2 dark:border-white border-secondary border-t-0 ">
                             <p>
-                                Save time and effort by setting up subscription-based services for your regular needs. Your chosen items will be delivered at your preferred frequency, ensuring you never run out of essentials.
+                                Save time and effort by setting up subscription-based services for your regular needs.
+                                Your chosen items will be delivered at your preferred frequency, ensuring you never run
+                                out of essentials.
                             </p>
                         </div>
                     </div>
@@ -177,8 +187,9 @@
                             aria-controls="accordion-collapse-body-3">
                             <span class="uppercase text-black dark:text-white">What are the differences between
                                 Flowbite and Tailwind UI?</span>
-                            <svg data-accordion-icon class="w-3 h-3 dark:text-white text-black rotate-180 shrink-0" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <svg data-accordion-icon class="w-3 h-3 dark:text-white text-black rotate-180 shrink-0"
+                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M9 5 5 1 1 5" />
                             </svg>
@@ -186,9 +197,11 @@
                     </h2>
                     <div id="accordion-collapse-body-3" class="hidden"
                         aria-labelledby="accordion-collapse-heading-3">
-                        <div class="p-5 dark:bg-secondary bg-white border-2 dark:border-white border-secondary -mt-1 rounded-b-lg">
+                        <div
+                            class="p-5 dark:bg-secondary bg-white border-2 dark:border-white border-secondary -mt-1 rounded-b-lg">
                             <p>
-                                Our dedicated customer support team is available around the clock to assist you with any queries or issues you may have.
+                                Our dedicated customer support team is available around the clock to assist you with any
+                                queries or issues you may have.
                             </p>
                         </div>
                     </div>

@@ -31,6 +31,6 @@ export default {
         require('flowbite/plugin')
     ],
     darkMode: [
-        'class'
+        'media'
     ]
 };
