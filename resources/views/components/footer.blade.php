@@ -20,7 +20,7 @@
                     Contact
                 </section>
 
-                <img src="@viteimage('github-mark-white.svg')" alt="Github Logo" class="h-16 w-16 mx-auto my-2">
+                <img src="{{ Vite::image('github-mark.svg') }}" alt="Github Logo" class="h-16 w-16 mx-auto my-2">
 
                 <section>
                     CSKILLER24

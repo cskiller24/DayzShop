@@ -29,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerBladeComponents();
-        $this->registerBladeDirectives();
+
+        Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
     }
 
     private function registerBladeComponents(): void
@@ -39,11 +40,4 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
-    private function registerBladeDirectives(): void
-    {
-        Blade::directive('viteimage', function (string $expression) {
-            $expression = trim($expression, "'");
-            return Vite::asset("resources/images/{$expression}");
-        });
-    }
 }
