@@ -6,7 +6,7 @@
             </h2>
             <div class="flex flex-col md:flex-row justify-around items-center">
                 <div>
-                    <img src="@viteimage('computer.svg')" alt="Computer Image">
+                    <img src="{{ Vite::image('computer.svg') }}" alt="Computer Image">
                 </div>
                 <div
                     class="flex flex-col md:w-1/3 h-100 bg-secondary dark:bg-primary text-white dark:text-secondary border py-5 lg:py-10 px-5 rounded">
@@ -25,7 +25,7 @@
         <div class="container mx-auto text-center">
             <div class="flex justify-around md:flex-row flex-col">
                 <div>
-                    <img src="@viteimage('door-delivery.svg')" alt="Door to Door Delivery Image">
+                    <img src="{{ Vite::image('door-delivery.svg') }}" alt="Door to Door Delivery Image">
                     <div>
                         <h3 class="text-tertiary text-2xl">
                             Swift Delivery
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="@viteimage('ecomweb.svg')" alt="User Friendly Interface Image">
+                    <img src="{{ Vite::image('ecomweb.svg') }}" alt="User Friendly Interface Image">
                     <div>
                         <h3 class="text-tertiary text-2xl">
                             User-Friendly Interface
@@ -51,7 +51,7 @@
             </div>
             <div class="flex justify-center">
                 <div>
-                    <img src="@viteimage('ecomweb2.svg')" class="w-100" alt="Wide Range of Products Image">
+                    <img src="{{ Vite::image('ecomweb2.svg') }}" class="w-100" alt="Wide Range of Products Image">
                     <div>
                         <h3 class="text-tertiary text-2xl">Wide Range of Products</h3>
                         <p>Diverse selection to meet your requirements</p>
@@ -88,7 +88,7 @@
                 @foreach ($sections as $section)
                     <div class="flex flex-col justify-between items-center">
                         <h3 class="text-3xl text-tertiary mb-3">{{ $section['title'] }}</h3>
-                        <img src="@viteimage({{ $section['image'] }})" alt="" class="w-2/5 md:w-10/12 mb-3">
+                        <img src="{{ Vite::image($section['image']) }}" alt="" class="w-2/5 md:w-10/12 mb-3">
                         <p class="text-lg font-semibold w-64 mb-3">{{ $section['text'] }}</p>
                     </div>
                 @endforeach
@@ -120,9 +120,9 @@
                     </div>
                 </div>
                 <picture>
-                    <source srcset="@viteimage('horn-dark.svg')" media="(prefers-color-scheme: dark)">
-                    <source srcset="@viteimage('horn.svg')" media="(prefers-color-scheme: light)">
-                    <img src="@viteimage('horn.svg')" alt="Horn">
+                    <source srcset="{{ Vite::image('horn-dark.svg') }}" media="(prefers-color-scheme: dark)">
+                    <source srcset="{{ Vite::image('horn.svg') }}" media="(prefers-color-scheme: light)">
+                    <img src="{{ Vite::image('horn.svg') }}" alt="Horn">
                 </picture>
             </div>
         </div>
@@ -131,7 +131,7 @@
         <div class="container mx-auto text-center">
             <div class="flex justify-evenly mx-10 md:flex-row flex-col items-center">
                 <div class="flex justify-center m-3">
-                    <img src="@viteimage('questions.svg')" alt="" class="w-1/2 md:w-full" srcset="">
+                    <img src="{{ Vite::image('questions.svg') }}" alt="" class="w-1/2 md:w-full" srcset="">
                 </div>
                 <div id="accordion-collapse" class="w-full md:w-1/3  mx-3" data-accordion="collapse">
                     <h2 id="accordion-collapse-heading-1">
