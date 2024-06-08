@@ -35,7 +35,11 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerBladeComponents();
 
-        Vite::macro('image', fn (string $asset) => $this->asset("resources/images/{$asset}"));
+        Vite::macro('image', function (string $asset) {
+            /** @var \Illuminate\Foundation\Vite $this */
+
+            return $this->asset("resources/images/{$asset}");
+        });
     }
 
     private function registerBladeComponents(): void
