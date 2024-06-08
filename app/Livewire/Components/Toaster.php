@@ -10,16 +10,12 @@ use Livewire\Component;
 class Toaster extends Component
 {
     #[On('flash-message')]
-    /**
-     * @param  array<int, mixed>  $options
-     */
     public function flashToast(
         ?string $message = null,
         ?string $title = null,
         NotificationInterface|string $type = NotificationInterface::SUCCESS,
-        array $options = []
     ): void {
-        toast($message, $title, $type, $options);
+        toast($message, $title, $type);
     }
 
     public function render(): View
