@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -10,7 +11,7 @@ use Livewire\Component;
 #[Layout('components.layouts.app')]
 class Test extends Component
 {
-    public function render()
+    public function render(): View
     {
         return view('livewire.test');
     }

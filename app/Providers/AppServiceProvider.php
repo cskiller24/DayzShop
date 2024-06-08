@@ -8,6 +8,11 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Undocumented function
+     *
+     * @return array<string, string>
+     */
     private function componentPaths(): array
     {
         return [
