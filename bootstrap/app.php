@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'not-verified' => \App\Http\Middleware\EnsureEmailIsNotVerified::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

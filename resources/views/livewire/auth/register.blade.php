@@ -1,10 +1,7 @@
 <div>
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <picture class="w-auto h-48 mx-auto">
-            <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
-            <source srcset="{{ asset('assets/logo/primary.svg') }}" media="(prefers-color-scheme: light)">
-            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo">
-        </picture>
+        <x-base::logo class="w-auto h-48 mx-auto" />
+
         <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
             Register your account
         </h2>
