@@ -18,18 +18,18 @@ FILE-service-provider:
   - changed-files:
     - any-glob-to-any-file: ['bootstrap/**/*.php', 'app/Services/**/*.php']
 
-FILE-composer:
-  -changed-files:
-    - any-glob-to-any-file: ['composer.json', 'composer.lock']
+# FILE-composer:
+#   -changed-files:
+#     - any-glob-to-any-file: ['composer.json', 'composer.lock']
 
-FILE-package-json:
-  -changed-files:
-    - any-glob-to-any-file: ['package.json', 'package-lock.json']
+# FILE-package-json:
+#   -changed-files:
+#     - any-glob-to-any-file: ['package.json', 'package-lock.json']
 
 FILE-tests:
   -changed-files:
     - any-glob-to-any-file: 'tests/**/*.php'
 
-FILE-development-feature:
+FILE-markdown:
   - changed-files:
-      - any-glob-to-any-file: 'DEVELOPMENT.md'
+      - any-glob-to-any-file: '**/*.md'
