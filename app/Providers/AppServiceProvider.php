@@ -46,7 +46,6 @@ class AppServiceProvider extends ServiceProvider
 
             return $this->asset("resources/images/{$asset}");
         });
-
     }
 
     private function registerBladeComponents(): void

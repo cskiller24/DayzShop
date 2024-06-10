@@ -29,7 +29,7 @@ class ResetPassword extends Component
     #[Validate('required_with:password|same:password')]
     public string $password_confirmation;
 
-    public function mount(?string $token = null): void
+    public function mount(string $token = null): void
     {
         $this->token = $token;
     }

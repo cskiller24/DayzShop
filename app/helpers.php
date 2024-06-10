@@ -6,7 +6,7 @@ use Flasher\Prime\Notification\NotificationInterface;
 if (! function_exists('toast')) {
     /**
      * @param  string  $type
-     * @param  array<string, mixed>  $options
+     * @param  array<mixed>  $options
      */
     function toast(?string $message = null, ?string $title = null, NotificationInterface|string $type = NotificationInterface::SUCCESS, array $options = []): Envelope
     {
