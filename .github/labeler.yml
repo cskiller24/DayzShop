@@ -17,7 +17,7 @@ FILE-config:
 FILE-service-provider:
   - changed-files:
     - any-glob-to-any-file: 'bootstrap/**/*.php'
-    - any-glot-to-any-file: 'app/Services/**/*.php'
+    - any-glob-to-any-file: 'app/Services/**/*.php'
 
 FILE-composer:
   -changed-files:
