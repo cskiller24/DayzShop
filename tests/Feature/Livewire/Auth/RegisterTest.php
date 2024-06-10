@@ -3,6 +3,11 @@
 use App\Livewire\Auth\Register;
 use App\Models\User;
 use Livewire\Livewire;
+use function Pest\Laravel\withoutVite;
+
+beforeEach(function () {
+    withoutVite();
+});
 
 it('renders successfully', function () {
     Livewire::test(Register::class)

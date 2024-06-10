@@ -5,6 +5,11 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use function Pest\Laravel\actingAs;
+use function Pest\Laravel\withoutVite;
+
+beforeEach(function () {
+    withoutVite();
+});
 
 /**
  * @var Tests\TestCase $this
