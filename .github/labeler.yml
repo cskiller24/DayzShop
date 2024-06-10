@@ -16,18 +16,15 @@ FILE-config:
 
 FILE-service-provider:
   - changed-files:
-    - any-glob-to-any-file: 'bootstrap/**/*.php'
-    - any-glob-to-any-file: 'app/Services/**/*.php'
+    - any-glob-to-any-file: ['bootstrap/**/*.php', 'app/Services/**/*.php']
 
 FILE-composer:
   -changed-files:
-    - any-glob-to-any-file: 'composer.json'
-    - any-glob-to-any-file: 'composer.lock'
+    - any-glob-to-any-file: ['composer.json', 'composer.lock']
 
 FILE-package-json:
   -changed-files:
-    - any-glob-to-any-file: 'package.json'
-    - any-glob-to-any-file: 'package-lock.json'
+    - any-glob-to-any-file: ['package.json', 'package-lock.json']
 
 FILE-tests:
   -changed-files:
