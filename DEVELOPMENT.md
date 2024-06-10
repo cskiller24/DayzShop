@@ -13,7 +13,7 @@ Dayzshop is an e-commerce multi-tenant application for multiple sellers, deliver
 - [ ] Payment and transaction logs
 - [ ] Content management system (CMS) for site-wide announcements and updates
 - [ ] Feedback and support ticket management
-- [ ] Accept Invitations from Sellers
+- [ ] Accept Invitations from Sellers.
 
 ## Seller Panel
 
