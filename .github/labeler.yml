@@ -1,0 +1,35 @@
+FILE-github-action:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**/*.yml'
+
+FILE-database:
+  - changed-files:
+    - any-glob-to-any-file: 'database/**/*.php'
+
+FILE-model:
+  - changed-files:
+    - any-glob-to-any-file: 'app/Models/**/*.php'
+
+FILE-config:
+  - changed-files:
+    - any-glob-to-any-file: 'config/**/*.php'
+
+FILE-service-provider:
+  - changed-files:
+    - any-glob-to-any-file: ['bootstrap/**/*.php', 'app/Services/**/*.php']
+
+# FILE-composer:
+#   -changed-files:
+#     - any-glob-to-any-file: ['composer.json', 'composer.lock']
+
+# FILE-package-json:
+#   -changed-files:
+#     - any-glob-to-any-file: ['package.json', 'package-lock.json']
+
+# FILE-tests:
+#   -changed-files:
+#     - any-glob-to-any-file: 'tests/**/*.php'
+
+FILE-markdown:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
