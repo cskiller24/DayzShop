@@ -26,9 +26,9 @@ FILE-service-provider:
 #   -changed-files:
 #     - any-glob-to-any-file: ['package.json', 'package-lock.json']
 
-FILE-tests:
-  -changed-files:
-    - any-glob-to-any-file: 'tests/**/*.php'
+# FILE-tests:
+#   -changed-files:
+#     - any-glob-to-any-file: 'tests/**/*.php'
 
 FILE-markdown:
   - changed-files:
