@@ -15,7 +15,7 @@ class EnsureEmailIsNotVerified
 {
     public static function redirectTo(string $route): string
     {
-        return static::class.':'.$route;
+        return static::class . ':' . $route;
     }
 
     /**
@@ -23,14 +23,15 @@ class EnsureEmailIsNotVerified
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $redirectToRoute = null): Response
+    public function handle(Request $request, Closure $next, ?string $redirectToRoute = null): Response
     {
-        if (! $request->user() ||
-            ($request->user() instanceof MustVerifyEmail &&
-            $request->user()->hasVerifiedEmail())) {
+        if (
+            !$request->user() ||
+            ($request->user() instanceof MustVerifyEmail && $request->user()->hasVerifiedEmail())
+        ) {
             return $request->expectsJson()
-                    ? abort(403, 'Your email address is verified.')
-                    : Redirect::guest(URL::route($redirectToRoute ?: 'welcome'));
+                ? abort(403, 'Your email address is verified.')
+                : Redirect::guest(URL::route($redirectToRoute ?: 'welcome'));
         }
 
         return $next($request);

@@ -38,9 +38,9 @@ class Register extends Component
             'password' => $this->password,
         ]);
 
-        dispatch(fn() => event(new Registered($user)))->afterResponse();
+        dispatch(fn () => event(new Registered($user)))->afterResponse();
 
-        $this->dispatch('flash-message', message: 'Succesfully registered. ' . __('auth.verification-send'), title: 'Success!');
+        $this->dispatch('flash-message', message: 'Succesfully registered. '.__('auth.verification-send'), title: 'Success!');
 
         $this->redirect('/', navigate: true);
     }

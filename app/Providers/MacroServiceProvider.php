@@ -27,25 +27,33 @@ class MacroServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->vite();
+        $this->redirect();
+        $this->livewire();
+    }
+
+    protected function vite(): void
+    {
         Vite::macro('image', function (string $asset) {
             /** @var \Illuminate\Foundation\Vite $this */
-
             $asset = trim($asset, '/');
 
             return $this->asset("resources/images/{$asset}");
         });
+    }
 
-        Redirect::macro('toRole', function (User $user = null) {
+    protected function redirect(): void
+    {
+        Redirect::macro('toRole', function (?User $user = null) {
             /** @var \Illuminate\Routing\Redirector $this */
-
             $user ??= auth()->user();
 
-            if($user === null) {
+            if ($user === null) {
                 return $this->to(route('login'));
             }
 
-            foreach(Type::getValues() as $role) {
-                if($user->type === $role) {
+            foreach (Type::getValues() as $role) {
+                if ($user->type === $role) {
                     return $this->to(
                         MacroServiceProvider::routeTypes()[$role]
                     );
@@ -54,18 +62,20 @@ class MacroServiceProvider extends ServiceProvider
 
             return $this->to(route('limbo'));
         });
+    }
 
-        \Livewire\Component::macro('redirectToRole', function (User $user = null, bool $navigate = false) {
+    protected function livewire(): void
+    {
+        \Livewire\Component::macro('redirectToRole', function (?User $user = null, bool $navigate = false) {
             /** @var \Livewire\Component $this */
-
             $user ??= auth()->user();
 
-            if($user === null) {
+            if ($user === null) {
                 return $this->redirect(route('login'), $navigate);
             }
 
-            foreach(Type::getValues() as $role) {
-                if($user->type === $role) {
+            foreach (Type::getValues() as $role) {
+                if ($user->type === $role) {
                     return $this->redirect(
                         url: MacroServiceProvider::routeTypes()[$role],
                         navigate: $navigate
@@ -75,6 +85,5 @@ class MacroServiceProvider extends ServiceProvider
 
             return $this->redirect(route('limbo'), $navigate);
         });
-
     }
 }

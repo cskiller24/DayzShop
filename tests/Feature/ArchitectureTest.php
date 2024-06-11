@@ -27,7 +27,6 @@ arch('All service provider must have a suffix [Provider] and extend [Provider]')
     ->toHaveSuffix('Provider')
     ->toExtend(Illuminate\Support\ServiceProvider::class);
 
-
 arch('All files should be strict typed')
     ->expect('App')
     ->toUseStrictTypes();

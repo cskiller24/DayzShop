@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\withoutVite;
 
@@ -17,7 +18,6 @@ beforeEach(function () {
 /**
  * @var Tests\TestCase $this
  */
-
 it('renders succesfully', function () {
 
     $user = User::factory()->unverified()->create();
@@ -33,7 +33,7 @@ it('renders when the user is not verified', function () {
 
     actingAs($user);
 
-    /** @var \Illuminate\Testing\TestResponse $response  */
+    /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->get(route('verification.notice'));
 
     $response->assertOk();
@@ -44,7 +44,7 @@ it('does not render when the user is verified', function () {
 
     actingAs($user);
 
-    /** @var \Illuminate\Testing\TestResponse $response  */
+    /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->get(route('verification.notice'));
 
     $response->assertFound();
@@ -55,7 +55,7 @@ it('returns forbidden response on json request', function () {
 
     actingAs($user);
 
-    /** @var \Illuminate\Testing\TestResponse $response  */
+    /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->getJson(route('verification.notice'));
 
     $response->assertForbidden();
@@ -69,7 +69,7 @@ it('resends email verification notification', function () {
 
     actingAs($user);
 
-    /** @var \Illuminate\Testing\TestResponse $response  */
+    /** @var \Illuminate\Testing\TestResponse $response */
     $response = $this->post(route('verification.send'));
 
     $response->assertFound();

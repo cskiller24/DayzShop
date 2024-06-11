@@ -18,7 +18,7 @@ class ValidType
      */
     public function handle(Request $request, Closure $next, string $type): Response
     {
-        if(Type::tryFrom($type) === null) {
+        if (Type::tryFrom($type) === null) {
             $allowedTypes = implode(',', Type::getValues());
             throw new \InvalidArgumentException("Invalid type [{$type}] is used, only [{$allowedTypes}] is allowed");
         }
@@ -26,7 +26,7 @@ class ValidType
         /** @var \App\Models\User|null $user */
         $user = $request->user();
 
-        if($user === null || $user->type !== $type) {
+        if ($user === null || $user->type !== $type) {
             return redirect()->toRole($user);
         }
 
