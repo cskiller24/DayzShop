@@ -54,7 +54,7 @@ class UserFactory extends Factory
 
     public function customer(): static
     {
-        return $this->modifyType(Type::ADMIN);
+        return $this->modifyType(Type::CUSTOMER);
     }
 
     public function seller(): static

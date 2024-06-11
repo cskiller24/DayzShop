@@ -29,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'not-verified' => \App\Http\Middleware\EnsureEmailIsNotVerified::class,
+            'type' => \App\Http\Middleware\ValidType::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
