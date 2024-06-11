@@ -2,8 +2,8 @@
 
 use App\Livewire\Admin\Home;
 use App\Models\User;
-
 use Livewire\Livewire;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Laravel\withoutVite;
@@ -29,5 +29,3 @@ it('it redirects when the user is not admin', function () {
     get(route('admin'))
         ->assertRedirect();
 });
-
-

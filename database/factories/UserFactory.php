@@ -61,5 +61,4 @@ class UserFactory extends Factory
     {
         return $this->modifyType(Type::SELLER);
     }
-
 }

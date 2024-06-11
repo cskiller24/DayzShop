@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(StatefulGuard::class, function () {
+            // @phpstan-ignore-next-line
             return Auth::guard(config('auth.defaults.guard', 'web'));
         });
     }

@@ -6,13 +6,11 @@ use App\Models\User;
 use App\Providers\MacroServiceProvider;
 use Livewire\Livewire;
 
-use function Pest\Laravel\withoutExceptionHandling;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
     withoutVite();
 });
-
 
 it('renders successfully', function () {
     Livewire::test(Login::class)
@@ -60,7 +58,7 @@ it('validates that the password is required', function () {
 });
 
 it('succesfully logs in the user with different', function () {
-    foreach(array_merge(Type::getValues(), ['limbo']) as $role) {
+    foreach (array_merge(Type::getValues(), ['limbo']) as $role) {
         $user = User::factory()->create(['email' => "{$role}@example.com", 'type' => $role]);
 
         Livewire::test(Login::class)

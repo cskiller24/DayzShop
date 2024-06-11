@@ -53,6 +53,5 @@ Route::get('limbo', LimboController::class)
 
 Route::get('test', Test::class);
 
-Route::get('/auth', function () {
-    return ;
+Route::get('/auth', function (): void {
 })->middleware(['auth', 'verified']);

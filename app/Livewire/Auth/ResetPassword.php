@@ -17,7 +17,7 @@ use Livewire\Component;
 class ResetPassword extends Component
 {
     #[Rule('required')]
-    public string $token;
+    public ?string $token;
 
     #[Url]
     #[Rule('required|email')]
@@ -29,7 +29,7 @@ class ResetPassword extends Component
     #[Validate('required_with:password|same:password')]
     public string $password_confirmation;
 
-    public function mount(string $token = null): void
+    public function mount(?string $token = null): void
     {
         $this->token = $token;
     }
@@ -43,7 +43,7 @@ class ResetPassword extends Component
             'password' => $this->password,
             'password_confirmation' => $this->password_confirmation,
             'token' => $this->token,
-        ], function (User $user, string $password) {
+        ], function (User $user, string $password): void {
             $user->forceFill([
                 'password' => bcrypt($password),
             ]);
@@ -51,6 +51,7 @@ class ResetPassword extends Component
             $user->save();
         });
 
+        // @phpstan-ignore-next-line
         $this->dispatch('flash-message', message: __($status));
 
         $this->redirect(route('login'), true);

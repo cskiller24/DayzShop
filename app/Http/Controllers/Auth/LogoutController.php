@@ -13,14 +13,13 @@ class LogoutController extends Controller
 {
     public function __construct(private StatefulGuard $guard)
     {
-
     }
 
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(Request $request): RedirectResponse|JsonResponse
     {
         $this->guard->logout();
 
-        if($request->hasSession()) {
+        if ($request->hasSession()) {
             $request->session()->invalidate();
             $request->session()->regenerate();
         }

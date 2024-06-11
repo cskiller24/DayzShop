@@ -12,7 +12,7 @@ class EmailVerificationController extends Controller
 {
     public function send(Request $request): RedirectResponse
     {
-        if($request->user() instanceof MustVerifyEmail) {
+        if ($request->user() instanceof MustVerifyEmail) {
             $request->user()->sendEmailVerificationNotification();
         }
 
