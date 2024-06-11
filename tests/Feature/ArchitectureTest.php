@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 arch('does not allow dd, sleep, dump, var_dump in the whole application')
     ->expect(['sleep', 'var_dump', 'dd', 'dump'])
     ->not->toBeUsed();
@@ -26,6 +28,6 @@ arch('All service provider must have a suffix [Provider] and extend [Provider]')
     ->toExtend(Illuminate\Support\ServiceProvider::class);
 
 
-// arch('All files should be strict typed')
-//     ->expect('App')
-//     ->toUseStrictTypes();
+arch('All files should be strict typed')
+    ->expect('App')
+    ->toUseStrictTypes();

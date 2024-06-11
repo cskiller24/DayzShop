@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Enums\Type;
 use App\Livewire\Courier;
 use Illuminate\Support\Facades\Route;

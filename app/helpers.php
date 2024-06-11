@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Flasher\Prime\Notification\Envelope;
 use Flasher\Prime\Notification\NotificationInterface;
 
