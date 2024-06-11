@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="dark:bg-secondary">
+<body class="dark:bg-secondary dark:text-primary text-secondary">
     <x-development.theme-toggle />
     <main class="min-h-screen flex flex-col justify-between">
         <header class="">

@@ -29,7 +29,7 @@ class Login extends Component
             return;
         }
 
-        $this->redirect('/', navigate: true);
+        $this->redirectToRole();
     }
 
     public function render(): View

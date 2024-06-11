@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\LimboController;
 use App\Livewire\Auth\EmailVerification;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
@@ -45,6 +46,10 @@ Route::post('/email-verification/send', [EmailVerificationController::class, 'se
 Route::get('/email-verification/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
+
+Route::get('limbo', LimboController::class)
+    ->middleware(['auth', 'verified'])
+    ->name('limbo');
 
 Route::get('test', Test::class);
 
