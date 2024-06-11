@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -29,13 +30,15 @@ class Register extends Component
     {
         $this->validate();
 
-        User::create([
+        $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
         ]);
 
-        $this->dispatch('flash-message', message: 'Succesfully registered.', title: 'Success!');
+        dispatch(fn() => event(new Registered($user)))->afterResponse();
+
+        $this->dispatch('flash-message', message: 'Succesfully registered. ' . __('auth.verification-send'), title: 'Success!');
 
         $this->redirect('/', navigate: true);
     }

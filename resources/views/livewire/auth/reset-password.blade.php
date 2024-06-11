@@ -1,10 +1,7 @@
 <div class="text-white">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <picture class="w-auto h-48 mx-auto">
-            <source srcset="{{ asset('assets/logo/secondary.svg') }}" media="(prefers-color-scheme: dark)">
-            <source srcset="{{ asset('assets/logo/primary.svg') }}" media="(prefers-color-scheme: light)">
-            <img src="{{ asset('assets/logo/primary.svg') }}" class="w-auto h-48 mx-auto" alt="Logo">
-        </picture>
+        <x-base::logo class="w-auto h-48 mx-auto" />
+
         <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
             Forgot Password
         </h2>
@@ -15,8 +12,9 @@
             @csrf
 
             <div>
-                <label for="email" class="block text-sm font-medium leading-6 dark:text-primary text-secondary">Email
-                    address</label>
+                <label for="email" class="block text-sm font-medium leading-6 dark:text-primary text-secondary">
+                    Email address
+                </label>
                 <div class="mt-2">
                     <input id="email" name="email" type="email" autocomplete="email" readonly
                         wire:model.blur="email" @class([
