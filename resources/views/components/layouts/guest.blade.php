@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="dark:bg-secondary-800 bg-white">
+<body class="dark:bg-secondary-800 bg-white dark:text-primary text-secondary">
     @livewire('components.toaster')
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         {{ $slot }}
