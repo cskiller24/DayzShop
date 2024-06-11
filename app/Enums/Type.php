@@ -9,6 +9,7 @@ enum Type: string
     use ArrayableEnums;
 
     case ADMIN = 'admin';
+
     case SELLER = 'seller';
 
     case COURIER = 'courier';
