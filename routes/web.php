@@ -53,6 +53,10 @@ Route::get('limbo', LimboController::class)
     ->middleware(['auth', 'verified'])
     ->name('limbo');
 
+Route::get('/invitation/{invitation:code}/use', function () {
+    // wip
+})->name('invitation.use');
+
 Route::get('test', Test::class);
 
 Route::get('/auth', function (): void {

@@ -7,5 +7,7 @@
 
     <!-- Main modal -->
     <livewire:admin.components.invitations.create modalId="invitations-create" />
-
+    <div class="mt-3">
+        <livewire:admin.components.invitations.table class="p-2" />
+    </div>
 </div>
