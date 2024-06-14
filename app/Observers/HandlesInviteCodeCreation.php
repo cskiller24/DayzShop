@@ -13,7 +13,7 @@ class HandlesInviteCodeCreation
     {
         do {
             $code = Str::random();
-        } while(Invite::query()->where('code', $code)->exists());
+        } while (Invite::query()->where('code', $code)->exists());
 
         $invite->code = $code;
     }

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Observers\HandlesInviteCodeCreation;
 use App\Enums\InvitationTypes;
+use App\Observers\HandlesInviteCodeCreation;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,20 +21,20 @@ class Invite extends Model
     use HasFactory;
 
     protected $fillable = [
-        'type', 'code', 'expire_at'
+        'type', 'code', 'expire_at',
     ];
 
     public function status(): Attribute
     {
         return Attribute::make(
-            get: fn(): string => $this->expire_at->lessThan(now()) ? 'Expire' : 'Available',
+            get: fn (): string => $this->expire_at->lessThan(now()) ? 'Expire' : 'Available', // @phpstan-ignore-line
         );
     }
 
     public function url(): Attribute
     {
         return Attribute::make(
-            get: fn(): string => route('invitation.use', $this->code),
+            get: fn (): string => route('invitation.use', $this->code),
         );
     }
 

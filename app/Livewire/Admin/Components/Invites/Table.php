@@ -18,18 +18,18 @@ class Table extends Component
 {
     use WithPagination;
 
-    public function notify(string $code = null, string $email = null): void
+    public function notify(?string $code = null, ?string $email = null): void
     {
         $validator = Validator::make([
             'code' => $code,
             'email' => $email,
         ], [
             'email' => ['email', 'required', 'unique:users,email'],
-            'code' => ['exists:invites,code']
+            'code' => ['exists:invites,code'],
         ]);
 
-        if($validator->fails()) {
-            foreach($validator->errors()->all() as $error) {
+        if ($validator->fails()) {
+            foreach ($validator->errors()->all() as $error) {
                 $this->dispatch('flash-message', message: $error, title: 'Error!', type: NotificationInterface::ERROR);
             }
 
@@ -38,21 +38,24 @@ class Table extends Component
 
         $invite = Invite::query()->where('code', $code)->first();
 
-        dispatch(function () use ($email, $invite) {
+        dispatch(function () use ($email, $invite): void {
+            // @phpstan-ignore-next-line
             Mail::to($email)->send(new StoreInvitation($invite));
         })->afterResponse();
 
         $this->dispatch('flash-message', message: 'Invitation successfully sent!', title: 'Success!', type: NotificationInterface::SUCCESS);
-
     }
 
     public function delete(string $code): void
     {
-        if(($invite = Invite::where('code', $code)->first()) === null) {
+        $invite = Invite::where('code', $code)->first();
+
+        if ($invite === null) {
             $this->dispatch('flash-message', message: 'Cannot delete invitation.', title: 'Error!');
+
+            return;
         }
 
-        // @phpstan-ignore-next-line
         $invite->delete();
 
         $this->dispatch('flash-message', message: 'Successfully deleted invitation.', title: 'Success!');
@@ -62,7 +65,7 @@ class Table extends Component
     public function render(): View
     {
         return view('livewire.admin.components.invites.table', [
-            'invites' => Invite::query()->oldest('expire_at')->paginate()
+            'invites' => Invite::query()->oldest('expire_at')->paginate(),
         ]);
     }
 }

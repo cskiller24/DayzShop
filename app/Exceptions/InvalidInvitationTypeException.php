@@ -6,17 +6,17 @@ namespace App\Exceptions;
 
 use App\Enums\InvitationTypes;
 use App\Models\Invite;
-use \Exception;
+use Exception;
 
 class InvalidInvitationTypeException extends Exception
 {
-    public function __construct(Invite $invite, InvitationTypes $type = null)
+    public function __construct(Invite $invite, ?InvitationTypes $type = null)
     {
         $allowedTypes = $type ?
             [$type->value] :
             InvitationTypes::getValues();
 
-        $exploded = implode(", ", $allowedTypes);
+        $exploded = implode(', ', $allowedTypes);
 
         parent::__construct("Invalid notification type [{$invite->type}] given. [{$exploded}]");
     }

@@ -14,11 +14,11 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public $expireAt;
+    public string $expireAt;
 
     public string $type;
 
-    public function mount()
+    public function mount(): void
     {
         $this->expireAt = now()->addDay()->toDateTimeString();
     }
