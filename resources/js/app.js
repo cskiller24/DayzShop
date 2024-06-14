@@ -1,4 +1,5 @@
 import.meta.glob(["../images/**", "../fonts/**"]);
 import "./bootstrap";
-import "flowbite";
-import "./toggle";
+import "@tabler/core"
+import "./livewire"
+// import "./toggle";
