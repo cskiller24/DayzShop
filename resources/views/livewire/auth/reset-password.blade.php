@@ -1,82 +1,35 @@
-<div class="text-white">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <x-base::logo class="w-auto h-48 mx-auto" />
-
-        <h2 class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center dark:text-primary text-secondary ">
-            Forgot Password
-        </h2>
-    </div>
-
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-4" wire:submit="passwordReset" method="POST">
-            @csrf
-
-            <div>
-                <label for="email" class="block text-sm font-medium leading-6 dark:text-primary text-secondary">
-                    Email address
-                </label>
-                <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" readonly
-                        wire:model.blur="email" @class([
-                            'block w-full rounded-md border-0 bg-gray-300 text-black py-1.5 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6',
-                            'ring-gray-300' => !$errors->has('email'),
-                            'ring-red-800 ring-2' => $errors->has('email'),
-                        ])>
-                    @if ($errors->has('email'))
-                        <p class="text-sm text-red-700">
-                            {{ $errors->first('email') }}
-                        </p>
-                    @endif
-                </div>
+<div class="page page-center bg-dark">
+    <div class="container container-tight py-4">
+        <div class="text-center mb-4">
+            <a href="{{ route('welcome') }}" wire:navigate class="navbar-brand navbar-brand-autodark">
+                <x-base::logo class="" style="width: 5rem" />
+            </a>
+        </div>
+        <div class="card card-md border-light bg-dark">
+            <div class="card-body">
+                <h2 class="h2 text-center mb-4 text-light">Reset Password</h2>
+                <form wire:submit="passwordReset">
+                    @csrf
+                    <div class="mb-3">
+                        <x-base::label>Email address</x-base::label>
+                        <x-base::text-input placeholder="Enter your email address" wire:model="email" errorKey="email" readonly />
+                        <x-base::error key="email" />
+                    </div>
+                    <div class="mb-2">
+                        <x-base::label>Password</x-base::label>
+                        <x-base::text-input placeholder="Enter your password" type="password" wire:model="password" errorKey="password" />
+                        <x-base::error key="password" />
+                    </div>
+                    <div class="mb-3">
+                        <x-base::label>Confirm Password</x-base::label>
+                        <x-base::text-input placeholder="Re-Enter your password" type="password" wire:model="password_confirmation" errorKey="password_confirmation" />
+                        <x-base::error key="password_confirmation" />
+                    </div>
+                    <div class="form-footer">
+                        <x-base::button class="w-full btn-outline-light">Reset Password</x-base::button>
+                    </div>
+                </form>
             </div>
-
-            <div>
-                <div class="flex items-center justify-between">
-                    <label for="password"
-                        class="block text-sm font-medium leading-6 dark:text-primary text-secondary">Password</label>
-                </div>
-                <div class="mt-2">
-                    <input id="password" name="password" wire:model.blur="password" type="password"
-                        autocomplete="current-password" required @class([
-                            'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset text-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-tertiary sm:text-sm sm:leading-6',
-                            'ring-gray-300' => !$errors->has('password'),
-                            'ring-red-800' => $errors->has('password'),
-                        ])>
-                    @if ($errors->has('password'))
-                        <p class="text-sm text-red-700">
-                            {{ $errors->first('password') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-
-            <div>
-                <div class="flex items-center justify-between">
-                    <label for="password_confirmation"
-                        class="block text-sm font-medium leading-6 dark:text-primary text-secondary">Confirm
-                        Password</label>
-                </div>
-                <div class="mt-2">
-                    <input id="password" name="password_confirmation" wire:model.blur="password_confirmation"
-                        type="password" autocomplete="current-password" required @class([
-                            'block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset text-black placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-tertiary sm:text-sm sm:leading-6',
-                            'ring-gray-300' => !$errors->has('password_confirmation'),
-                            'ring-red-800' => $errors->has('password_confirmation'),
-                        ])>
-                    @if ($errors->has('password_confirmation'))
-                        <p class="text-sm text-red-700">
-                            {{ $errors->first('password_confirmation') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-
-            <div>
-                <button type="submit"
-                    class="flex w-full justify-center rounded-md bg-tertiary-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-tertiary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Reset Password
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
