@@ -45,5 +45,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Unverified',
             'email' => 'unverified@dayzshop.com',
         ]);
+
+        $this->call(InviteSeeder::class);
     }
 }

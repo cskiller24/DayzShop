@@ -5,6 +5,11 @@
             'url' => route('admin'),
             'icon' => 'chart-pie',
         ],
+        [
+            'name' => 'Invites',
+            'url' => route('admin.invites'),
+            'icon' => 'send',
+        ],
     ];
 @endphp
 
