@@ -43,7 +43,7 @@ it('does not delete invitation on wrong code', function () {
 it('sends invitation via email', function () {
     Mail::fake();
 
-    $invite = Invite::factory()->create();
+    $invite = Invite::factory()->storeInvite()->create();
 
     $email = fake()->email();
 
