@@ -29,4 +29,18 @@ class InviteFactory extends Factory
             'expire_at' => fake()->dateTimeBetween(now()->addDay(), now()->addMonth()),
         ];
     }
+
+    public function storeInvite(): static
+    {
+        return $this->state(fn () => [
+            'type' => InvitationTypes::STORE->value,
+        ]);
+    }
+
+    public function courierInvite(): static
+    {
+        return $this->state(fn () => [
+            'type' => InvitationTypes::COURIER->value,
+        ]);
+    }
 }

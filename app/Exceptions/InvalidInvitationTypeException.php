@@ -12,12 +12,13 @@ class InvalidInvitationTypeException extends Exception
 {
     public function __construct(Invite $invite, ?InvitationTypes $type = null)
     {
-        $allowedTypes = $type ?
+        $allowedTypes = $type !== null ?
             [$type->value] :
             InvitationTypes::getValues();
 
         $exploded = implode(', ', $allowedTypes);
 
-        parent::__construct("Invalid notification type [{$invite->type}] given. [{$exploded}]");
+        // @phpstan-ignore-next-line
+        parent::__construct("Invalid notification type [{$invite->type->value}] given. [{$exploded}]");
     }
 }

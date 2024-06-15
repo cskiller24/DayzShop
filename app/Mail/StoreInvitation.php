@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Mail;
 
+use App\Enums\InvitationTypes;
+use App\Exceptions\InvalidInvitationTypeException;
 use App\Models\Invite;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -20,6 +22,10 @@ class StoreInvitation extends Mailable
      */
     public function __construct(public Invite $invite)
     {
+        throw_if(
+            $invite->type->value !== InvitationTypes::STORE->value, // @phpstan-ignore-line
+            new InvalidInvitationTypeException($invite, InvitationTypes::STORE)
+        );
     }
 
     /**
