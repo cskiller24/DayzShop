@@ -15,7 +15,7 @@ class EnsureEmailIsNotVerified
 {
     public static function redirectTo(string $route): string
     {
-        return static::class . ':' . $route;
+        return static::class.':'.$route;
     }
 
     /**
@@ -26,7 +26,7 @@ class EnsureEmailIsNotVerified
     public function handle(Request $request, Closure $next, ?string $redirectToRoute = null): Response
     {
         if (
-            !$request->user() ||
+            ! $request->user() ||
             ($request->user() instanceof MustVerifyEmail && $request->user()->hasVerifiedEmail())
         ) {
             return $request->expectsJson()

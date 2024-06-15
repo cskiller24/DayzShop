@@ -4,6 +4,7 @@
 ])
 
 <x-layouts.base>
+    <livewire:components.toaster />
     <div class="page bg-dark text-light">
         <x-admin.sidebar />
         <div class="page-wrapper">
