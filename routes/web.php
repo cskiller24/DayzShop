@@ -10,6 +10,7 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
+use App\Livewire\Auth\UseInvitation;
 use App\Livewire\Test;
 use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
@@ -53,8 +54,9 @@ Route::get('limbo', LimboController::class)
     ->middleware(['auth', 'verified'])
     ->name('limbo');
 
-Route::get('/invitation/{invite:code}/use', function (): void {
-})->name('invitation.use');
+Route::get('/invitation/{invite:code}/use', UseInvitation::class)
+    ->middleware('guest')
+    ->name('invitation.use');
 
 Route::get('test', Test::class);
 

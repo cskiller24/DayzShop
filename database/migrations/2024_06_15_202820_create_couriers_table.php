@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invites', function (Blueprint $table) {
+        Schema::create('couriers', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 16)->unique();
-            $table->string('type');
-            $table->boolean('is_used')->default(0);
-            $table->timestamp('expire_at');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invites');
+        Schema::dropIfExists('couriers');
     }
 };

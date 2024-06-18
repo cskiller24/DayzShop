@@ -9,4 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::SELLER->value], 'prefix' => '/seller'], function (): void {
     Route::get('/', Seller\Home::class)
         ->name('seller');
+
+    Route::get('/select', Seller\SelectStore::class)
+        ->name('seller.select');
+
+    Route::get('/create-store', Seller\CreateStore::class)
+        ->name('seller.create');
 });
