@@ -33,6 +33,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'not-verified' => \App\Http\Middleware\EnsureEmailIsNotVerified::class,
             'type' => \App\Http\Middleware\ValidType::class,
         ]);
+
+        $middleware->web(
+            append: [
+                \App\Http\Middleware\EnsureSellerDoesHaveAnyStore::class,
+            ],
+        );
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

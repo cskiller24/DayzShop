@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\Type;
+use App\Http\Controllers\Seller\StoreController;
 use App\Livewire\Seller;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,12 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::SELLER->value],
     Route::get('/select', Seller\SelectStore::class)
         ->name('seller.select');
 
+    Route::post('/create-store/{store}', [StoreController::class, 'activate'])
+        ->name('seller.activate');
+
     Route::get('/create-store', Seller\CreateStore::class)
         ->name('seller.create');
+
+    Route::post('/create-store', [StoreController::class, 'store'])
+        ->name('seller.store');
 });

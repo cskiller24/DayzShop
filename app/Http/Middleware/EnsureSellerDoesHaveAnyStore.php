@@ -8,8 +8,18 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureCourierDoesHaveAnyHubs
+class EnsureSellerDoesHaveAnyStore
 {
+    /**
+     * @var array<int, string>
+     */
+    private array $except = [
+        'seller.select',
+        'seller.activate',
+        'seller.store',
+        'seller.create',
+    ];
+
     /**
      * Handle an incoming request.
      *
@@ -20,28 +30,28 @@ class EnsureCourierDoesHaveAnyHubs
         /**
          * @var \App\Models\User $user
          */
-        $user = $request->user();
+        $user = auth()->user();
 
         if($user === null || ! $user->isSeller()) {
-            return null;
+            return $next($request);
         }
 
         $storeCount = $user->stores()->count();
 
         if($storeCount > 0 && $user->active_store_id !== null) {
-            return null;
+            return $next($request);
         }
 
-        if($storeCount > 0 && $user->active_store_id === null) {
+        if($storeCount > 0 && $user->active_store_id === null && ! in_array($request->route()->getName(), $this->except)) {
             return redirect()->route('seller.select');
         }
 
-        if($storeCount <= 0) {
+        if($storeCount <= 0 && ! in_array($request->route()->getName(), $this->except)) {
             $user->update(['active_store_id' => null]);
 
             return redirect()->route('seller.create');
         }
 
-        return null;
+        return $next($request);
     }
 }

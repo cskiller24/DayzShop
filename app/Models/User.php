@@ -97,7 +97,7 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
     {
         $column = ($classification::class === Store::class) ? 'active_store_id' : 'active_courier_id';
 
-        $this->update([$column => $classification->id]);
+        $this->forceFill([$column => $classification->id])->save();
     }
 
     // public function courier(): BelongsTo
