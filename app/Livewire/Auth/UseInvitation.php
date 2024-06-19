@@ -56,7 +56,7 @@ class UseInvitation extends Component
             'type' => $this->invite->role_type,
         ]);
 
-        $this->invite->setAsUsed();
+        $this->invite->used();
 
         dispatch(fn () => event(new Registered($user)))->afterResponse();
 
@@ -67,7 +67,7 @@ class UseInvitation extends Component
 
     public function render(): View
     {
-        if($this->invite->is_expired) {
+        if ($this->invite->is_expired) {
             return view('livewire.auth.invitation.expired');
         }
 

@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property \App\Enums\Type $type
+ */
 class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
 {
     use HasFactory, HasUuids, Notifiable;
@@ -82,7 +84,6 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         return $this->type === Type::SELLER;
     }
 
-
     public function stores(): BelongsToMany
     {
         return $this->belongsToMany(Store::class);
@@ -93,9 +94,9 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         return $this->belongsTo(Store::class, 'active_store_id');
     }
 
-    public function setAsActive(Store|Courier $classification)
+    public function setAsActive(Store|Courier $classification): void
     {
-        $column = ($classification::class === Store::class) ? 'active_store_id' : 'active_courier_id';
+        $column = $classification::class === Store::class ? 'active_store_id' : 'active_courier_id';
 
         $this->forceFill([$column => $classification->id])->save();
     }

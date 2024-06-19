@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Actions\EnsureSellerDoesHaveAnyStore;
 use App\Enums\Type;
 use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
@@ -47,6 +46,8 @@ class MacroServiceProvider extends ServiceProvider
     {
         Redirect::macro('toRole', function (?User $user = null) {
             /** @var \Illuminate\Routing\Redirector $this */
+
+            /** @var \App\Models\User|null $user */
             $user ??= auth()->user();
 
             if ($user === null) {
@@ -69,6 +70,8 @@ class MacroServiceProvider extends ServiceProvider
     {
         \Livewire\Component::macro('redirectToRole', function (?User $user = null, bool $navigate = false) {
             /** @var \Livewire\Component $this */
+
+            /** @var \App\Models\User|null $user */
             $user ??= auth()->user();
 
             if ($user === null) {
@@ -77,7 +80,6 @@ class MacroServiceProvider extends ServiceProvider
 
             foreach (Type::getValues() as $role) {
                 if ($user->type->value === $role) {
-
                     return $this->redirect(
                         url: MacroServiceProvider::routeTypes()[$role],
                         navigate: $navigate

@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Seller;
 
-use App\Actions\EnsureSellerDoesHaveAnyStore;
-use App\Models\Store;
+use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -32,7 +31,7 @@ class CreateStore extends Component
         $this->dispatch('validated');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.seller.create-store');
     }

@@ -8,7 +8,6 @@ use App\Models\User;
 use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function PHPUnit\Framework\assertNotNull;

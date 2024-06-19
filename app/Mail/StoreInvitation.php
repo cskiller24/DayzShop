@@ -23,7 +23,7 @@ class StoreInvitation extends Mailable
     public function __construct(public Invite $invite)
     {
         throw_if(
-            $invite->type->value !== InvitationTypes::STORE->value, // @phpstan-ignore-line
+            $invite->type->value !== InvitationTypes::STORE->value,
             new InvalidInvitationTypeException($invite, InvitationTypes::STORE)
         );
     }

@@ -26,7 +26,7 @@ class ValidType
         /** @var \App\Models\User|null $user */
         $user = $request->user();
 
-        if ($user === null || $user->type?->value !== $type) {
+        if ($user === null || $user?->type?->value !== $type) { // @phpstan-ignore-line
             return redirect()->toRole($user);
         }
 

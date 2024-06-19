@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property-read string $url
  * @property-read string $status
+ * @property-read string $role_type
+ * @property-read bool $is_expired
+ *
+ * @property \App\Enums\InvitationTypes $type
  */
 #[ObservedBy(HandlesInviteCodeCreation::class)]
 class Invite extends Model
@@ -48,18 +52,18 @@ class Invite extends Model
 
     public function roleType(): Attribute
     {
-        if($this->type === InvitationTypes::COURIER || $this->type === InvitationTypes::COURIER_USER) {
+        if ($this->type === InvitationTypes::COURIER || $this->type === InvitationTypes::COURIER_USER) {
             return Attribute::make(
-                get: fn() => Type::COURIER->value,
+                get: fn () => Type::COURIER->value,
             );
         }
 
         return Attribute::make(
-            get: fn() => Type::SELLER->value,
+            get: fn () => Type::SELLER->value,
         );
     }
 
-    public function setAsUsed(): static
+    public function used(): static
     {
         $this->forceFill(['is_used' => true])->save();
 

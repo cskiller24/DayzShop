@@ -2,10 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Enums\Type;
 use App\Livewire\Auth\Login;
 use App\Models\User;
-use App\Providers\MacroServiceProvider;
 use Livewire\Livewire;
 
 use function Pest\Laravel\withoutVite;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,31 +28,57 @@ class EnsureSellerDoesHaveAnyStore
      */
     public function handle(Request $request, Closure $next): Response
     {
-        /**
-         * @var \App\Models\User $user
-         */
+        /** @var App\Models\User|null $user */
         $user = auth()->user();
 
-        if($user === null || ! $user->isSeller()) {
+        if ($this->shouldPassThrough($user)) {
             return $next($request);
         }
 
+        return $this->handleSeller($user, $request, $next);
+    }
+
+    private function shouldPassThrough(?User $user): bool
+    {
+        return $user === null || !$user->isSeller();
+    }
+
+    private function handleSeller(User $user, Request $request, Closure $next): Response
+    {
         $storeCount = $user->stores()->count();
 
-        if($storeCount > 0 && $user->active_store_id !== null) {
+        if ($this->hasActiveStore($user, $storeCount)) {
             return $next($request);
         }
 
-        if($storeCount > 0 && $user->active_store_id === null && ! in_array($request->route()->getName(), $this->except)) {
+        if ($this->shouldRedirectToSelectStore($user, $storeCount, $request)) {
             return redirect()->route('seller.select');
         }
 
-        if($storeCount <= 0 && ! in_array($request->route()->getName(), $this->except)) {
+        if ($this->shouldRedirectToCreateStore($storeCount, $request)) {
             $user->update(['active_store_id' => null]);
 
             return redirect()->route('seller.create');
         }
 
         return $next($request);
+    }
+
+    private function hasActiveStore(User $user, int $storeCount): bool
+    {
+        return $storeCount > 0 && $user->active_store_id !== null;
+    }
+
+    private function shouldRedirectToSelectStore(User $user, int $storeCount, Request $request): bool
+    {
+        return $storeCount > 0
+            && $user->active_store_id === null
+            && !in_array($request->route()?->getName() ?? '', $this->except);
+    }
+
+    private function shouldRedirectToCreateStore(int $storeCount, Request $request): bool
+    {
+        return $storeCount <= 0
+            && !in_array($request->route()?->getName() ?? '', $this->except);
     }
 }

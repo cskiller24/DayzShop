@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Livewire\Seller;
 
-use App\Models\Store;
 use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -20,8 +19,7 @@ class SelectStore extends Component
         /** @var \App\Models\User $user */
         $user = auth()->user();
 
-
-        if($user->active_store_id !== null) {
+        if ($user->active_store_id !== null) {
             $this->redirect(route('seller'), navigate: true);
         }
 
@@ -31,7 +29,7 @@ class SelectStore extends Component
     public function render(): View
     {
         return view('livewire.seller.select-store', [
-            'stores' => auth()->user()->stores,
+            'stores' => auth()->user()?->stores,
         ]);
     }
 }

@@ -18,7 +18,7 @@ class Store extends Model
         'email',
         'description',
         'phone_number',
-        'logo'
+        'logo',
     ];
 
     public function users(): BelongsToMany
