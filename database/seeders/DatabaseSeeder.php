@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'seller@dayzshop.com',
         ]);
 
-        User::factory()->create([
-            'name' => 'Limbo',
-            'email' => 'limbo@dayzshop.com',
-            'type' => Str::random(5),
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Limbo',
+        //     'email' => 'limbo@dayzshop.com',
+        //     'type' => Str::random(5),
+        // ]);
 
         User::factory()->unverified()->create([
             'name' => 'Unverified',

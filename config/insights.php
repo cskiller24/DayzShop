@@ -9,6 +9,7 @@ use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenNormalClasses;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenPrivateMethods;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
 use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
+use NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
@@ -96,6 +97,7 @@ return [
         ForbiddenNormalClasses::class,
         ForbiddenTraits::class,
         ForbiddenPublicPropertySniff::class,
+        ForbiddenSetterSniff::class,
         FunctionClosingBraceSniff::class,
         // ParameterTypeHintSniff::class,
         PropertyTypeHintSniff::class,
@@ -121,6 +123,7 @@ return [
                 'app/Http/Middleware/EnsureEmailIsNotVerified.php',
                 'app/Providers/MacroServiceProvider.php',
             ],
+            'maxComplexity' => 20,
         ],
     ],
 

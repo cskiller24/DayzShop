@@ -18,7 +18,6 @@ class InvalidInvitationTypeException extends Exception
 
         $exploded = implode(', ', $allowedTypes);
 
-        // @phpstan-ignore-next-line
         parent::__construct("Invalid notification type [{$invite->type->value}] given. [{$exploded}]");
     }
 }
