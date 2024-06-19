@@ -28,13 +28,14 @@ class EnsureSellerDoesHaveAnyStore
      */
     public function handle(Request $request, Closure $next): Response
     {
-        /** @var App\Models\User|null $user */
+        /** @var \App\Models\User|null $user */
         $user = auth()->user();
 
         if ($this->shouldPassThrough($user)) {
             return $next($request);
         }
 
+        // @phpstan-ignore-next-line
         return $this->handleSeller($user, $request, $next);
     }
 

@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 
 use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\withoutVite;
+
+beforeEach(function () {
+    withoutVite();
+});
 
 it('renders successfully', function () {
     $invite = Invite::factory()->storeInvite()->create();

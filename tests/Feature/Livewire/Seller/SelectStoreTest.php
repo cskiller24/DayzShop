@@ -11,6 +11,11 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function PHPUnit\Framework\assertNotNull;
+use function Pest\Laravel\withoutVite;
+
+beforeEach(function () {
+    withoutVite();
+});
 
 it('renders successfully', function () {
     $user = User::factory()
