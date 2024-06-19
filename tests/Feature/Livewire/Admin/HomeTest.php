@@ -8,6 +8,7 @@ use Livewire\Livewire;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\get;
+use function Pest\Laravel\withoutExceptionHandling;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
@@ -26,7 +27,8 @@ it('it renders successfully from route call', function () {
 });
 
 it('it redirects when the user is not admin', function () {
-    actingAs(User::factory()->create());
+
+    actingAs(User::factory()->courier()->create());
 
     get(route('admin'))
         ->assertRedirect();

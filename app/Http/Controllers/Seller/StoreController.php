@@ -34,6 +34,7 @@ class StoreController extends Controller
 
     public function activate(Request $request, Store $store): RedirectResponse
     {
+        /** @var \App\Models\User $user */
         $user = $request->user();
 
         $user->setAsActive($store);

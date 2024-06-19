@@ -55,8 +55,6 @@ class MacroServiceProvider extends ServiceProvider
 
             foreach (Type::getValues() as $role) {
                 if ($user->type->value === $role) {
-                    EnsureSellerDoesHaveAnyStore::handleController();
-
                     return $this->to(
                         MacroServiceProvider::routeTypes()[$role]
                     );
@@ -79,11 +77,6 @@ class MacroServiceProvider extends ServiceProvider
 
             foreach (Type::getValues() as $role) {
                 if ($user->type->value === $role) {
-                    $redirector = EnsureSellerDoesHaveAnyStore::handleLivewire($this, $navigate);
-
-                    if($redirector) {
-                        return $redirector;
-                    }
 
                     return $this->redirect(
                         url: MacroServiceProvider::routeTypes()[$role],

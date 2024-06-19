@@ -25,16 +25,6 @@ class CreateStore extends Component
     #[Validate(['required'])]
     public string $phoneNumber;
 
-    public function mount(): void
-    {
-        /** @var \App\Models\User $user */
-        $user = auth()->user();
-
-        if($user->stores()->count() > 0) {
-            $this->redirect(route('seller'), navigate: true);
-        }
-    }
-
     public function validateFields(): void
     {
         $this->validate();

@@ -43,4 +43,11 @@ class InviteFactory extends Factory
             'type' => InvitationTypes::COURIER->value,
         ]);
     }
+
+    public function expired(): static
+    {
+        return $this->state(fn () => [
+            'expire_at' => fake()->dateTimeBetween(now()->subYear(), now()->subDay()),
+        ]);
+    }
 }

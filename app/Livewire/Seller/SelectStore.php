@@ -22,7 +22,6 @@ class SelectStore extends Component
 
 
         if($user->active_store_id !== null) {
-            dd('running');
             $this->redirect(route('seller'), navigate: true);
         }
 

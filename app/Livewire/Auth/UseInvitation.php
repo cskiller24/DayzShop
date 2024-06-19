@@ -68,7 +68,7 @@ class UseInvitation extends Component
     public function render(): View
     {
         if($this->invite->is_expired) {
-            return view('');
+            return view('livewire.auth.invitation.expired');
         }
 
         return static::mapInvitation($this->invite->type->value);
