@@ -13,12 +13,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ *
+ *
  * @property-read string $url
  * @property-read string $status
  * @property-read string $role_type
  * @property-read bool $is_expired
- *
  * @property \App\Enums\InvitationTypes $type
+ * @property int $id
+ * @property string $code
+ * @property bool $is_used
+ * @property \Illuminate\Support\Carbon $expire_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\InviteFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereExpireAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereIsUsed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Invite whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 #[ObservedBy(HandlesInviteCodeCreation::class)]
 class Invite extends Model
@@ -32,7 +51,7 @@ class Invite extends Model
     public function status(): Attribute
     {
         return Attribute::make(
-            get: fn (): string => $this->expire_at->lessThan(now()) ? 'Expire' : 'Available', // @phpstan-ignore-line
+            get: fn (): string => $this->expire_at->lessThan(now()) ? 'Expire' : 'Available',
         );
     }
 
@@ -46,7 +65,7 @@ class Invite extends Model
     public function isExpired(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->expire_at->lessThan(now()) // @phpstan-ignore-line
+            get: fn () => $this->expire_at->lessThan(now()),
         );
     }
 
