@@ -10,6 +10,11 @@
             'url' => route('admin.invites'),
             'icon' => 'send',
         ],
+        [
+            'name' => 'Stores',
+            'url' => route('admin.stores'),
+            'icon' => 'shopping-bag'
+        ]
     ];
 @endphp
 
