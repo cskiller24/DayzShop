@@ -4,6 +4,9 @@
             aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="navbar-nav flex-row order-md-last px-3">
+            <x-seller.switcher />
+        </div>
         <div class="navbar-nav flex-row order-md-last">
             <x-base::auth-profile />
         </div>

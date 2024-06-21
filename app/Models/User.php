@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Contracts\GenerateImage;
 use App\Enums\Type;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 /**
  * @property \App\Enums\Type $type
@@ -132,6 +134,14 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         $column = $classification::class === Store::class ? 'active_store_id' : 'active_courier_id';
 
         $this->forceFill([$column => $classification->id])->save();
+    }
+
+    public function defaultProfile(): string
+    {
+        return app(GenerateImage::class)
+            ->setBackgroundColor('f5fdfe')
+            ->setColor('151f2c')
+            ->toUrl(Str::initials($this->name));
     }
 
     // public function courier(): BelongsTo

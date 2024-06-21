@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,10 +31,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'customer@dayzshop.com',
         ]);
 
-        User::factory()->seller()->create([
-            'name' => 'Seller',
-            'email' => 'seller@dayzshop.com',
-        ]);
+        User::factory()
+            ->seller()
+            ->has(Store::factory()->count(5), 'stores')
+            ->create([
+                'name' => 'Seller',
+                'email' => 'seller@dayzshop.com',
+            ]);
 
         // User::factory()->create([
         //     'name' => 'Limbo',

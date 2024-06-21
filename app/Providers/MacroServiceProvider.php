@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class MacroServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,7 @@ class MacroServiceProvider extends ServiceProvider
         $this->vite();
         $this->redirect();
         $this->livewire();
+        $this->str();
     }
 
     protected function vite(): void
@@ -89,5 +91,12 @@ class MacroServiceProvider extends ServiceProvider
 
             return $this->redirect(route('limbo'), $navigate);
         });
+    }
+
+    public function str(): void
+    {
+        Str::macro('initials', fn (string $value, string $sep = ' ', string $glue = ''): string => trim(collect(explode($sep, $value))->map(function ($segment) { // @phpstan-ignore-line
+            return $segment[0] ?? '';
+        })->join($glue)));
     }
 }
