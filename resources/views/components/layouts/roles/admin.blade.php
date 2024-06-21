@@ -10,11 +10,22 @@
         <div class="page-wrapper">
             <div class="page-header d-print-none">
                 <div class="container-xl">
-                    @if($header === null)
-                        <x-base::default-vertical-header />
-                    @else
-                        {{ $header }}
-                    @endif
+                    <div class="row g-2 align-items-center">
+                        <div class="col">
+                            <div class="page-pretitle">
+                                {{ $headerPretitle ?? 'Overview' }}
+                            </div>
+                            <h2 class="page-title">
+                                {{ $headerTitle ?? 'Admin' }}
+                            </h2>
+                        </div>
+                        <div class="col-auto ms-auto d-print-none">
+                            <div class="btn-list">
+                                {{ $sideheader ?? null}}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="page-body">

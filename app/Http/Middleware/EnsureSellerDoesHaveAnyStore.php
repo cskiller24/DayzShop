@@ -41,7 +41,7 @@ class EnsureSellerDoesHaveAnyStore
 
     private function shouldPassThrough(?User $user): bool
     {
-        return $user === null || !$user->isSeller();
+        return $user === null || ! $user->isSeller();
     }
 
     private function handleSeller(User $user, Request $request, Closure $next): Response
@@ -74,12 +74,12 @@ class EnsureSellerDoesHaveAnyStore
     {
         return $storeCount > 0
             && $user->active_store_id === null
-            && !in_array($request->route()?->getName() ?? '', $this->except);
+            && ! in_array($request->route()?->getName() ?? '', $this->except);
     }
 
     private function shouldRedirectToCreateStore(int $storeCount, Request $request): bool
     {
         return $storeCount <= 0
-            && !in_array($request->route()?->getName() ?? '', $this->except);
+            && ! in_array($request->route()?->getName() ?? '', $this->except);
     }
 }

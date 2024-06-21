@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * 
- *
  * @property string $id
  * @property string $name
  * @property string|null $description
@@ -22,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
+ *
  * @method static \Database\Factories\StoreFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Store newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Store newQuery()
@@ -34,6 +33,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Store whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Store wherePhoneNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Store whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Store extends Model

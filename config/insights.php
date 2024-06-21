@@ -17,6 +17,7 @@ use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
+use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\InlineDocCommentDeclarationSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
@@ -24,9 +25,7 @@ use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowShortTernaryOperator
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
-use SlevomatCodingStandard\Sniffs\TypeHints\ParameterTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
-use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 
 return [
 
@@ -92,6 +91,7 @@ return [
         DisallowMixedTypeHintSniff::class,
         DisallowShortTernaryOperatorSniff::class,
         ClosingBraceSniff::class,
+        DocCommentSpacingSniff::class,
         EmptyCommentSniff::class,
         ForbiddenDefineFunctions::class,
         ForbiddenNormalClasses::class,
