@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Contracts\GenerateImage;
+use App\Services\ImageGeneratorService;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,8 @@ class AppServiceProvider extends ServiceProvider
             // @phpstan-ignore-next-line
             return Auth::guard(config('auth.defaults.guard', 'web'));
         });
+
+        $this->app->bind(GenerateImage::class, ImageGeneratorService::class);
     }
 
     /**
