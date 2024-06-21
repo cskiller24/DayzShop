@@ -27,6 +27,11 @@
                             <small>No Logo</small>
                         @endif
                     </td>
+                    <td >
+                        <span class="cursor-pointer text-red" wire:click="delete('{{ $store->id }}')" wire:confirm="Are you sure?" >
+                            <i class="ti ti-trash icon"></i>
+                        </span>
+                    </td>
                 </tr>
             @empty
                 <tr>

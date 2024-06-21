@@ -1,7 +1,7 @@
 <div>
     <div class="card card-md border-light">
         <div class="card-body">
-            <form wire:submit="create">
+            <form wire:submit="store">
                 <h1 class="text-center">Create a store account</h1>
                 <div class="mb-2">
                     <x-base::label>Name</x-base::label>
