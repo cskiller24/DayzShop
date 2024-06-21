@@ -29,6 +29,9 @@ class Create extends Component
     #[Validate(['required'])]
     public string $phoneNumber;
 
+    /**
+     * @var array<int, string>
+     */
     #[Validate(['nullable', 'exists:users,id'])]
     public array $sellers;
 
@@ -40,10 +43,10 @@ class Create extends Component
             'name' => $this->name,
             'email' => $this->email,
             'description' => $this->description,
-            'phone_number' => $this->phoneNumber
+            'phone_number' => $this->phoneNumber,
         ]);
 
-        dispatch(function () use ($store) {
+        dispatch(function () use ($store): void {
             $users = User::query()->whereIn('id', $this->sellers)->get();
             Notification::send($users, new StoreInviteNotification($store));
         })->onQueue('after-response');
@@ -58,7 +61,7 @@ class Create extends Component
         return view('livewire.admin.pages.store.create', [
             'availableSellers' => User::query()
                 ->where('type', Type::SELLER->value)
-                ->get()
+                ->get(),
         ]);
     }
 }

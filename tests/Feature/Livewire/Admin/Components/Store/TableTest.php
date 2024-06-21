@@ -5,13 +5,13 @@ declare(strict_types=1);
 use App\Livewire\Admin\Components\Store\Table;
 use App\Models\Store;
 use Livewire\Livewire;
+
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
     withoutVite();
 });
-
 
 it('renders blank store successfully', function () {
     Livewire::test(Table::class)

@@ -9,8 +9,8 @@ use Livewire\Livewire;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
-use function PHPUnit\Framework\assertNotNull;
 use function Pest\Laravel\withoutVite;
+use function PHPUnit\Framework\assertNotNull;
 
 beforeEach(function () {
     withoutVite();

@@ -23,7 +23,7 @@ class Table extends Component
     public function render(): View
     {
         return view('livewire.admin.components.store.table', [
-           'stores' => Store::query()->paginate(),
+            'stores' => Store::query()->paginate(),
         ]);
     }
 }

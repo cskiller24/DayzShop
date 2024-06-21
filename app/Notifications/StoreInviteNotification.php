@@ -6,7 +6,6 @@ namespace App\Notifications;
 
 use App\Models\Store;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -14,9 +13,6 @@ class StoreInviteNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
     public function __construct(public Store $store)
     {
     }
@@ -24,7 +20,7 @@ class StoreInviteNotification extends Notification
     /**
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via(): array
     {
         return ['mail'];
     }
@@ -32,20 +28,11 @@ class StoreInviteNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(): MailMessage
     {
-        return (new MailMessage)
-                    ->line("Welcome, you are in invite in {$this->store->name} store.")
-                    ->action('Click here to accept the invitation', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-        ];
+        return (new MailMessage())
+            ->line("Welcome, you are in invite in {$this->store->name} store.")
+            ->action('Click here to accept the invitation', url('/'))
+            ->line('Thank you for using our application!');
     }
 }

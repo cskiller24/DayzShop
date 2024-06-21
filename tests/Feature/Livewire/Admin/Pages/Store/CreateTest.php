@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Queue\CallQueuedClosure;
 use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
@@ -17,7 +18,6 @@ it('renders successfully', function () {
     Livewire::test(Create::class)
         ->assertStatus(200);
 });
-
 
 it('creates a store', function () {
     Queue::fake();
