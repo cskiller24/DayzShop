@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Enums\Type;
 use App\Livewire\Admin;
 use App\Livewire\Admin\Pages\Invites;
+use App\Livewire\Admin\Pages\RolesAndPermissions;
 use App\Livewire\Admin\Pages\Store;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,10 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::ADMIN->value], 
 
     Route::get('/stores/create', Store\Create::class)
         ->name('admin.stores.create');
+
+    Route::get('roles-and-permissions', RolesAndPermissions\Index::class)
+        ->name('admin.roles-and-permissions');
+
+    Route::get('roles-and-permissions/create', RolesAndPermissions\Create::class)
+        ->name('admin.roles-and-permissions.create');
 });

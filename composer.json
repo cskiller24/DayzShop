@@ -9,7 +9,8 @@
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
-        "php-flasher/flasher-pnotify-laravel": "^1.15"
+        "php-flasher/flasher-pnotify-laravel": "^1.15",
+        "spatie/laravel-permission": "^6.8"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.0",
