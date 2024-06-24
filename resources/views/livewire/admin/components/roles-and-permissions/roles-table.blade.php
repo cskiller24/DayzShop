@@ -19,8 +19,12 @@
                 <td>
                     {{ $role->created_at->format('F j, Y h:i A') }}
                 </td>
-                <td class="" x-data="emailSender">
-                    <span class="cursor-pointer text-red" wire:click="delete('{{ $invite->code }}')"
+                <td class="">
+                    <a wire:navigate href="{{ route('admin.roles-and-permissions.roles.update', $role->id) }}"
+                       class="nav-link d-inline">
+                        <i class="ti ti-pencil icon"></i>
+                    </a>
+                    <span class="cursor-pointer text-red" wire:click="delete('{{ $role->id }}')"
                           wire:confirm="Are you sure?">
                             <i class="ti ti-trash icon"></i>
                     </span>

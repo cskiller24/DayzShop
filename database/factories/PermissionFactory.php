@@ -11,8 +11,12 @@ class PermissionFactory extends Factory
 
     public function definition(): array
     {
+        $name = fake()->unique()->word();
+        $separator = Permission::SEPARATOR;
+        $verb = fake()->randomElement(Permission::VERBS);
+
         return [
-            'name' => fake()->unique()->words(asText: true),
+            'name' => "{$name}{$separator}{$verb}",
         ];
     }
 }

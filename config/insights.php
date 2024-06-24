@@ -15,6 +15,7 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
 use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
+use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
@@ -102,6 +103,7 @@ return [
         // ParameterTypeHintSniff::class,
         PropertyTypeHintSniff::class,
         // ReturnTypeHintSniff::class,
+        DisallowLateStaticBindingForConstantsSniff::class,
         LineLengthSniff::class,
         OrderedClassElementsFixer::class,
         UselessFunctionDocCommentSniff::class,

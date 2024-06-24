@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -17,11 +19,11 @@ class Permission extends SpatiePermission
 
     public function permissionName(): Attribute
     {
-        return Attribute::make(get: fn (): string => explode(static::SEPARATOR, $this->name)[0]);
+        return Attribute::make(get: fn (): string => explode(static::SEPARATOR, $this->name)[0]); // @phpstan-ignore-line
     }
 
     public function verbName(): Attribute
     {
-        return Attribute::make(get: fn (): string => explode(static::SEPARATOR, $this->name)[1]);
+        return Attribute::make(get: fn (): string => explode(static::SEPARATOR, $this->name)[1]); // @phpstan-ignore-line
     }
 }

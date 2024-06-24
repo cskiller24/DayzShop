@@ -19,8 +19,11 @@
                 <td>
                     {{ $permission->created_at->format('F j, Y h:i A') }}
                 </td>
-                <td class="" x-data="emailSender">
-                    <span class="cursor-pointer text-red" wire:click="delete('{{ $invite->code }}')"
+                <td class="" x-data="updatePermission">
+                    <span class="cursor-pointer" @click="update('{{ $permission->id }}')">
+                            <i class="ti ti-pencil icon"></i>
+                    </span>
+                    <span class="cursor-pointer text-red" wire:click="delete('{{ $permission->id }}')"
                           wire:confirm="Are you sure?">
                             <i class="ti ti-trash icon"></i>
                     </span>
@@ -41,3 +44,17 @@
         {{ $permissions->links() }}
     </div>
 </div>
+
+@script
+<script>
+    Alpine.data('updatePermission', () => {
+        return {
+            update(code) {
+                let name = prompt(`Name:`);
+
+                $wire.update(code, name);
+            },
+        }
+    })
+</script>
+@endscript

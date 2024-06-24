@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::ADMIN->value], 
 
     Route::get('roles-and-permissions/roles/create', RolesAndPermissions\RolesCreate::class)
         ->name('admin.roles-and-permissions.roles.create');
+    Route::get('roles/and-permissions/roles/{role}/update', RolesAndPermissions\RolesUpdate::class)
+        ->name('admin.roles-and-permissions.roles.update');
 
     Route::get('roles-and-permissions/permissions/create', RolesAndPermissions\PermissionsCreate::class)
         ->name('admin.roles-and-permissions.permissions.create');
