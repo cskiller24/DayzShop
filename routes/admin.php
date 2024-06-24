@@ -25,6 +25,9 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::ADMIN->value], 
     Route::get('roles-and-permissions', RolesAndPermissions\Index::class)
         ->name('admin.roles-and-permissions');
 
-    Route::get('roles-and-permissions/create', RolesAndPermissions\Create::class)
-        ->name('admin.roles-and-permissions.create');
+    Route::get('roles-and-permissions/roles/create', RolesAndPermissions\RolesCreate::class)
+        ->name('admin.roles-and-permissions.roles.create');
+
+    Route::get('roles-and-permissions/permissions/create', RolesAndPermissions\PermissionsCreate::class)
+        ->name('admin.roles-and-permissions.permissions.create');
 });
