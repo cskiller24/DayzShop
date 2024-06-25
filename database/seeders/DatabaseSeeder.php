@@ -7,8 +7,8 @@ namespace Database\Seeders;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -50,6 +50,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'unverified@dayzshop.com',
         ]);
 
-        $this->call(InviteSeeder::class);
+        $this->call([InviteSeeder::class, ProductSeeder::class]);
     }
 }
