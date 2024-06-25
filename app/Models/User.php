@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @property \App\Enums\Type $type
@@ -54,7 +55,7 @@ use Illuminate\Support\Str;
  */
 class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
 {
-    use HasFactory, HasUuids, Notifiable;
+    use HasFactory, HasRoles, HasUuids, Notifiable;
 
     public $incrementing = false;
 
@@ -129,11 +130,13 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         return $this->belongsTo(Store::class, 'active_store_id');
     }
 
-    public function setAsActive(Store|Courier $classification): void
+    public function setAsActive(Store|Courier $classification): static
     {
         $column = $classification::class === Store::class ? 'active_store_id' : 'active_courier_id';
 
         $this->forceFill([$column => $classification->id])->save();
+
+        return $this;
     }
 
     public function defaultProfile(): string
@@ -143,9 +146,4 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
             ->setColor('151f2c')
             ->toUrl(Str::initials($this->name));
     }
-
-    // public function courier(): BelongsTo
-    // {
-    //     return $this->belongsTo(Store::)
-    // }
 }
