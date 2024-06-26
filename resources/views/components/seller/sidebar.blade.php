@@ -5,23 +5,28 @@
             'url' => route('seller'),
             'icon' => 'chart-pie',
         ],
+        [
+            'name' => 'Products',
+            'url' => route('seller.products.index'),
+            'icon' => 'brand-deno',
+        ],
     ];
 @endphp
 
 <aside class="navbar navbar-vertical navbar-expand-lg border-light-subtle border-end" data-bs-theme="dark">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu"
-            aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-brand mb-0">
             <a href=".">
-                <x-base::logo style="height: 3rem" />
+                <x-base::logo style="height: 3rem"/>
             </a>
         </div>
         <div class="navbar-nav flex-row d-lg-none">
 
-            <x-base::auth-profile />
+            <x-base::auth-profile/>
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav">

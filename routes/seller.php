@@ -13,13 +13,16 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::SELLER->value],
 
     Route::get('/select', Seller\SelectStore::class)
         ->name('seller.select');
-
     Route::post('/create-store/{store}', [StoreController::class, 'activate'])
         ->name('seller.activate');
 
     Route::get('/create-store', Seller\CreateStore::class)
         ->name('seller.create');
-
     Route::post('/create-store', [StoreController::class, 'store'])
         ->name('seller.store');
+
+    Route::get('/products', Seller\Pages\Products\Index::class)
+        ->name('seller.products.index');
+    Route::get('/products/create', Seller\Pages\Products\Create::class)
+        ->name('seller.products.create');
 });

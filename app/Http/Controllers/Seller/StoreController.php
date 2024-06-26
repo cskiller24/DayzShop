@@ -39,6 +39,6 @@ class StoreController extends Controller
 
         $user->setAsActive($store);
 
-        return redirect()->route('seller');
+        return redirect()->intended('/seller');
     }
 }
