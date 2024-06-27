@@ -10,6 +10,11 @@
             'url' => route('seller.products.index'),
             'icon' => 'brand-deno',
         ],
+        [
+            'name' => 'Categories',
+            'url' => route('seller.categories.index'),
+            'icon' => 'tag',
+        ],
     ];
 @endphp
 

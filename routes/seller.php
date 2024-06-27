@@ -25,4 +25,7 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::SELLER->value],
         ->name('seller.products.index');
     Route::get('/products/create', Seller\Pages\Products\Create::class)
         ->name('seller.products.create');
+
+    Route::get('categories', Seller\Pages\Categories\Index::class)
+        ->name('seller.categories.index');
 });

@@ -1,4 +1,5 @@
 <x-layouts.base>
+    <livewire:components.toaster/>
     <div class="page">
         <x-seller.sidebar/>
         <!-- Navbar -->
@@ -6,26 +7,30 @@
 
         <div class="page-wrapper">
             <!-- Page header -->
-            <div class="page-header d-print-none">
-                <div class="container-xl">
-                    <div class="row g-2 align-items-center">
-                        <div class="col">
-                            <div class="page-pretitle">
-                                {{ $headerPretitle ?? 'Overview' }}
+            @if($customHeader ?? null)
+                {{ $customHeader }}
+            @else
+                <div class="page-header d-print-none">
+                    <div class="container-xl">
+                        <div class="row g-2 align-items-center">
+                            <div class="col">
+                                <div class="page-pretitle">
+                                    {{ $headerPretitle ?? 'Overview' }}
+                                </div>
+                                <h2 class="page-title">
+                                    {{ $headerTitle ?? 'Seller' }}
+                                </h2>
                             </div>
-                            <h2 class="page-title">
-                                {{ $headerTitle ?? 'Seller' }}
-                            </h2>
-                        </div>
-                        <div class="col-auto ms-auto d-print-none">
-                            <div class="btn-list">
-                                {{ $sideHeader ?? null }}
+                            <div class="col-auto ms-auto d-print-none">
+                                <div class="btn-list">
+                                    {{ $sideHeader ?? null }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
+            @endif
             <!-- Page body -->
             <div class="page-body">
                 <div class="container-xl">

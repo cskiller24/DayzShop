@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
@@ -13,6 +14,8 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->words(asText: true),
+
+            'store_id' => Store::factory(),
         ];
     }
 }
