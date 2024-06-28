@@ -1,11 +1,14 @@
 <div class="card border-light">
     <div class="card-body">
-        <div class="card-title">Create Product</div>
+        <div class="card-title">
+            Create Product
+        </div>
+        <livewire:components.alert/>
 
         <form wire:submit="create">
             <div class="mb-2">
                 <x-base.label>Name</x-base.label>
-                <x-base.text-input placeholder="Enter product name" errorKey="name" wire:model="description"/>
+                <x-base.text-input placeholder="Enter product name" errorKey="name" wire:model="name"/>
                 <x-base.error key="name"/>
             </div>
             <div class="mb-2">
@@ -15,45 +18,7 @@
                 <x-base.error key="description"/>
             </div>
 
-            {{--            TODO LATER --}}
-            {{--            <div class="mb-3" x-data="{--}}
-            {{--                specification : @entangle('specification'),--}}
-            {{--                count: 1,--}}
-            {{--                get numbers() {--}}
-            {{--                    return Array.from({length: this.count}, (_, i) => i + 1);--}}
-            {{--                }--}}
-            {{--            }">--}}
-            {{--                <div class="d-flex justify-content-between">--}}
-            {{--                    <div>--}}
-            {{--                        <x-base.label>Specifications</x-base.label>--}}
-            {{--                    </div>--}}
-            {{--                    <div>--}}
-            {{--                        <x-base.button type="button" @click="count++">--}}
-            {{--                            <i class="ti ti-plus"></i>--}}
-            {{--                        </x-base.button>--}}
-
-            {{--                        <x-base.button class="btn-danger" type="button" @click="if (count > 1) count--">--}}
-            {{--                            <i class="ti ti-minus"></i>--}}
-            {{--                        </x-base.button>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-
-            {{--                             !! TODO !! --}}
-            {{--                <template x-for="(number, index) in numbers" :key="index">--}}
-            {{--                    <div class="d-flex mb-1">--}}
-            {{--                        <input class="form-control"--}}
-            {{--                               x-model="specification[index].details"--}}
-            {{--                               placeholder="Key"--}}
-            {{--                        />--}}
-            {{--                        <input class="form-control"--}}
-            {{--                               placeholder="Value"--}}
-            {{--                               x-model="specification[index].key"--}}
-            {{--                        />--}}
-            {{--                    </div>--}}
-            {{--                </template>--}}
-            {{--            </div>--}}
-
-            <div class="mb-3">
+            <div @class(['mb-3', 'is-invalid' => $errors->has('specifications') || $errors->has('specifications')])>
                 <div class="d-flex justify-content-between">
                     <div>
                         <x-base.label>Specifications</x-base.label>
@@ -83,6 +48,22 @@
                     </div>
                 @endforeach
             </div>
+            <div class="invalid-feedback">
+                {{ $errors->first('specifications') }}
+            </div>
+            <div @class(['mb-3', 'is-invalid' => $errors->has('categories') || $errors->has('categories.*')])>
+                <div wire:ignore>
+                    <x-base.label>Category</x-base.label>
+                    <select multiple id="categories-select" wire:model="categories">
+                        @foreach($categoriesOptions as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="invalid-feedback">
+                {{ $errors->has('categories') ? $errors->first('categories') : $errors->first('categories.*') }}
+            </div>
             <div class="d-flex justify-content-end">
                 <x-base.button type="submit" class="border-light">
                     <i class="ti ti-plus"></i>Save
@@ -92,3 +73,14 @@
     </div>
 </div>
 
+@script
+<script>
+    const tom = new TomSelect('#categories-select', {
+        placeholder: "Select Category"
+    })
+</script>
+@endscript
+
+@assets
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+@endassets

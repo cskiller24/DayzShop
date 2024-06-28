@@ -1,4 +1,5 @@
 <div class="table-responsive border border-light-subtle rounded pb-0">
+    <livewire:components.alert/>
     <div class="pt-2 px-2">
         {{ $products->links() }}
     </div>
