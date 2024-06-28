@@ -11,7 +11,9 @@ use Livewire\Component;
 
 class Toaster extends Component
 {
-    #[On('flash-message')]
+    public const string EVENT = 'flash-message';
+
+    #[On(self::EVENT)]
     public function flashToast(
         ?string $message = null,
         ?string $title = null,
