@@ -18,7 +18,9 @@
         @foreach ($products as $product)
             <tr>
                 <td>
-                    {{ $product->name }}
+                    <a href="{{ route('seller.products.show', $product->id) }}" wire:navigate>
+                        {{ $product->name }}
+                    </a>
                 </td>
                 <td title="{{ $product->description }}">
                     {{ str($product->description)->limit(50) }}
