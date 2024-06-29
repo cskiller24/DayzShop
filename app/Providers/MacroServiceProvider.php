@@ -91,6 +91,14 @@ class MacroServiceProvider extends ServiceProvider
 
             return $this->redirect(route('limbo'), $navigate);
         });
+
+        \Livewire\Component::macro('closeModal', function (string $id) {
+            $this->js(
+                "$('#{$id}').hide();
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();"
+            );
+        });
     }
 
     public function str(): void
