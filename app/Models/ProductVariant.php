@@ -18,11 +18,17 @@ class ProductVariant extends Model
         'name',
         'description',
         'product_id',
+        'media_id',
     ];
 
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function media(): BelongsTo
+    {
+        return $this->belongsTo(Media::class);
     }
 
     protected function casts(): array

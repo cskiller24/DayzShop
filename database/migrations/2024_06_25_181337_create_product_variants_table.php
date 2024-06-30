@@ -14,7 +14,8 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->foreignUuid('product_id');
+            $table->foreignUuid('product_id')->constrained();
+            $table->foreignUuid('media_id')->nullable();
             $table->timestamps();
         });
     }
