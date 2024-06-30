@@ -6,7 +6,7 @@
         View Product
     </x-slot>
     <div class="row">
-        <div class="col-3">
+        <div class="col-4">
             <div class="card h-full">
                 <div class="card-body d-flex flex-column align-items-center">
                     <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -21,7 +21,7 @@
                         <div class="carousel-inner">
                             @foreach($product->getMedia() as $media)
                                 <div @class(['carousel-item', 'active' => $loop->first])>
-                                    <img class="d-block w-100" alt=""
+                                    <img class="" alt="{{ $media->name }}"
                                          src="{{ $media->getUrl() }}"/>
                                 </div>
                             @endforeach
@@ -85,6 +85,9 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 mt-2">
+            <livewire:seller.components.products.variants.table :product="$product"/>
+        </div>
     </div>
     <livewire:seller.components.products.add-image :product="$product" modal-id="product-add-image"/>
 </div>
@@ -92,6 +95,18 @@
 @script
 <script>
     $wire.on('product-image-added', () => {
+        $wire.$refresh();
+    });
+
+    $wire.on('product-variant-added', () => {
+        $wire.$refresh();
+    });
+
+    $wire.on('product-variant-updated', () => {
+        $wire.$refresh();
+    });
+
+    $wire.on('product-variant-deleted', () => {
         $wire.$refresh();
     });
 </script>
