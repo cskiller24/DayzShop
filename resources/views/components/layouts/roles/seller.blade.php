@@ -86,4 +86,5 @@
             </footer>
         </div>
     </div>
+    <x-image-previewer/>
 </x-layouts.base>

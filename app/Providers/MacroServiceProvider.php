@@ -104,6 +104,16 @@ class MacroServiceProvider extends ServiceProvider
             );
         });
 
+        \Livewire\Component::macro('openModal', function (string $id) {
+            $this->js(
+                "
+                let myModal = document.getElementById('{$id}');
+                let modalInstance = bootstrap.Modal.getOrCreateInstance(myModal);
+                modalInstance.show();
+            "
+            );
+        });
+
     }
 
     public function str(): void

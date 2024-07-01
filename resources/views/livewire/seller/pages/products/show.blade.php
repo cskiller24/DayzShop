@@ -106,8 +106,13 @@
         $wire.$refresh();
     });
 
+    $wire.on('product-variant-updated', () => {
+        $wire.$refresh();
+    });
+    
     $wire.on('product-variant-deleted', () => {
         $wire.$refresh();
     });
+
 </script>
 @endscript
