@@ -40,7 +40,7 @@ class Table extends Component
     public function render(): View
     {
         return view('livewire.seller.components.products.variants.table', [
-            'variants' => $this->product->variants()->paginate(),
+            'variants' => $this->product->variants()->with('media')->paginate(),
         ]);
     }
 }
