@@ -35,6 +35,13 @@
                     </ul>
                 </td>
                 <td class="text-end">
+                    <a
+                        class="text-light"
+                        href="{{ route('seller.products.edit', $product->id) }}"
+                        wire:navigate
+                    >
+                        <i class="ti ti-pencil icon"> </i>
+                    </a>
                     <span class="cursor-pointer text-red"
                           wire:click="delete('{{ $product->id }}')"
                           wire:confirm="Are you sure?"
