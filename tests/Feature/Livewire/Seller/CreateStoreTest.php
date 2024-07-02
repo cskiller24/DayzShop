@@ -24,7 +24,7 @@ it('renders successfully', function () {
         ->assertStatus(200);
 });
 
-it('succesfully creates a store', function () {
+it('successfully creates a store', function () {
     $user = User::factory()->seller()->create();
 
     Livewire::actingAs($user)

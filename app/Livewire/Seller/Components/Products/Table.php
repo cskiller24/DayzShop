@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Seller\Components\Products;
 
+use App\Livewire\Components\Toaster;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -21,12 +22,11 @@ class Table extends Component
             $product->categories()->sync([], true);
             $product->variants()->delete();
             $product->delete();
-
-            $this->dispatch(
-                'flash-message',
-                message: 'Successfully deleted product.',
-            );
         });
+        $this->dispatch(
+            Toaster::EVENT,
+            message: 'Successfully deleted product.',
+        );
     }
 
     public function render(): View

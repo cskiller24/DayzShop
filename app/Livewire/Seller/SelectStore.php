@@ -19,7 +19,7 @@ class SelectStore extends Component
         /** @var \App\Models\User $user */
         $user = auth()->user();
 
-        if ($user->active_store_id !== null) {
+        if ($user?->active_store_id !== null) {
             $this->redirect(route('seller'), navigate: true);
         }
 

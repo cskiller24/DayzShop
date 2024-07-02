@@ -20,10 +20,10 @@ beforeEach(function () {
 it('renders successfully', function () {
     $user = User::factory()
         ->seller()
-        ->has(Store::factory()->count(2))
+        ->has(Store::factory()->count(2), 'stores')
         ->create();
 
-    Livewire::actingAs($user)
+    Livewire::actingAs($user->first())
         ->test(SelectStore::class)
         ->assertStatus(200);
 });
@@ -34,7 +34,7 @@ it('redirects the seller to select a store', function () {
         ->has(Store::factory()->count(2))
         ->create();
 
-    actingAs($user);
+    actingAs($user->first());
 
     get(route('seller'))->assertRedirect(route('seller.select'));
 });
@@ -48,7 +48,7 @@ it('successfully selects a store', function () {
 
     $store = $user->stores()->first();
 
-    Livewire::actingAs($user)
+    Livewire::actingAs($user->first())
         ->test(SelectStore::class)
         ->assertStatus(200);
 

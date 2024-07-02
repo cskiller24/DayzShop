@@ -27,13 +27,15 @@ class ProductFactory extends Factory
 
     public function withCategories(): static
     {
-        return $this->afterCreating(/**
-         * @param  Product  $product
-         * @return void
-         */ callback: function (Product $product) {
-            $categories = Category::factory()->count(mt_rand(1, 3))->state(['store_id' => $product->store_id])->create();
+        return $this->afterCreating(
+            /**
+             * @param  Product  $product
+             * @return void
+             */
+            callback: function (Product $product) {
+                $categories = Category::factory()->count(mt_rand(1, 3))->state(['store_id' => $product->store_id])->create();
 
-            $product->categories()->sync($categories);
-        });
+                $product->categories()->sync($categories);
+            });
     }
 }
