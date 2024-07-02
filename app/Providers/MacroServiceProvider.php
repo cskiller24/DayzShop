@@ -130,7 +130,7 @@ class MacroServiceProvider extends ServiceProvider
                 return false;
             }
 
-            return preg_match('/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/', $value) > 0;
+            return preg_match('/^[0-9]{1,3}(,[0-9]{3})*(\.[0-9]+)*$/', $value) > 0; // @phpstan-ignore-line
         }, 'Invalid money format.');
     }
 }

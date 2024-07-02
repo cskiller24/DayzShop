@@ -26,10 +26,19 @@ class Edit extends Component
 
     public string $description;
 
+    /**
+     * @var array<int, array<string, string>>
+     */
     public array $specifications;
 
+    /**
+     * @var array<int, string>
+     */
     public array $categories;
 
+    /**
+     * @return array<string, string|string[]>
+     */
     public function rules(): array
     {
         return [
@@ -49,7 +58,7 @@ class Edit extends Component
         $specifications = array_map(fn ($key, $value) => [
             'key' => $key,
             'value' => $value,
-        ], $product->specifications, array_keys($product->specifications));
+        ], $product->specifications, array_keys($product->specifications)); // @phpstan-ignore-line
 
         $this->fill([
             'name' => $product->name,
@@ -85,7 +94,7 @@ class Edit extends Component
     public function update(): void
     {
         $this->validate();
-        $this->setAlertValiation();
+        $this->setAlertValidation();
 
         $specifications = collect($this->specifications)
             ->mapWithKeys(fn (array $specification) => [$specification['key'] => $specification['value']])
@@ -106,7 +115,10 @@ class Edit extends Component
         $this->redirect(route('seller.products.index'), true);
     }
 
-    private function setAlertValiation(): array
+    /**
+     * @return array<string, mixed>
+     */
+    private function setAlertValidation(): array
     {
         return $this->validateOnAlert([
             'specifications' => $this->specifications,

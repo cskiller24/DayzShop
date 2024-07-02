@@ -21,10 +21,19 @@ class Create extends Component
 
     public string $description;
 
+    /**
+     * @var array<int, array<string, string>>
+     */
     public array $specifications;
 
+    /**
+     * @var array<int, string>
+     */
     public array $categories;
 
+    /**
+     * @return array<string, string|string[]>
+     */
     public function rules(): array
     {
         return [
@@ -66,7 +75,7 @@ class Create extends Component
     public function create(): void
     {
         $this->validate();
-        $this->setAlertValiation();
+        $this->setAlertValidation();
 
         $specifications = collect($this->specifications)->mapWithKeys(fn (array $specification) => [$specification['key'] => $specification['value']])->toArray();
 
@@ -83,7 +92,10 @@ class Create extends Component
         $this->redirect(route('seller.products.index'), true);
     }
 
-    private function setAlertValiation(): array
+    /**
+     * @return array<string, mixed>
+     */
+    private function setAlertValidation(): array
     {
         return $this->validateOnAlert([
             'specifications' => $this->specifications,

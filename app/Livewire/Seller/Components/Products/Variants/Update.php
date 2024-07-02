@@ -30,7 +30,7 @@ class Update extends Component
     #[On('variant-edit')]
     public function setVariantAndOpen(ProductVariant $variant): void
     {
-        abort_if($variant->product_id !== $this->form->product?->id, 404);
+        abort_if($variant->product_id !== $this->form->product->id, 404);
 
         $this->form->setVariant($variant);
 

@@ -31,6 +31,9 @@ class ProductVariant extends Model
         return $this->belongsTo(Media::class);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function casts(): array
     {
         return [
