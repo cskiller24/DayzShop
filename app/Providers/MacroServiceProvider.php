@@ -74,14 +74,11 @@ class MacroServiceProvider extends ServiceProvider
     {
         \Livewire\Component::macro('redirectToRole', function (?User $user = null, bool $navigate = false) {
             /** @var \Livewire\Component $this */
-
             /** @var \App\Models\User|null $user */
             $user ??= auth()->user();
-
             if ($user === null) {
                 return $this->redirect(route('login'), $navigate);
             }
-
             foreach (Type::getValues() as $role) {
                 if ($user->type->value === $role) {
                     return $this->redirect(
@@ -94,7 +91,7 @@ class MacroServiceProvider extends ServiceProvider
             return $this->redirect(route('limbo'), $navigate);
         });
 
-        \Livewire\Component::macro('closeModal', function (string $id) {
+        \Livewire\Component::macro('closeModal', function (string $id): void {
             $this->js(
                 "
                 let myModal = document.getElementById('{$id}');
@@ -104,7 +101,7 @@ class MacroServiceProvider extends ServiceProvider
             );
         });
 
-        \Livewire\Component::macro('openModal', function (string $id) {
+        \Livewire\Component::macro('openModal', function (string $id): void {
             $this->js(
                 "
                 let myModal = document.getElementById('{$id}');
@@ -113,7 +110,6 @@ class MacroServiceProvider extends ServiceProvider
             "
             );
         });
-
     }
 
     public function str(): void

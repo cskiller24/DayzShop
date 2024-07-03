@@ -55,7 +55,7 @@ class Create extends Form
     {
         $this->validate();
 
-        DB::transaction(function () {
+        DB::transaction(function (): void {
             $media = null;
 
             if ($this->photo) {

@@ -37,7 +37,7 @@ class Edit extends Component
     public array $categories;
 
     /**
-     * @return array<string, string|string[]>
+     * @return array<string, string|array<int, string>>
      */
     public function rules(): array
     {
@@ -55,7 +55,7 @@ class Edit extends Component
 
         $product->load('categories');
 
-        $specifications = array_map(fn ($key, $value) => [
+        $specifications = array_map(fn (string $key, string $value): array => [
             'key' => $key,
             'value' => $value,
         ], $product->specifications, array_keys($product->specifications)); // @phpstan-ignore-line
@@ -100,7 +100,7 @@ class Edit extends Component
             ->mapWithKeys(fn (array $specification) => [$specification['key'] => $specification['value']])
             ->toArray();
 
-        DB::transaction(function () use ($specifications) {
+        DB::transaction(function () use ($specifications): void {
             $this->product->update([
                 'name' => $this->name,
                 'description' => $this->description,

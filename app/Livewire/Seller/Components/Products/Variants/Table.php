@@ -27,7 +27,7 @@ class Table extends Component
     {
         $productVariant = ProductVariant::query()->with('media')->findOrFail($id);
 
-        DB::transaction(function () use ($productVariant) {
+        DB::transaction(function () use ($productVariant): void {
             $productVariant->media?->delete();
             $productVariant->delete();
         });

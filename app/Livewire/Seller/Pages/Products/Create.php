@@ -32,7 +32,7 @@ class Create extends Component
     public array $categories;
 
     /**
-     * @return array<string, string|string[]>
+     * @return array<string, string|array<int, string>>
      */
     public function rules(): array
     {

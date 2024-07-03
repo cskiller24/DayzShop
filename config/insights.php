@@ -15,15 +15,17 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
 use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
+use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
-use SlevomatCodingStandard\Sniffs\Commenting\InlineDocCommentDeclarationSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowShortTernaryOperatorSniff;
+use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
+use SlevomatCodingStandard\Sniffs\Operators\DisallowEqualOperatorsSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DeclareStrictTypesSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\DisallowMixedTypeHintSniff;
 use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
@@ -77,7 +79,7 @@ return [
     */
 
     'exclude' => [
-        //  'path/to/directory-or-file'
+        'app/Providers/MacroServiceProvider.php',
     ],
 
     'add' => [
@@ -91,6 +93,7 @@ return [
         DeclareStrictTypesSniff::class,
         DisallowMixedTypeHintSniff::class,
         DisallowShortTernaryOperatorSniff::class,
+        DisallowEqualOperatorsSniff::class,
         ClosingBraceSniff::class,
         DocCommentSpacingSniff::class,
         EmptyCommentSniff::class,
@@ -100,6 +103,7 @@ return [
         ForbiddenPublicPropertySniff::class,
         ForbiddenSetterSniff::class,
         FunctionClosingBraceSniff::class,
+        MethodArgumentSpaceFixer::class,
         // ParameterTypeHintSniff::class,
         PropertyTypeHintSniff::class,
         // ReturnTypeHintSniff::class,
@@ -115,15 +119,14 @@ return [
         ForbiddenPrivateMethods::class => [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
-        InlineDocCommentDeclarationSniff::class => [
+        UnusedParameterSniff::class => [
             'exclude' => [
-                'app/Providers/MacroServiceProvider.php',
+                'app/Concerns/ValidatesInAlert.php',
             ],
         ],
         CyclomaticComplexityIsHigh::class => [
             'exclude' => [
                 'app/Http/Middleware/EnsureEmailIsNotVerified.php',
-                'app/Providers/MacroServiceProvider.php',
             ],
             'maxComplexity' => 20,
         ],

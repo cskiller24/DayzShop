@@ -32,5 +32,4 @@ Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::SELLER->value],
 
     Route::get('categories', Seller\Pages\Categories\Index::class)
         ->name('seller.categories.index');
-
 });

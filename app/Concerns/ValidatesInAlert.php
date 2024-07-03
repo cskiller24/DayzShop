@@ -28,7 +28,7 @@ trait ValidatesInAlert
             $this->dispatch('flash-reset');
             foreach ($validationException->errors() as $key => $messages) {
                 foreach ($messages as $message) {
-                    $this->dispatch('flash-alert', message: $message, type: 'error');
+                    $this->dispatch('flash-alert', message: "{$key} {$message}", type: 'error');
                 }
             }
 
@@ -51,7 +51,7 @@ trait ValidatesInAlert
             $this->dispatch('flash-reset');
             foreach ($validationException->errors() as $key => $messages) {
                 foreach ($messages as $message) {
-                    $this->dispatch('flash-alert', message: $message, type: 'error');
+                    $this->dispatch('flash-alert', message: "{$key} {$message}", type: 'error');
                 }
             }
 

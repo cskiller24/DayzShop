@@ -24,7 +24,7 @@ class Category extends Model
     ];
 
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     protected function casts(): array
     {

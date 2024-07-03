@@ -46,7 +46,7 @@ class Product extends Model implements HasMedia
     }
 
     /**
-     * @return string[]
+     * @return array<string, string>
      */
     protected function casts(): array
     {

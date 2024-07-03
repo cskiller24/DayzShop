@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class LogoutController extends Controller
 {
-    public function __construct(private StatefulGuard $guard)
+    public function __construct(private readonly StatefulGuard $guard)
     {
     }
 
