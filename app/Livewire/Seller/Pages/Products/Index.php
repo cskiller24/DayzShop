@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Livewire\Seller\Pages\Products;
+
+use Illuminate\View\View;
+use Livewire\Attributes\Layout;
+use Livewire\Component;
+
+#[Layout('components.layouts.roles.seller')]
+class Index extends Component
+{
+    public function render(): View
+    {
+        return view('livewire.seller.pages.products.index');
+    }
+}

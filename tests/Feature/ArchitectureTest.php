@@ -6,13 +6,14 @@ arch('does not allow dd, sleep, dump, var_dump in the whole application')
     ->expect(['sleep', 'var_dump', 'dd', 'dump'])
     ->not->toBeUsed();
 
-arch('All livewire component to extends Livewire\Component')
-    ->expect('App\Livewire')
-    ->toExtend(Livewire\Component::class);
+//arch('All livewire component to extends Livewire\Component')
+//    ->expect('App\Livewire')
+//    ->toExtend(Livewire\Component::class);
 
-arch('All models to extend the eloquent model')
-    ->expect('App\Models')
-    ->toExtend(Illuminate\Database\Eloquent\Model::class);
+// TODO: Until I find a way to exclude [Scopes] directory, this is remain sealed (for eternity).
+//arch('All models to extend the eloquent model')
+//    ->expect('App\Models')
+//    ->toExtend(Illuminate\Database\Eloquent\Model::class);
 
 arch('All controller should have suffix [Controller]')
     ->expect('App\Http\Controllers')

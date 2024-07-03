@@ -7,13 +7,14 @@ namespace Database\Seeders;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->call([InviteSeeder::class, ProductSeeder::class]);
         // User::factory(10)->create();
 
         User::factory()->admin()->create([
@@ -33,11 +34,12 @@ class DatabaseSeeder extends Seeder
 
         User::factory()
             ->seller()
-            ->has(Store::factory()->count(5), 'stores')
             ->create([
                 'name' => 'Seller',
                 'email' => 'seller@dayzshop.com',
-            ]);
+            ])
+            ->stores()
+            ->sync(Store::all());
 
         // User::factory()->create([
         //     'name' => 'Limbo',
@@ -50,6 +52,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'unverified@dayzshop.com',
         ]);
 
-        $this->call(InviteSeeder::class);
     }
 }

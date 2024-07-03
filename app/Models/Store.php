@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property string $id
@@ -47,6 +48,11 @@ class Store extends Model
         'phone_number',
         'logo',
     ];
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'stores_id');
+    }
 
     public function users(): BelongsToMany
     {

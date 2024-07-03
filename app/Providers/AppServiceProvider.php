@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Contracts\GenerateImage;
 use App\Services\ImageGeneratorService;
 use Illuminate\Contracts\Auth\StatefulGuard;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
@@ -35,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(GenerateImage::class, ImageGeneratorService::class);
+
+        Model::shouldBeStrict(! app()->isProduction());
     }
 
     /**

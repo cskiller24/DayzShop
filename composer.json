@@ -2,14 +2,19 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "cknow/laravel-money": "^8.1",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "php-flasher/flasher-pnotify-laravel": "^1.15",
+        "spatie/laravel-medialibrary": "^11.7",
         "spatie/laravel-permission": "^6.8"
     },
     "require-dev": {
@@ -23,6 +28,7 @@
         "nunomaduro/phpinsights": "^2.11",
         "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-laravel": "^2.3",
+        "pestphp/pest-plugin-type-coverage": "^2.8",
         "spatie/laravel-ignition": "^2.4"
     },
     "autoload": {
@@ -55,6 +61,10 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
+        ],
+        "refresh-app": [
+            "@php artisan migrate:fresh --seed",
+            "@php artisan remove:media-library-directory"
         ]
     },
     "extra": {
