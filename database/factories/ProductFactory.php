@@ -25,6 +25,17 @@ class ProductFactory extends Factory
         ];
     }
 
+    public function withImages(int $count = 1, string $collection = 'default'): static
+    {
+        return $this->afterCreating(function (Product $product) use ($count, $collection) {
+            $image = fake()->randomImage(true);
+
+            for ($i = 0; $i < $count; $i++) {
+                $product->addMedia($image)->toMediaCollection($collection);
+            }
+        });
+    }
+
     public function withCategories(): static
     {
         return $this->afterCreating(

@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
                 Product::factory()
                     ->count(10)
                     ->hasVariants(mt_rand(1, 3))
+                    ->withImages()
                     ->withCategories()
                     ->create(['store_id' => $store->id]);
             });
