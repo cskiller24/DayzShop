@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Contracts\GenerateImage;
 use App\Services\ImageGeneratorService;
+use App\Utils\Faker\RandomImage;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(GenerateImage::class, ImageGeneratorService::class);
+        fake()->addProvider(new RandomImage());
 
         Model::shouldBeStrict(! app()->isProduction());
     }
