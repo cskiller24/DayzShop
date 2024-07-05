@@ -332,15 +332,11 @@ class Dictionary
 
     public function dictionaryWord(): string
     {
-        [$word, $definition] = $this->dictionary();
-
-        return $word;
+        return $this->dictionary()[0];
     }
 
     public function dictionaryDefinition(): string
     {
-        [$word, $definition] = $this->dictionary();
-
-        return $definition;
+        return $this->dictionary()[1];
     }
 }

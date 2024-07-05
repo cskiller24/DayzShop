@@ -11,3 +11,7 @@ parameters:
     ignoreErrors:
         -
             identifier: missingType.generics
+
+    excludePaths:
+        -
+            app/Utils/Faker/Dictionary.php

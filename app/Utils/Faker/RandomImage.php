@@ -15,9 +15,8 @@ class RandomImage
 
     public function __construct()
     {
-
-        $this->directory = \config('app.faker_image_directory');  // @phpstan-ignore-line
-        $this->disk = \config('app.faker_image_disk');  // @phpstan-ignore-line
+        $this->directory = \config('app.faker_image_directory'); // @phpstan-ignore-line
+        $this->disk = \config('app.faker_image_disk'); // @phpstan-ignore-line
     }
 
     public function setDirectory(string $directory): static
@@ -36,8 +35,6 @@ class RandomImage
 
     /**
      * Get random image in directory format
-     *
-     * @return string
      */
     public function randomImage(bool $withTemporary = false): string
     {
@@ -45,7 +42,7 @@ class RandomImage
 
         $parsedFiles = collect($disk->allFiles($this->directory));
 
-        if(! $withTemporary) {
+        if (! $withTemporary) {
             return $disk->path($parsedFiles->random());
         }
 

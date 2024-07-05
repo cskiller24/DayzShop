@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->bindDependencies();
-        
-        if(! $this->app->isProduction()) {
+
+        if (! $this->app->isProduction()) {
             fake()->addProvider(new RandomImage());
             fake()->addProvider(new Dictionary());
             fake()->addProvider(new NumberDivisibleBy());
