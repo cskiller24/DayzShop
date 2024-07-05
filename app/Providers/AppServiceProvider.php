@@ -6,6 +6,8 @@ namespace App\Providers;
 
 use App\Contracts\GenerateImage;
 use App\Services\ImageGeneratorService;
+use App\Utils\Faker\Dictionary;
+use App\Utils\Faker\NumberDivisibleBy;
 use App\Utils\Faker\RandomImage;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Database\Eloquent\Model;
@@ -31,15 +33,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->bindDependencies();
+        
+        if(! $this->app->isProduction()) {
+            fake()->addProvider(new RandomImage());
+            fake()->addProvider(new Dictionary());
+            fake()->addProvider(new NumberDivisibleBy());
+        }
+
+        Model::shouldBeStrict(! app()->isProduction());
+    }
+
+    public function bindDependencies(): void
+    {
+        $this->app->bind(GenerateImage::class, ImageGeneratorService::class);
+
         $this->app->bind(StatefulGuard::class, function () {
             // @phpstan-ignore-next-line
             return Auth::guard(config('auth.defaults.guard', 'web'));
         });
-
-        $this->app->bind(GenerateImage::class, ImageGeneratorService::class);
-        fake()->addProvider(new RandomImage());
-
-        Model::shouldBeStrict(! app()->isProduction());
     }
 
     /**
