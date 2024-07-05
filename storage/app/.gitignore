@@ -1,3 +1,5 @@
 *
+!faker-images/
+!faker-images/**
 !public/
 !.gitignore

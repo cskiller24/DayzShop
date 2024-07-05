@@ -13,7 +13,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->words(asText: true),
+            'name' => fake()->dictionaryWord(),
 
             'store_id' => Store::factory(),
         ];
