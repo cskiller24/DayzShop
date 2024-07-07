@@ -15,11 +15,11 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Store::factory()
-            ->count(3)
+            ->count(10)
             ->create()
             ->each(function (Store $store) {
                 $products = Product::factory()
-                    ->count(mt_rand(1, 15))
+                    ->count(mt_rand(100, 1000))
                     ->withImages()
                     ->withCategories()
                     ->create(['store_id' => $store->id]);

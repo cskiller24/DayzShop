@@ -6,8 +6,16 @@
     </section>
 
     <section class="row">
-        @foreach($products as $product)
-            {{ $product  }}
-        @endforeach
+        TOTAL PRODUCTS {{ \App\Models\Product::count() }} <br/>
+        CURRENTLY SHOWED PRODUCTS : {{ \App\Models\Product::search($search)->get()->count() }}
+        @forelse($products as $product)
+            <div class="border border-light">
+                name: {{ $product->name }}
+                <br/>
+                description: {{ $product->description }}
+            </div>
+        @empty
+            <h1 class="">No Products</h1>
+        @endforelse
     </section>
 </div>
