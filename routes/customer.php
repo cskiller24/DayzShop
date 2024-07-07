@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Enums\Type;
+use App\Http\Middleware\AcceptsCustomerAndGuest;
 use App\Livewire\Customer;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['auth', 'verified', 'type:'.Type::CUSTOMER->value], 'prefix' => '/customer'], function (): void {
+Route::group(['middleware' => AcceptsCustomerAndGuest::class, 'prefix' => '/shop'], function (): void {
     Route::get('/', Customer\Home::class)
-        ->name('customer');
+        ->name('customer.shop');
 });

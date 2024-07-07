@@ -2,7 +2,7 @@
     $links = [
         [
             'name' => 'Home',
-            'url' => route('customer'),
+            'url' => route('customer.shop'),
             'icon' => 'home',
         ],
     ];
