@@ -40,22 +40,24 @@ class RandomImage
     {
         $disk = Storage::disk($this->disk);
 
-        $parsedFiles = collect($disk->allFiles($this->directory));
+        $parsedFiles = collect($disk->allFiles($this->directory))->take(3);
 
         if (! $withTemporary) {
             return $disk->path($parsedFiles->random());
         }
-
+    
         $randomFile = $parsedFiles->random();
         $copiedFile = "{$this->directory}/tmp/{$this->generateRandomName()}.jpg";
 
-        $disk->copy($randomFile, $copiedFile);
+        if(! $disk->copy($randomFile, $copiedFile)) {
+            dump($randomFile);
+        };
 
         return $disk->path($copiedFile);
     }
 
     private function generateRandomName(): string
     {
-        return Str::ulid()->toString();
+        return "a".Str::ulid()->toString()."a";
     }
 }
