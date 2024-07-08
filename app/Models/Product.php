@@ -4,21 +4,28 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Scopes\ByStoreIdScope;
+use App\Observers\ApplyStoreIdObserver;
+use Cknow\Money\Money;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Scout\Searchable;
+use Maize\Searchable\HasSearch;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-//#[ScopedBy(ByStoreIdScope::class)]
-//#[ObservedBy(ApplyStoreIdObserver::class)]
+#[ScopedBy(ByStoreIdScope::class)]
+#[ObservedBy(ApplyStoreIdObserver::class)]
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasUuids, InteractsWithMedia, Searchable;
+    use HasFactory, HasUuids, InteractsWithMedia, HasSearch;
+
+    protected $with = ['variants'];
 
     protected $fillable = [
         'store_id',
@@ -42,6 +49,16 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
+    public function highestVariantPrice(): Money
+    {
+        return $this->variants->max('price');
+    }
+
+    public function lowestVariantPrice(): Money
+    {
+        return $this->variants->min('price');
+    }
+
     /**
      * @return array<string, string>
      */
@@ -53,14 +70,25 @@ class Product extends Model implements HasMedia
         ];
     }
 
-    /**
-     * @return array<int, string>
-     */
-    public function toSearchableArray(): array
+//    /**
+//     * @return array<string, string>
+//     */
+//    public function toSearchableArray(): array
+//    {
+//        return [
+//            'name' => $this->name,
+//            'description' => $this->description,
+//        ];
+//    }
+    public function getSearchableAttributes(): array
     {
         return [
-            'name' => $this->name,
-            'description' => $this->description,
+            'name',
+            'description',
+            'specifications.*',
+            'variants.name',
+            'variants.description',
         ];
     }
+
 }

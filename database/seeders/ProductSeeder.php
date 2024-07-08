@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             ->create()
             ->each(function (Store $store) {
                 $products = Product::factory()
-                    ->count(mt_rand(100, 1000))
+                    ->count(mt_rand(1, 10))
                     ->withImages()
                     ->withCategories()
                     ->create(['store_id' => $store->id]);
