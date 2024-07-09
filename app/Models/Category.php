@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[ScopedBy(ByStoreIdScope::class)]
 #[ObservedBy(ApplyStoreIdObserver::class)]
@@ -22,6 +23,11 @@ class Category extends Model
         'store_id',
         'name',
     ];
+
+    public function store(): BelongsTo
+    {
+        return $this->belongsTo(Store::class);
+    }
 
     /**
      * @return array<string, string>
