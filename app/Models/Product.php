@@ -70,16 +70,9 @@ class Product extends Model implements HasMedia
         ];
     }
 
-//    /**
-//     * @return array<string, string>
-//     */
-//    public function toSearchableArray(): array
-//    {
-//        return [
-//            'name' => $this->name,
-//            'description' => $this->description,
-//        ];
-//    }
+    /**
+     * @return array<int, string>
+     */
     public function getSearchableAttributes(): array
     {
         return [

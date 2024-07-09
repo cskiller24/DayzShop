@@ -45,13 +45,11 @@ class RandomImage
         if (! $withTemporary) {
             return $disk->path($parsedFiles->random());
         }
-    
+
         $randomFile = $parsedFiles->random();
         $copiedFile = "{$this->directory}/tmp/{$this->generateRandomName()}.jpg";
 
-        if(! $disk->copy($randomFile, $copiedFile)) {
-            dump($randomFile);
-        };
+        $disk->copy($randomFile, $copiedFile);
 
         return $disk->path($copiedFile);
     }

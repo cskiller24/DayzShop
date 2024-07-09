@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => AcceptsCustomerAndGuest::class, 'prefix' => '/shop'], function (): void {
     Route::get('/', Customer\Home::class)
-        ->name('customer.shop');
+        ->name('customer');
 });
