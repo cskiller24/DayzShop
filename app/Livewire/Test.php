@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -17,9 +15,7 @@ class Test extends Component
 {
     public function render(): View
     {
-        DB::enableQueryLog();
-        $produicts = Product::search('bead')->get();
-        dd(DB::getQueryLog(), $produicts->toArray());
+//        $produicts = Product::search('bead')->get();
         return view('livewire.test');
     }
 }
