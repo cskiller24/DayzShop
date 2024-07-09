@@ -18,15 +18,15 @@ class AcceptsCustomerAndGuest
     public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
-        if($user === null) {
+        if ($user === null) {
             return $next($request);
         }
 
-        if($user->email_verified_at === null) {
+        if ($user->email_verified_at === null) {
             return redirect()->route('verification.notice');
         }
 
-        if(! $user->isCustomer()) {
+        if (! $user->isCustomer()) {
             return redirect()->toRole($user);
         }
 

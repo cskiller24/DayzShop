@@ -16,6 +16,7 @@ use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
 use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
+use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
@@ -110,6 +111,7 @@ return [
         DisallowLateStaticBindingForConstantsSniff::class,
         LineLengthSniff::class,
         OrderedClassElementsFixer::class,
+        ReturnAssignmentFixer::class,
         UselessFunctionDocCommentSniff::class,
         SpaceAfterNotSniff::class,
         SuperfluousExceptionNamingSniff::class,

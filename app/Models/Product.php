@@ -51,12 +51,18 @@ class Product extends Model implements HasMedia
 
     public function highestVariantPrice(): Money
     {
-        return $this->variants->max('price');
+        /** @var Money $max */
+        $max = $this->variants->max('price');
+
+        return $max;
     }
 
     public function lowestVariantPrice(): Money
     {
-        return $this->variants->min('price');
+        /** @var Money $min */
+        $min = $this->variants->min('price');   
+
+        return $min;
     }
 
     /**
@@ -83,5 +89,4 @@ class Product extends Model implements HasMedia
             'variants.description',
         ];
     }
-
 }

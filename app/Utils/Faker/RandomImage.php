@@ -56,6 +56,6 @@ class RandomImage
 
     private function generateRandomName(): string
     {
-        return "a".Str::ulid()->toString()."a";
+        return Str::ulid()->toString();
     }
 }

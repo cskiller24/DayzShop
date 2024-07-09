@@ -24,7 +24,7 @@ class ByStoreIdScope implements Scope
 
         $user = auth()->user();
 
-        if($user !== null && ! $user->isCustomer()) {
+        if ($user !== null && ! $user->isCustomer()) {
             $builder->where('store_id', $user->active_store_id);
         }
     }
