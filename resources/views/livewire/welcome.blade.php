@@ -31,7 +31,7 @@
             </section>
 
             <section class="bg-dark">
-                <div class="container mx-auto text-center">
+                <div class="container-xl mx-auto text-center">
                     <div class="d-flex justify-content-around flex-md-row flex-column">
                         <div>
                             <img src="{{ Vite::image('door-delivery.svg') }}" alt="Door to Door Delivery Image">
@@ -106,7 +106,7 @@
                 </div>
             </section>
             <section class="py-4">
-                <div class="container mx-auto text-center">
+                <div class="container-xl mx-auto text-center">
                     <div class="d-flex justify-content-evenly flex-column flex-md-row align-items-center">
                         <div class="md:w-1/2 sm:w-full">
                             <h1 class="font-bold text-4xl mb-5">Contact Us!</h1>

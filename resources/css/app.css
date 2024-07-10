@@ -2,3 +2,12 @@
 @import "@node/@tabler/icons-webfont/dist/tabler-icons.min.css";
 @import "../../node_modules/tom-select/dist/css/tom-select.min.css";
 @import "./tailwind-utils.css";
+
+.light-hover:hover {
+    border-color: #ffffff !important;
+}
+
+.light-hover {
+    border-color: #495057FF !important;
+}
+

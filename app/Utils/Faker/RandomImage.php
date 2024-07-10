@@ -40,7 +40,7 @@ class RandomImage
     {
         $disk = Storage::disk($this->disk);
 
-        $parsedFiles = collect($disk->allFiles($this->directory));
+        $parsedFiles = collect($disk->allFiles($this->directory))->take(3);
 
         if (! $withTemporary) {
             return $disk->path($parsedFiles->random());
