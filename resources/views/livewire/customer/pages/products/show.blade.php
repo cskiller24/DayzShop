@@ -37,22 +37,41 @@
         <h1 class="display-5">
             {{ $product->name }}
         </h1>
-    
+
         <div class="mb-3">
             @if($product->lowestVariantPrice() !== $product->highestVariantPrice() && $product->variants->count() === 1)
-                <div class="fs-1 ">
-                    {{ $product->lowestVariantPrice() }} - {{ $product->highestVariantPrice() }}
-                </div>
-            @else
                 <div class="fs-1">
                     {{ $product->lowestVariantPrice() }}
                 </div>
+            @else
+                <div class="fs-1 ">
+                    {{ $product->lowestVariantPrice() }} - {{ $product->highestVariantPrice() }}
+                </div>
             @endif
         </div>
-        @foreach($product->variants as $variant)
-            <div class="border rounded border-light-subtle">
-                {{ $variant->name }}
+        <div class="bg-light-lt py-1 px-2 mb-3">
+            {{ $product->description }}
+        </div>
+        <div class="row mb-3">
+            <div class="form-selectgroup">
+                @foreach($product->variants as $variant)
+                    <label class="form-selectgroup-item">
+                        <input type="radio" name="name" wire:model="productVariantId" value="{{ $variant->id }}"
+                               class="form-selectgroup-input text-white"/>
+                        <span class="form-selectgroup-label text-white border-light-subtle">
+                            {{ $variant->name }} - {{ $variant->price->format() }}
+                        </span>
+                    </label>
+                @endforeach
             </div>
-        @endforeach
+        </div>
+        <div class="d-flex flex-row-reverse gap-2">
+            <button class="btn btn-success" wire:loading.attr="disabled">
+                <i class="ti ti-currency-peso me-1"></i> Buy now
+            </button>
+            <button class="btn btn-teal" wire:click="addToCart" wire:loading.attr="disabled">
+                <i class="ti ti-shopping-cart me-1"></i> Add to Card
+            </button>
+        </div>
     </div>
 </div>

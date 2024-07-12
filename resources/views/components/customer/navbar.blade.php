@@ -23,6 +23,7 @@
         <div class="navbar-nav flex-row order-md-last">
             <div class="d-none d-md-flex">
                 @auth
+                    <livewire:customer.components.cart-dropdown/>
                     <div class="nav-item dropdown d-none d-md-flex me-3">
                         <a href="#" class="nav-link px-0" data-bs-toggle="dropdown" tabindex="-1"
                            aria-label="Show notifications">

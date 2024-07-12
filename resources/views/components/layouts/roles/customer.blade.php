@@ -3,6 +3,7 @@
     'footer' => null,
 ])
 <x-layouts.base>
+    <livewire:components.toaster/>
     <div class="page bg-dark text-light" data-bs-theme="dark">
         <!-- Navbar -->
         <x-customer.navbar/>
