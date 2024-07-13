@@ -6,6 +6,7 @@ namespace App\Livewire\Customer\Pages\Products;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
@@ -15,6 +16,8 @@ use Livewire\Component;
 class Show extends Component
 {
     public Product $product;
+
+    public int $quantity = 1;
 
     public ?string $productVariantId = null;
 
@@ -27,17 +30,12 @@ class Show extends Component
 
     public function addToCart(): void
     {
+        if($this->validateCart()) {
+            return;
+        };
+
+        /** @var User $user */
         $user = auth()->user();
-
-        if($user === null) {
-            $this->flashMessage('Please login first', 'Error!', NotificationInterface::ERROR);
-            return;
-        }
-
-        if($this->productVariantId === null) {
-            $this->flashMessage('Please specify a product variant', 'Error!', NotificationInterface::ERROR);
-            return;
-        }
 
         $cart = Cart::query()
             ->where('user_id', $user->id)
@@ -45,21 +43,33 @@ class Show extends Component
             ->first();
 
         if($cart === null) {
-            Cart::query()->create([
+            $cart = Cart::query()->create([
                 'user_id' => $user->id,
                 'product_variant_id' => $this->productVariantId,
-                'quantity' => 1
+                'quantity' => 0,
             ]);
-
-            $this->flashMessage('Added to cart');
-            return;
         }
 
-        $cart->increment('quantity');
+        $cart->update(['quantity' => $cart->quantity += $this->quantity]);
+        $this->quantity = 1;
 
         $this->flashMessage('Added to cart');
-        
         $this->dispatch('cart-added');
+    }
+
+    public function validateCart(): bool
+    {
+        if($this->productVariantId === null) {
+            $this->flashMessage('Please specify a product variant', 'Error!', NotificationInterface::ERROR);
+            return true;
+        }
+
+        if(auth()->user() === null) {
+            $this->flashMessage('Please login first', 'Error!', NotificationInterface::ERROR);
+            return true;
+        }
+
+        return false;
     }
 
     public function render(): View
