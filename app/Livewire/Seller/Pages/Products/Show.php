@@ -17,7 +17,7 @@ class Show extends Component
     public function mount(Product $product): void
     {
         $this->product = $product;
-    }   
+    }
 
     public function render(): View
     {

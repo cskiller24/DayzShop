@@ -19,9 +19,9 @@ class CartDropdown extends Component
         $this->show = true;
     }
 
-    public function deleteCart($cartId): void
+    public function deleteCart(string $cartId): void
     {
-        $cartId = Cart::findOr($cartId);
+        $cartId = Cart::findOrFail($cartId);
 
         $cartId->delete();
 
@@ -33,6 +33,10 @@ class CartDropdown extends Component
     public function render(): View
     {
         $user = auth()->user();
+
+        if (! $user) {
+            return view('livewire.customer.components.cart-dropdown', ['carts' => collect([])]);
+        }
 
         $user->load(['carts', 'carts.productVariant', 'carts.productVariant.product']);
 

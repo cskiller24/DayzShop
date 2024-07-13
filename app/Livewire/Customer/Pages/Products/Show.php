@@ -24,15 +24,16 @@ class Show extends Component
     public function mount(Product $product): void
     {
         $this->product = $product;
-
         $this->product->load(['store', 'variants', 'media', 'categories']);
     }
 
     public function addToCart(): void
     {
-        if($this->validateCart()) {
+        if ($this->validateCart()) {
+            $this->flashMessage('Error occurred', 'Error!', NotificationInterface::ERROR);
+
             return;
-        };
+        }
 
         /** @var User $user */
         $user = auth()->user();
@@ -42,7 +43,7 @@ class Show extends Component
             ->where('product_variant_id', $this->productVariantId)
             ->first();
 
-        if($cart === null) {
+        if ($cart === null) {
             $cart = Cart::query()->create([
                 'user_id' => $user->id,
                 'product_variant_id' => $this->productVariantId,
@@ -59,13 +60,15 @@ class Show extends Component
 
     public function validateCart(): bool
     {
-        if($this->productVariantId === null) {
+        if ($this->productVariantId === null) {
             $this->flashMessage('Please specify a product variant', 'Error!', NotificationInterface::ERROR);
+
             return true;
         }
 
-        if(auth()->user() === null) {
+        if (auth()->user() === null) {
             $this->flashMessage('Please login first', 'Error!', NotificationInterface::ERROR);
+
             return true;
         }
 
