@@ -23,7 +23,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 #[ObservedBy(ApplyStoreIdObserver::class)]
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasUuids, InteractsWithMedia, HasSearch;
+    use HasFactory, HasSearch, HasUuids, InteractsWithMedia;
 
     protected $with = ['variants'];
 
@@ -60,7 +60,7 @@ class Product extends Model implements HasMedia
     public function lowestVariantPrice(): Money
     {
         /** @var Money $min */
-        $min = $this->variants->min('price');   
+        $min = $this->variants->min('price');
 
         return $min;
     }
