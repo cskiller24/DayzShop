@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     @if($loop->last)
-                        <a class="text-center mt-3" href="#">
+                        <a class="text-center mt-3" href="{{ route('customer.cart-process') }}" wire:navigate>
                             <h3 class="text-center">Proceed to Checkout</h3>
                         </a>
                     @endif
