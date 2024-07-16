@@ -8,6 +8,7 @@ use App\Models\Cart;
 use Illuminate\View\View;
 use Livewire\Component;
 
+
 class CartCard extends Component
 {
     public Cart $cart;
@@ -17,21 +18,18 @@ class CartCard extends Component
         $this->cart = $cart;
     }
 
-    public function deleteCart(): void
-    {
-        $this->cart->delete();
-
-        $this->flashMessage('Cart deleted successfully.');
-    }
-
-    public function increment(int $amount): void
+    public function increment(int $amount = 1): void
     {
         $this->cart->increment('quantity', $amount);
     }
 
-    public function decrement(int $amount): void
+    public function decrement(int $amount = 1): void
     {
         $this->cart->decrement('quantity', $amount);
+
+        if($this->cart->quantity === 0) {
+            $this->js("$parent.deleteCart('{$this->cart->id}')");
+        }
     }
 
     public function render(): View

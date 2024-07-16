@@ -11,19 +11,21 @@
                 </div>
                 <div class="col-4">
                     <div class="btn-group me-2 " role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-success" wire:click="increment(1)"
+                        <button type="button" class="btn btn-outline-success"
+                                wire:click="increment(1)"
                                 wire:loading.attr="disabled">
                             +
                         </button>
                         <button type="button" class="border border-light-subtle btn">{{ $cart->quantity }}</button>
-                        <button type="button" class="btn btn-outline-warning" wire:click="decrement(1)"
+                        <button type="button" class="btn btn-outline-warning"
+                                wire:click="decrement(1)"
                                 wire:loading.attr="disabled">
                             -
                         </button>
                     </div>
                 </div>
                 <div class="col-4 text-end">
-                    <button class="btn btn-danger btn-lg" wire:click="deleteCart">
+                    <button class="btn btn-danger btn-lg" wire:click="$parent.deleteCart('{{ $cart->id }}')">
                         <i class="ti ti-trash"></i>
                     </button>
                 </div>
