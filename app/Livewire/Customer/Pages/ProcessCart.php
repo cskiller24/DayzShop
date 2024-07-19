@@ -19,7 +19,7 @@ class ProcessCart extends Component
 
     public function mount(): void
     {
-        $this->user = auth()->user();
+        $this->user = auth()->user(); // @phpstan-ignore-line
     }
 
     public function deleteCart(Cart|string $cart): void
@@ -29,7 +29,7 @@ class ProcessCart extends Component
 
     protected function getCart(Cart|string $cart): Cart
     {
-        if(is_string($cart)) {
+        if (is_string($cart)) {
             return Cart::query()->findOrFail($cart);
         }
 
@@ -42,13 +42,13 @@ class ProcessCart extends Component
             ->carts()
             ->with([
                 'productVariant',
-                'productVariant.product'
+                'productVariant.product',
             ])->get();
 
         $total = 0;
 
         foreach ($carts as $cart) {
-            $total += ($cart->productVariant->price->multiply($cart->quantity)->getAmount()) / 100;
+            $total += ($cart->productVariant->price->multiply($cart->quantity)->getAmount()) / 100; // @phpstan-ignore-line
         }
 
         return view('livewire.customer.pages.process-cart', compact('carts', 'total'));

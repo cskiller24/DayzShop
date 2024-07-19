@@ -13,6 +13,7 @@ class ProductVariantFactory extends Factory
     public function definition(): array
     {
         [$word, $definition] = fake()->dictionary();
+
         return [
             'price' => fake()->numberDivisibleBy100(),
             'quantity' => fake()->numberDivisibleBy(min: 10, max: 100, divisibleBy: 10),

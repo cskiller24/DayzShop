@@ -89,7 +89,7 @@ return [
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
 
     'faker_image_directory' => env('APP_FAKER_IMAGE_DIRECTORY', '300x500'),
-    
+
     'faker_image_disk' => env('APP_FAKER_IMAGE_DISK', 'faker-images'),
 
     /*

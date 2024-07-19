@@ -20,6 +20,7 @@ class Home extends Component
 
     #[Url(as: 'q')]
     public string $search = '';
+
     #[On(Search::EVENT)]
     public function render(): View
     {

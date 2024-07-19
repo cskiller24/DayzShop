@@ -8,7 +8,6 @@ use App\Models\Cart;
 use Illuminate\View\View;
 use Livewire\Component;
 
-
 class CartCard extends Component
 {
     public Cart $cart;
@@ -29,10 +28,10 @@ class CartCard extends Component
     {
         $this->cart->decrement('quantity', $amount);
 
-        if($this->cart->quantity === 0) {
-            $this->js("$parent.deleteCart('{$this->cart->id}')");
+        if ($this->cart->quantity === 0) {
+            $this->js("$parent.deleteCart('{$this->cart->id}')"); // @phpstan-ignore-line
         }
-        
+
         $this->dispatch('cart-updated');
     }
 

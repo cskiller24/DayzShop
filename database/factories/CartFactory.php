@@ -23,7 +23,7 @@ class CartFactory extends Factory
         return [
             'product_variant_id' => ProductVariant::factory(),
             'user_id' => User::factory()->customer(),
-            'quantity' => mt_rand(1, 10), 
+            'quantity' => mt_rand(1, 10),
         ];
     }
 }
