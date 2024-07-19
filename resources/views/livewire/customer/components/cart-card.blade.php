@@ -25,7 +25,8 @@
                     </div>
                 </div>
                 <div class="col-4 text-end">
-                    <button class="btn btn-danger btn-lg" wire:click="$parent.deleteCart('{{ $cart->id }}')">
+                    <button class="btn btn-danger btn-lg" wire:click="$parent.deleteCart('{{ $cart->id }}')"
+                            wire:confirm="Are you sure you want to delete this product?">
                         <i class="ti ti-trash"></i>
                     </button>
                 </div>

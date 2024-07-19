@@ -13,8 +13,21 @@
     @empty
 
     @endforelse
-    <div>
-        <div>{{ $total }}</div>
+    <div class="d-flex justify-content-end align-items-center mt-3">
+        <div class="fs-2 mb-0 me-2">
+            Total
+        </div>
+        <div class="btn btn-orange fs-2 cursor-auto">
+            {{ \Cknow\Money\Money::parse($total * 100) }}
+        </div>
     </div>
+    <a class="btn btn-outline-success mt-2" href="">Proceed to checkout</a>
 </div>
 
+@script
+<script>
+    Livewire.on('cart-updated', function () {
+        $wire.$refresh();
+    });
+</script>
+@endscript

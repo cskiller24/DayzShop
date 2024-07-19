@@ -24,9 +24,7 @@ class ProcessCart extends Component
 
     public function deleteCart(Cart|string $cart): void
     {
-        $this
-            ->getCart($cart)
-            ->delete();
+        $this->getCart($cart)->delete();
     }
 
     protected function getCart(Cart|string $cart): Cart

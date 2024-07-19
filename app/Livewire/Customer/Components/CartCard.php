@@ -21,6 +21,8 @@ class CartCard extends Component
     public function increment(int $amount = 1): void
     {
         $this->cart->increment('quantity', $amount);
+
+        $this->dispatch('cart-updated');
     }
 
     public function decrement(int $amount = 1): void
@@ -30,6 +32,8 @@ class CartCard extends Component
         if($this->cart->quantity === 0) {
             $this->js("$parent.deleteCart('{$this->cart->id}')");
         }
+        
+        $this->dispatch('cart-updated');
     }
 
     public function render(): View
