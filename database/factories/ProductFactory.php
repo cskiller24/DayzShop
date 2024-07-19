@@ -14,6 +14,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         [$word, $definition] = fake()->dictionary();
+
         return [
             'name' => $word,
             'description' => $definition,

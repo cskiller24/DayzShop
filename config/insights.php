@@ -18,6 +18,7 @@ use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
 use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
+use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
@@ -134,6 +135,11 @@ return [
             ],
             'maxComplexity' => 20,
         ],
+        ExplicitStringVariableFixer::class => [
+            'exclude' => [
+                'app\Livewire\Customer\Components\CartCard.php'
+            ]
+        ]
     ],
 
     /*

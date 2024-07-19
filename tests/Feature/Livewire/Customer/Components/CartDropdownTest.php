@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\ProductVariant;
 use App\Models\User;
 use Livewire\Livewire;
+
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\withoutVite;
 
@@ -27,7 +28,7 @@ it('removes an item to cart', function () {
 
     $cart = Cart::factory()->createQuietly([
         'product_variant_id' => $variant->id,
-        'user_id' => $customer->id
+        'user_id' => $customer->id,
     ]);
 
     Livewire::actingAs($customer)

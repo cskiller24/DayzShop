@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('quantity');
             $table->timestamps();
 
-            $table->unique(["product_variant_id", "user_id"]);
+            $table->unique(['product_variant_id', 'user_id']);
         });
     }
 

@@ -29,7 +29,7 @@ class ProductSeeder extends Seeder
                         ->count(mt_rand(1, 3))
                         ->withImage()
                         ->createQuietly([
-                            'product_id' => $product->id
+                            'product_id' => $product->id,
                         ]);
                 });
             });
