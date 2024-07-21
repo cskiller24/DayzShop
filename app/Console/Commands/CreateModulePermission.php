@@ -10,7 +10,7 @@ use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Arr;
 use function Laravel\Prompts\multiselect;
 
-final class CreateModulePermission extends Command implements  PromptsForMissingInput
+final class CreateModulePermission extends Command implements PromptsForMissingInput
 {
     public const array DEFAULT_PERMISSIONS = [
         'list',
@@ -39,13 +39,13 @@ final class CreateModulePermission extends Command implements  PromptsForMissing
     public function handle(): void
     {
         /**
-         * @var array<string, bool|null> $args
+         * @var array<string, bool|mixed> $args
          */
         $args = $this->options();
 
         $this->moduleName = $this->argument('module');
 
-        ($args['no-interaction'] || $args['-NI'])
+        $args['no-interaction'] === true || $args['-NI'] === true
             ? $this->handleWithoutInteraction()
             : $this->handleWithInteraction();
     }
@@ -63,7 +63,7 @@ final class CreateModulePermission extends Command implements  PromptsForMissing
         $parsedPermissions = $this->parseIntoPermissions($selectedPermissions);
 
         $bar = $this->output->createProgressBar(count($parsedPermissions));
-        $this->addToPermission($parsedPermissions, fn(Permission $permission) => $bar->advance());
+        $this->addToPermission($parsedPermissions, fn () => $bar->advance());
         $bar->finish();
 
         $this->info(PHP_EOL.'Permissions created successfully.');
@@ -73,18 +73,18 @@ final class CreateModulePermission extends Command implements  PromptsForMissing
     {
         $permissions = self::DEFAULT_PERMISSIONS;
 
-        if($only = $this->option('only')) {
+        if ($only = $this->option('only')) {
             $permissions = array_keys(Arr::only(array_flip($permissions), explode(',', $only)));
         }
 
-        if($except = $this->option('except')) {
+        if ($except = $this->option('except')) {
             $permissions = array_keys(Arr::except(array_flip($permissions), explode(',', $except)));
         }
 
-        $bar = $this->output->createProgressBar(count($permissions));
+        $parsedPermissions = $this->parseIntoPermissions($permissions);
 
-        $this->addToPermission($permissions, fn(Permission $permission) => $bar->advance());
-
+        $bar = $this->output->createProgressBar(count($parsedPermissions));
+        $this->addToPermission($parsedPermissions, fn () => $bar->advance());
         $bar->finish();
 
         $this->info(PHP_EOL.'Permissions created successfully.');
@@ -108,9 +108,8 @@ final class CreateModulePermission extends Command implements  PromptsForMissing
     }
 
     /**
-     * @param  array<int, string> $permissions
+     * @param  array<int, string>  $permissions
      * @param  \Closure(Permission): void  $afterCreating
-     * @return void
      */
     protected function addToPermission(array $permissions, \Closure $afterCreating): void
     {

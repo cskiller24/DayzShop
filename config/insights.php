@@ -25,6 +25,7 @@ use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
+use SlevomatCodingStandard\Sniffs\ControlStructures\AssignmentInConditionSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowShortTernaryOperatorSniff;
 use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
@@ -93,6 +94,7 @@ return [
 
     'remove' => [
         AlphabeticallySortedUsesSniff::class,
+        AssignmentInConditionSniff::class,
         DeclareStrictTypesSniff::class,
         DisallowMixedTypeHintSniff::class,
         DisallowShortTernaryOperatorSniff::class,
@@ -106,6 +108,7 @@ return [
         ForbiddenTraits::class,
         ForbiddenPublicPropertySniff::class,
         ForbiddenSetterSniff::class,
+        ForbiddenFinalClasses::class,
         FunctionClosingBraceSniff::class,
         MethodArgumentSpaceFixer::class,
         // ParameterTypeHintSniff::class,
