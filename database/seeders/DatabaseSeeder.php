@@ -14,13 +14,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([InviteSeeder::class, ProductSeeder::class]);
+        $this->call([InviteSeeder::class, ProductSeeder::class, RolesAndPermissionSeeder::class]);
         // User::factory(10)->create();
 
         User::factory()->admin()->create([
             'name' => 'Admin',
             'email' => 'admin@dayzshop.com',
-        ]);
+        ])->each(function ($user) {
+            $user->assignRole(RolesAndPermissionSeeder::DAYZSHOP_ADMIN);
+        });
 
         User::factory()->courier()->create([
             'name' => 'Courier',

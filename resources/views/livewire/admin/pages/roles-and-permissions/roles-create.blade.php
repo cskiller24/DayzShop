@@ -35,7 +35,7 @@
                                             <span
                                                 class="form-check-label"
                                                 id="{{ $permission->id }}">
-                                            {{ str($permission->verb_name)->title() }}
+                                                {{ str($permission->verb_name)->title() }}
                                         </span>
                                         </label>
                                     </div>
