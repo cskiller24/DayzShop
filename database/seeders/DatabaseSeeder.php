@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -14,40 +13,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([InviteSeeder::class, ProductSeeder::class, RolesAndPermissionSeeder::class]);
         // User::factory(10)->create();
-
-        User::factory()->admin()->create([
-            'name' => 'Admin',
-            'email' => 'admin@dayzshop.com',
-        ])->each(function ($user) {
-            $user->assignRole(RolesAndPermissionSeeder::DAYZSHOP_ADMIN);
-        });
-
-        User::factory()->courier()->create([
-            'name' => 'Courier',
-            'email' => 'courier@dayzshop.com',
-        ]);
-
-        User::factory()->customer()->create([
-            'name' => 'Customer',
-            'email' => 'customer@dayzshop.com',
-        ]);
-
-        User::factory()
-            ->seller()
-            ->create([
-                'name' => 'Seller',
-                'email' => 'seller@dayzshop.com',
-            ])
-            ->stores()
-            ->sync(Store::all());
-
-        // User::factory()->create([
-        //     'name' => 'Limbo',
-        //     'email' => 'limbo@dayzshop.com',
-        //     'type' => Str::random(5),
-        // ]);
+        
+        $this->call(AdminSeeder::class);
+        $this->call(SellerSeeder::class);
+        $this->call(CustomerSeeder::class);
+        $this->call(CourierSeeder::class);
+        $this->call(InviteSeeder::class);
 
         User::factory()->unverified()->create([
             'name' => 'Unverified',
