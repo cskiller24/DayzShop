@@ -6,7 +6,6 @@ namespace App\Livewire\Admin\Pages\RolesAndPermissions;
 
 use App\Models\Permission;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
@@ -37,9 +36,7 @@ class PermissionsCreate extends Component
             $verb = str($verb)->lower()->snake();
             $separator = Permission::SEPARATOR;
 
-            DB::enableQueryLog();
             Permission::create(['name' => "{$name}{$separator}{$verb}"]);
-            dd(DB::getQueryLog());
         });
 
         $this->dispatch('flash-message', message: 'Permission created successfully');
