@@ -37,6 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(
             append: [
                 \App\Http\Middleware\EnsureSellerDoesHaveAnyStore::class,
+                \App\Http\Middleware\SetTeamPermissions::class,
             ],
         );
     })
