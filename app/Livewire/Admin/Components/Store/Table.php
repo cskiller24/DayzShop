@@ -15,6 +15,8 @@ class Table extends Component
 
     public function delete(string $id): void
     {
+        $this->authorize('delete', Store::class);
+        
         Store::query()->findOrFail($id)->delete();
 
         $this->dispatch('flash-message', message: 'Deleted store successfully');

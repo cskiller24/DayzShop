@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        $invitePermissionIds = Permission::bulkInsert('invite');
+        $invitePermissionIds = Permission::bulkInsert('invite', array_merge(Permission::VERBS, ['notify']));
         $storePermissionIds = Permission::bulkInsert('store');
         $rolePermissionIds = Permission::bulkInsert('roles-permissions');
 

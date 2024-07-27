@@ -25,6 +25,8 @@ class Create extends Component
 
     public function create(): void
     {
+        $this->authorize('create', Invite::class);
+        
         $expireAt = Carbon::parse($this->expireAt);
 
         $this->validate([

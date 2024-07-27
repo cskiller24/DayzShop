@@ -3,12 +3,14 @@
 use App\Enums\InvitationTypes;
 use App\Livewire\Admin\Components\Invites\Create;
 use App\Models\Invite;
+use Database\Seeders\DatabaseSeeder;
 use Livewire\Livewire;
-
+use function Pest\Laravel\seed;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
     withoutVite();
+    seed(DatabaseSeeder::class);
 });
 
 it('renders successfully', function () {
@@ -17,7 +19,12 @@ it('renders successfully', function () {
 });
 
 it('creates an invitation', function () {
-    Livewire::test(Create::class)
+    $admin = \App\Models\User::whereType('admin')->first();
+
+    setPermissionsTeamId($admin->id);
+
+    Livewire::actingAs($admin)
+        ->test(Create::class)
         ->set('expireAt', now()->addDay()->toDateTimeLocalString())
         ->set('type', fake()->randomElement([InvitationTypes::STORE->value, InvitationTypes::COURIER->value]))
         ->call('create')

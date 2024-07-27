@@ -19,7 +19,6 @@ class InvitePolicy
 
     public function viewAny(User $user): bool
     {
-        dd($user->can($this->parseAuthorization('list')), $user->getRoleNames());
         return $user->hasPermissionTo($this->parseAuthorization('list'));
     }
 
@@ -51,5 +50,10 @@ class InvitePolicy
     public function forceDelete(User $user, Invite $invite): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('force-delete'));
+    }
+
+    public function notify(User $user): bool
+    {
+        return $user->hasPermissionTo($this->parseAuthorization('notify'));
     }
 }
