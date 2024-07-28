@@ -18,6 +18,8 @@ class Table extends Component
 
     public function update(string $id): void
     {
+        $this->authorize('update', Category::class);
+
         $this->validate();
 
         Category::query()
@@ -29,6 +31,8 @@ class Table extends Component
 
     public function delete(string $id): void
     {
+        $this->authorize('delete', Category::class);
+        
         Category::query()
             ->findOrFail($id)
             ->delete();

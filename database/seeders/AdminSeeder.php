@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     {
         $invitePermissionIds = Permission::bulkInsert('invite', array_merge(Permission::VERBS, ['notify']));
         $storePermissionIds = Permission::bulkInsert('store');
-        $rolePermissionIds = Permission::bulkInsert('roles-permissions');
+        $rolePermissionIds = Permission::bulkInsert('roles_permissions');
 
         $adminRole = Role::create(['name' => 'admin'])->syncPermissions(array_merge($invitePermissionIds, $storePermissionIds, $rolePermissionIds));
 
@@ -25,7 +25,7 @@ class AdminSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@dayzshop.com',
             ])->each(function (User $user) use ($adminRole) {
-                setPermissionsTeamId($user->id);
+                setPermissionsTeamId(Permission::DEFAULT_ADMIN_TEAM);
                 $user->assignRole($adminRole);
             });
     }

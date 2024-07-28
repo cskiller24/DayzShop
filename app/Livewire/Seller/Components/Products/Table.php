@@ -17,6 +17,8 @@ class Table extends Component
 
     public function delete(string $id): void
     {
+        $this->authorize('delete', Product::class);
+        
         DB::transaction(function () use ($id): void {
             $product = Product::query()->findOrFail($id);
             $product->categories()->sync([], true);

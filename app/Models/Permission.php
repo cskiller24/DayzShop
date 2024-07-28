@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,8 @@ class Permission extends SpatiePermission
     use HasFactory, HasUuids;
 
     public const array VERBS = ['list', 'create', 'read', 'update', 'delete'];
+
+    public const string DEFAULT_ADMIN_TEAM = 'cd5c5e0e-1993-43fd-b166-a05f1266361f';
 
     public const string SEPARATOR = '::';
 
@@ -42,8 +45,13 @@ class Permission extends SpatiePermission
                 $separator = Permission::SEPARATOR;
                 $id = Str::orderedUuid()->toString();
                 DB::table('permissions')
-                    ->insert(['id' => $id, 'name' => "{$parsedModuleName}{$separator}{$permissionName}", 'guard_name' => 'web']);
-
+                    ->insert([
+                        'id' => $id,
+                        'name' => "{$parsedModuleName}{$separator}{$permissionName}",
+                        'guard_name' => 'web',
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
                 return $id;
             })->toArray();
     }

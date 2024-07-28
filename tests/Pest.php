@@ -44,7 +44,18 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function seedAdmin(): void
 {
-    // ..
+    $seeder = new \Database\Seeders\AdminSeeder();
+    $seeder->__invoke();
 }
+
+function seedSeller(): \App\Models\User
+{
+    $seeder = new \Database\Seeders\SellerSeederWithoutImage();
+    $seeder->__invoke();
+
+    return \App\Models\User::whereType(\App\Enums\Type::SELLER)->firstOrFail();
+}
+
+

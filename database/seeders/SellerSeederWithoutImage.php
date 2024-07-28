@@ -12,7 +12,7 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class SellerSeeder extends Seeder
+class SellerSeederWithoutImage extends Seeder
 {
     public function run(): void
     {
@@ -20,14 +20,12 @@ class SellerSeeder extends Seeder
             $store->each(function (Store $store) {
                 $products = Product::factory()
                     ->count(mt_rand(1, 10))
-                    ->withImages()
                     ->withCategories()
                     ->createQuietly(['store_id' => $store->id]);
 
                 $products->each(function (Product $product) {
                     ProductVariant::factory()
                         ->count(mt_rand(1, 3))
-                        ->withImage()
                         ->createQuietly([
                             'product_id' => $product->id,
                         ]);

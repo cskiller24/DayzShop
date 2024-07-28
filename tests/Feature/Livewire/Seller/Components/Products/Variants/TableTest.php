@@ -6,15 +6,16 @@ use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Components\Products\Variants\Table;
 use App\Models\Product;
 use Livewire\Livewire;
-
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    $this->seller = seedSeller();
     withoutVite();
 });
 
 it('renders successfully', function () {
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->seller)
+        ->test(Table::class)
         ->assertStatus(200);
 });
 

@@ -16,8 +16,15 @@ class Index extends Component
     #[Validate('required')]
     public string $name;
 
+    public function mount(): void
+    {
+        $this->authorize('viewAny', Category::class);
+    }
+
     public function create(): void
     {
+        $this->authorize('create', Category::class);
+
         $this->validate();
 
         Category::create(['name' => $this->name]);

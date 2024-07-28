@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Models\Permission;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class SetTeamPermissions
         }
 
         if($user->isAdmin()) {
-            setPermissionsTeamId($user->id);
+            setPermissionsTeamId(Permission::DEFAULT_ADMIN_TEAM);
         }
 
         return $next($request);

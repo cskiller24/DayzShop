@@ -38,11 +38,16 @@ class UserFactory extends Factory
         ]);
     }
 
-    private function modifyType(Type $type): static
+    /**
+     * @param  Type  $type
+     * @param  array<string, mixed> $attributes
+     * @return $this
+     */
+    private function modifyType(Type $type, array $attributes = []): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn () => array_merge([
             'type' => $type->value,
-        ]);
+        ], $attributes));
     }
 
     public function admin(): static
@@ -52,7 +57,7 @@ class UserFactory extends Factory
 
     public function courier()
     {
-        return $this->modifyType(Type::COURIER);
+        return $this->modifyType(Type::COURIER, ['active_courier_id' => fake()->uuid()]);
     }
 
     public function customer(): static
@@ -62,6 +67,6 @@ class UserFactory extends Factory
 
     public function seller(): static
     {
-        return $this->modifyType(Type::SELLER);
+        return $this->modifyType(Type::SELLER, ['active_store_id' => fake()->uuid()]);
     }
 }

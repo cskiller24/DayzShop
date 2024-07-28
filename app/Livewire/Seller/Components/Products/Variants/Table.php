@@ -20,11 +20,15 @@ class Table extends Component
 
     public function mount(Product $product): void
     {
+        $this->authorize('viewAny', Product::class);
+        
         $this->product = $product;
     }
 
     public function delete(string $id): void
     {
+        $this->authorize('delete', Product::class);
+
         $productVariant = ProductVariant::query()->with('media')->findOrFail($id);
 
         DB::transaction(function () use ($productVariant): void {

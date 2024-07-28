@@ -37,6 +37,8 @@ class AddImage extends Component
 
     public function addImage(): void
     {
+        $this->authorize('create', Product::class);
+        
         $this->validate();
 
         $this->product->addMedia($this->photo)->toMediaCollection(); // @phpstan-ignore-line

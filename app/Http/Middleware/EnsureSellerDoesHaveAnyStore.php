@@ -29,7 +29,7 @@ class EnsureSellerDoesHaveAnyStore
     public function handle(Request $request, Closure $next): Response
     {
         /** @var \App\Models\User|null $user */
-        $user = auth()->user();
+        $user = $request->user();
 
         if ($this->shouldPassThrough($user)) {
             return $next($request);
