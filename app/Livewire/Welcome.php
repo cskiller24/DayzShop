@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Welcome | DayzShop')]
-#[Layout('components.layouts.app')]
+#[Layout('components.layouts.base')]
 class Welcome extends Component
 {
     public function render(): View

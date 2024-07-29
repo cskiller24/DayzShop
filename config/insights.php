@@ -10,12 +10,15 @@ use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenPrivateMethods;
 use NunoMaduro\PhpInsights\Domain\Insights\ForbiddenTraits;
 use NunoMaduro\PhpInsights\Domain\Metrics\Architecture\Classes;
 use NunoMaduro\PhpInsights\Domain\Sniffs\ForbiddenSetterSniff;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\EmptyPHPStatementSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
 use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
+use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
+use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
@@ -97,6 +100,7 @@ return [
         ClosingBraceSniff::class,
         DocCommentSpacingSniff::class,
         EmptyCommentSniff::class,
+        EmptyPHPStatementSniff::class,
         ForbiddenDefineFunctions::class,
         ForbiddenNormalClasses::class,
         ForbiddenTraits::class,
@@ -110,6 +114,7 @@ return [
         DisallowLateStaticBindingForConstantsSniff::class,
         LineLengthSniff::class,
         OrderedClassElementsFixer::class,
+        ReturnAssignmentFixer::class,
         UselessFunctionDocCommentSniff::class,
         SpaceAfterNotSniff::class,
         SuperfluousExceptionNamingSniff::class,
@@ -130,6 +135,11 @@ return [
             ],
             'maxComplexity' => 20,
         ],
+        ExplicitStringVariableFixer::class => [
+            'exclude' => [
+                'app\Livewire\Customer\Components\CartCard.php'
+            ]
+        ]
     ],
 
     /*

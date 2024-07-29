@@ -15,6 +15,7 @@ class Test extends Component
 {
     public function render(): View
     {
+        //        $produicts = Product::search('bead')->get();
         return view('livewire.test');
     }
 }

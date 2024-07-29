@@ -22,6 +22,10 @@ class ByStoreIdScope implements Scope
             'The model ['.$model::class.'] does not have an attribute store_id',
         );
 
-        $builder->where('store_id', auth()->user()?->active_store_id);
+        $user = auth()->user();
+
+        if ($user !== null && ! $user->isCustomer()) {
+            $builder->where('store_id', $user->active_store_id);
+        }
     }
 }

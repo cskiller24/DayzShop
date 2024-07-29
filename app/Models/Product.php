@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Scopes\ByStoreIdScope;
 use App\Observers\ApplyStoreIdObserver;
+use Cknow\Money\Money;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Maize\Searchable\HasSearch;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -21,7 +23,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 #[ObservedBy(ApplyStoreIdObserver::class)]
 class Product extends Model implements HasMedia
 {
-    use HasFactory, HasUuids, InteractsWithMedia;
+    use HasFactory, HasSearch, HasUuids, InteractsWithMedia;
+
+    protected $with = ['variants'];
 
     protected $fillable = [
         'store_id',
@@ -45,6 +49,22 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
+    public function highestVariantPrice(): Money
+    {
+        /** @var Money $max */
+        $max = $this->variants->max('price');
+
+        return $max;
+    }
+
+    public function lowestVariantPrice(): Money
+    {
+        /** @var Money $min */
+        $min = $this->variants->min('price');
+
+        return $min;
+    }
+
     /**
      * @return array<string, string>
      */
@@ -53,6 +73,20 @@ class Product extends Model implements HasMedia
         return [
             'id' => 'string',
             'specifications' => 'array',
+        ];
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function getSearchableAttributes(): array
+    {
+        return [
+            'name',
+            'description',
+            'specifications.*',
+            'variants.name',
+            'variants.description',
         ];
     }
 }

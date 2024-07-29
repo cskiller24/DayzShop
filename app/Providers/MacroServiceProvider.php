@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use App\Enums\Type;
+use App\Livewire\Components\Toaster;
 use App\Models\User;
+use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Vite;
@@ -89,6 +91,12 @@ class MacroServiceProvider extends ServiceProvider
             }
 
             return $this->redirect(route('limbo'), $navigate);
+        });
+
+        \Livewire\Component::macro('flashMessage', function (string $message, string $title = 'Success!', string $type = NotificationInterface::SUCCESS) {
+            /** @var \Livewire\Component $this */
+
+            return $this->dispatch(Toaster::EVENT, message: $message, title: $title, type: $type);
         });
 
         \Livewire\Component::macro('closeModal', function (string $id): void {

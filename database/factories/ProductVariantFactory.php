@@ -12,13 +12,26 @@ class ProductVariantFactory extends Factory
 
     public function definition(): array
     {
+        [$word, $definition] = fake()->dictionary();
+
         return [
-            'price' => fake()->numberBetween(),
-            'quantity' => fake()->numberBetween(1, 100),
-            'name' => fake()->name(),
-            'description' => fake()->text(),
+            'price' => fake()->numberDivisibleBy100(),
+            'quantity' => fake()->numberDivisibleBy(min: 10, max: 100, divisibleBy: 10),
+            'name' => $word,
+            'description' => $definition,
 
             'product_id' => Product::factory(),
         ];
+    }
+
+    public function withImage(string $collection = 'default'): static
+    {
+        return $this->afterCreating(function (ProductVariant $variant) use ($collection) {
+            $product = $variant->product()->withoutGlobalScopes()->first();
+
+            $image = fake()->randomImage(true);
+            $media = $product->addMedia($image)->toMediaCollection($collection);
+            $variant->update(['media_id' => $media->id]);
+        });
     }
 }

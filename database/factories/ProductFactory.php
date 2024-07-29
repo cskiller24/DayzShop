@@ -13,9 +13,11 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
+        [$word, $definition] = fake()->dictionary();
+
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
+            'name' => $word,
+            'description' => $definition,
             'specifications' => [
                 fake()->word() => fake()->word(),
                 fake()->word() => fake()->word(),
@@ -23,6 +25,16 @@ class ProductFactory extends Factory
 
             'store_id' => Store::factory(),
         ];
+    }
+
+    public function withImages(int $count = 1, string $collection = 'default'): static
+    {
+        return $this->afterCreating(function (Product $product) use ($count, $collection) {
+            for ($i = 0; $i < $count; $i++) {
+                $image = fake()->randomImage(true);
+                $product->addMedia($image)->toMediaCollection($collection);
+            }
+        });
     }
 
     public function withCategories(): static
