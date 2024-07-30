@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Policies;
 
 use App\Concerns\VerbAuthorization;
-use App\Models\Invite;
 use App\Models\User;
 
 class InvitePolicy
@@ -22,7 +21,7 @@ class InvitePolicy
         return $user->hasPermissionTo($this->parseAuthorization('list'));
     }
 
-    public function view(User $user, Invite $invite): bool
+    public function view(User $user): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('list'));
     }
@@ -32,22 +31,22 @@ class InvitePolicy
         return $user->hasPermissionTo($this->parseAuthorization('create'));
     }
 
-    public function update(User $user, Invite $invite): bool
+    public function update(User $user): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('update'));
     }
 
-    public function delete(User $user, Invite $invite): bool
+    public function delete(User $user): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('delete'));
     }
 
-    public function restore(User $user, Invite $invite): bool
+    public function restore(User $user): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('restore'));
     }
 
-    public function forceDelete(User $user, Invite $invite): bool
+    public function forceDelete(User $user): bool
     {
         return $user->hasPermissionTo($this->parseAuthorization('force-delete'));
     }

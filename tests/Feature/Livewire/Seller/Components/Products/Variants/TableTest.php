@@ -10,6 +10,7 @@ use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
     $this->seller = seedSeller();
+    setPermissionsTeamId($this->seller->active_store_id);
     withoutVite();
 });
 
@@ -20,9 +21,10 @@ it('renders successfully', function () {
 });
 
 it('deletes a product variant successfully', function () {
-    $product = Product::factory()->hasVariants()->createQuietly();
+    $product = Product::factory()->hasVariants()->createQuietly(['store_id' => $this->seller->active_store_id]);
 
-    Livewire::test(Table::class, ['products' => $product])
+    Livewire::actingAs($this->seller)
+        ->test(Table::class, ['products' => $product])
         ->assertStatus(200)
         ->call('delete', $product->variants()->first()->id)
         ->assertDispatched('product-variant-deleted')

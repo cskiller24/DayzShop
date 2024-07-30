@@ -11,7 +11,7 @@ class StorePolicy
 {
     use VerbAuthorization;
 
-    public  function getModuleName(): string
+    public function getModuleName(): string
     {
         return 'Store';
     }

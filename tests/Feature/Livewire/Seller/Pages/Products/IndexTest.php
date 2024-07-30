@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Livewire\Seller\Pages\Products\Index;
 use Livewire\Livewire;
-
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
@@ -12,6 +11,7 @@ beforeEach(function () {
 });
 
 it('renders successfully', function () {
-    Livewire::test(Index::class)
+    Livewire::actingAs(seedSeller())
+        ->test(Index::class)
         ->assertStatus(200);
 });

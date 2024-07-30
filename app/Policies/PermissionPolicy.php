@@ -11,7 +11,7 @@ class PermissionPolicy
 {
     use VerbAuthorization;
 
-    public  function getModuleName(): string
+    public function getModuleName(): string
     {
         return 'Roles Permissions';
     }

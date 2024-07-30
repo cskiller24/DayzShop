@@ -40,7 +40,7 @@ class Update extends Component
     public function update(): void
     {
         $this->authorize('update', Product::class);
-        
+
         $this->form->update();
 
         $this->dispatch(Toaster::EVENT, message: 'Successfully updated product variant');

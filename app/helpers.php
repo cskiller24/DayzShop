@@ -17,7 +17,7 @@ if (! function_exists('toast')) {
     }
 }
 
-if(! function_exists('reset_cached_permissions')) {
+if (! function_exists('reset_cached_permissions')) {
     function reset_cached_permissions(): void
     {
         app(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();

@@ -40,7 +40,10 @@ class Permission extends SpatiePermission
     {
         $parsedModuleName = str($moduleName)->lower()->snake();
 
-        return collect($permissions)
+        /**
+         * @var array<int, string> $toReturn
+         */
+        $toReturn = collect($permissions)
             ->map(function ($permissionName) use ($parsedModuleName) {
                 $separator = Permission::SEPARATOR;
                 $id = Str::orderedUuid()->toString();
@@ -54,5 +57,7 @@ class Permission extends SpatiePermission
                     ]);
                 return $id;
             })->toArray();
+
+        return $toReturn;
     }
 }

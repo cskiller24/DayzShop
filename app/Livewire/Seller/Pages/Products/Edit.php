@@ -94,7 +94,6 @@ class Edit extends Component
     public function update(): void
     {
         $this->authorize('update', Product::class);
-        
         $this->validate();
         $this->setAlertValidation();
 

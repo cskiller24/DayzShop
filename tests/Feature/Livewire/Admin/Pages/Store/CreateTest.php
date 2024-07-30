@@ -7,15 +7,16 @@ use App\Models\User;
 use Illuminate\Queue\CallQueuedClosure;
 use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
-
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    $this->admin = seedAdmin();
     withoutVite();
 });
 
 it('renders successfully', function () {
-    Livewire::test(Create::class)
+    Livewire::actingAs($this->admin)
+        ->test(Create::class)
         ->assertStatus(200);
 });
 
@@ -24,7 +25,8 @@ it('creates a store', function () {
 
     $sellers = User::factory()->count(10)->seller()->create();
 
-    Livewire::test(Create::class)
+    Livewire::actingAs($this->admin)
+        ->test(Create::class)
         ->assertStatus(200)
         ->set('name', 'Test')
         ->set('description', fake()->realText())

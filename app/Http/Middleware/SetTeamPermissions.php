@@ -33,7 +33,7 @@ class SetTeamPermissions
             setPermissionsTeamId($user->active_courier_id);
         }
 
-        if($user->isAdmin()) {
+        if ($user->isAdmin()) {
             setPermissionsTeamId(Permission::DEFAULT_ADMIN_TEAM);
         }
 

@@ -6,41 +6,31 @@ use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Components\Products\Variants\Update;
 use App\Models\Product;
 use App\Models\ProductVariant;
-use App\Models\Store;
-use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
-
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    $this->seller = seedSeller();
     withoutVite();
 });
 
 it('renders successfully', function () {
-    Livewire::test(Update::class)
+    Livewire::actingAs($this->seller)
+        ->test(Update::class)
         ->assertStatus(200);
 });
 
 it('updates a product variant', function () {
     Storage::fake();
-
-    $store = Store::factory()->create();
-    $seller = User::factory()
-        ->seller()
-        ->create(['active_store_id' => $store->id])
-        ->first();
-
-    $seller?->stores()->sync($store);
-
-    $product = Product::factory()->state(['store_id' => $store->id])->createQuietly();
+    $product = Product::factory()->state(['store_id' => $this->seller->active_store_id])->createQuietly();
     $variant = ProductVariant::factory()
         ->state(['product_id' => $product->id])
         ->create();
 
-    Livewire::actingAs($seller)
+    Livewire::actingAs($this->seller)
         ->test(Update::class, ['product' => $product])
         ->call('setVariantAndOpen', $variant->id)
         ->assertStatus(200)
