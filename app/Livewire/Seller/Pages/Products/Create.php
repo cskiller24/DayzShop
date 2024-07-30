@@ -74,6 +74,7 @@ class Create extends Component
 
     public function create(): void
     {
+        $this->authorize('create', Product::class);
         $this->validate();
         $this->setAlertValidation();
 

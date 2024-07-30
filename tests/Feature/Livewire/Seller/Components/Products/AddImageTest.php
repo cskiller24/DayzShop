@@ -5,40 +5,33 @@ declare(strict_types=1);
 use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Components\Products\AddImage;
 use App\Models\Product;
-use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
-
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    seedSeller();
     withoutVite();
+    $this->seller = User::whereType('seller')->first();
 });
 
 it('renders successfully', function () {
-    Livewire::test(AddImage::class)
+    Livewire::actingAs($this->seller)
+        ->test(AddImage::class)
         ->assertStatus(200);
 });
 
 it('successfully adds an image', function () {
     Storage::fake('public');
 
-    $store = Store::factory()->create();
-    $seller = User::factory()
-        ->seller()
-        ->create(['active_store_id' => $store->id])
-        ->first();
-
-    $seller->stores()->sync($store);
-
-    $product = Product::factory()->state(['store_id' => $store->id])->createQuietly();
+    $product = Product::whereStoreId($this->seller->active_store_id)->first();
 
     $file = UploadedFile::fake()->image('image.jpg');
 
-    Livewire::actingAs($seller)
+    Livewire::actingAs($this->seller)
         ->test(AddImage::class, ['product' => $product])
         ->assertStatus(200)
         ->set('photo', $file)
@@ -52,19 +45,10 @@ it('successfully adds an image', function () {
 it('does not add an invalid image', function () {
     Storage::fake('public');
 
-    $store = Store::factory()->create();
-    $seller = User::factory()
-        ->seller()
-        ->create(['active_store_id' => $store->id])
-        ->first();
-
-    $seller->stores()->sync($store);
-
-    $product = Product::factory()->state(['store_id' => $store->id])->createQuietly();
-
+    $product = Product::whereStoreId($this->seller->active_store_id)->first();
     $file = UploadedFile::fake()->create('image.docx');
 
-    Livewire::actingAs($seller)
+    Livewire::actingAs($this->seller)
         ->test(AddImage::class, ['product' => $product])
         ->assertStatus(200)
         ->set('photo', $file)

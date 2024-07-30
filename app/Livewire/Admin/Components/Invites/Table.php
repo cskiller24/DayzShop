@@ -20,6 +20,8 @@ class Table extends Component
 
     public function notify(?string $code = null, ?string $email = null): void
     {
+        $this->authorize('notify', Invite::class);
+
         $validator = Validator::make([
             'code' => $code,
             'email' => $email,
@@ -48,6 +50,8 @@ class Table extends Component
 
     public function delete(string $code): void
     {
+        $this->authorize('delete', Invite::class);
+
         $invite = Invite::where('code', $code)->first();
 
         if ($invite === null) {

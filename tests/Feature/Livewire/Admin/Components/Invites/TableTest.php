@@ -6,22 +6,25 @@ use App\Models\Invite;
 use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
-
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    $this->admin = seedAdmin();
+    setPermissionsTeamId(\App\Models\Permission::DEFAULT_ADMIN_TEAM);
     withoutVite();
 });
 
 it('renders successfully', function () {
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->admin)
+        ->test(Table::class)
         ->assertStatus(200);
 });
 
 it('deletes the invitation successfully', function () {
     $invite = Invite::factory()->create();
 
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->admin)
+        ->test(Table::class)
         ->call('delete', code: $invite->code)
         ->assertDispatched('flash-message', message: 'Successfully deleted invitation.', title: 'Success!');
 
@@ -32,7 +35,8 @@ it('deletes the invitation successfully', function () {
 it('does not delete invitation on wrong code', function () {
     Invite::factory()->create();
 
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->admin)
+        ->test(Table::class)
         ->call('delete', '1')
         ->assertDispatched('flash-message', message: 'Cannot delete invitation.', title: 'Error!');
 
@@ -47,7 +51,8 @@ it('sends invitation via email', function () {
 
     $email = fake()->email();
 
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->admin)
+        ->test(Table::class)
         ->call('notify', code: $invite->code, email: $email)
         ->assertDispatched('flash-message', message: 'Invitation successfully sent!', title: 'Success!', type: NotificationInterface::SUCCESS);
 

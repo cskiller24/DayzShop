@@ -15,16 +15,19 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\Formatting\SpaceAfterNotSniff;
 use PHP_CodeSniffer\Standards\PSR12\Sniffs\Classes\ClosingBraceSniff;
 use PHP_CodeSniffer\Standards\PSR2\Sniffs\Methods\FunctionClosingBraceSniff;
+use PHP_CodeSniffer\Standards\Squiz\Sniffs\WhiteSpace\SuperfluousWhitespaceSniff;
 use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use PhpCsFixer\Fixer\FunctionNotation\MethodArgumentSpaceFixer;
 use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use PhpCsFixer\Fixer\StringNotation\ExplicitStringVariableFixer;
+use PhpCsFixer\Fixer\Whitespace\NoWhitespaceInBlankLineFixer;
 use SlevomatCodingStandard\Sniffs\Classes\DisallowLateStaticBindingForConstantsSniff;
 use SlevomatCodingStandard\Sniffs\Classes\ForbiddenPublicPropertySniff;
 use SlevomatCodingStandard\Sniffs\Classes\SuperfluousExceptionNamingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\DocCommentSpacingSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\EmptyCommentSniff;
 use SlevomatCodingStandard\Sniffs\Commenting\UselessFunctionDocCommentSniff;
+use SlevomatCodingStandard\Sniffs\ControlStructures\AssignmentInConditionSniff;
 use SlevomatCodingStandard\Sniffs\ControlStructures\DisallowShortTernaryOperatorSniff;
 use SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff;
 use SlevomatCodingStandard\Sniffs\Namespaces\AlphabeticallySortedUsesSniff;
@@ -93,6 +96,7 @@ return [
 
     'remove' => [
         AlphabeticallySortedUsesSniff::class,
+        AssignmentInConditionSniff::class,
         DeclareStrictTypesSniff::class,
         DisallowMixedTypeHintSniff::class,
         DisallowShortTernaryOperatorSniff::class,
@@ -106,9 +110,11 @@ return [
         ForbiddenTraits::class,
         ForbiddenPublicPropertySniff::class,
         ForbiddenSetterSniff::class,
+        ForbiddenFinalClasses::class,
         FunctionClosingBraceSniff::class,
         MethodArgumentSpaceFixer::class,
         // ParameterTypeHintSniff::class,
+        NoWhitespaceInBlankLineFixer::class,
         PropertyTypeHintSniff::class,
         // ReturnTypeHintSniff::class,
         DisallowLateStaticBindingForConstantsSniff::class,
@@ -118,6 +124,7 @@ return [
         UselessFunctionDocCommentSniff::class,
         SpaceAfterNotSniff::class,
         SuperfluousExceptionNamingSniff::class,
+        SuperfluousWhitespaceSniff::class,
     ],
 
     'config' => [

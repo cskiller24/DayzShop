@@ -5,30 +5,26 @@ declare(strict_types=1);
 use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Components\Categories\Table;
 use App\Models\Category;
+use App\Models\User;
 use Livewire\Livewire;
-
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
+    seedSeller();
     withoutVite();
+    $this->seller = User::whereType('seller')->first();
 });
 
 it('renders successfully', function () {
-    Livewire::test(Table::class)
+    Livewire::actingAs($this->seller)
+        ->test(Table::class)
         ->assertStatus(200);
 });
 
 it('updates category', function () {
-    $category = Category::factory()->createQuietly();
-    $seller = \App\Models\User::factory()
-        ->seller()
-        ->create([
-            'active_store_id' => $category->store_id,
-        ]);
+    $category = Category::factory()->createQuietly(['store_id' => $this->seller->active_store_id]);
 
-    $seller->stores()->sync($category->store_id);
-
-    Livewire::actingAs($seller)
+    Livewire::actingAs($this->seller)
         ->test(Table::class)
         ->assertStatus(200)
         ->set('name', 'name')
@@ -37,16 +33,9 @@ it('updates category', function () {
 });
 
 it('deletes category', function () {
-    $category = Category::factory()->createQuietly();
-    $seller = \App\Models\User::factory()
-        ->seller()
-        ->create([
-            'active_store_id' => $category->store_id,
-        ]);
+    $category = Category::factory()->createQuietly(['store_id' => $this->seller->active_store_id]);
 
-    $seller->stores()->sync($category->store_id);
-
-    Livewire::actingAs($seller)
+    Livewire::actingAs($this->seller)
         ->test(Table::class)
         ->assertStatus(200)
         ->set('name', 'name')

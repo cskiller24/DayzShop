@@ -37,6 +37,8 @@ class Create extends Component
 
     public function store(): void
     {
+        $this->authorize('create', Store::class);
+        
         $this->validate();
 
         $store = Store::query()->create([

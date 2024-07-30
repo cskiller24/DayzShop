@@ -13,6 +13,8 @@ class PermissionsTable extends Component
 {
     public function update(string $id, string $name): void
     {
+        $this->authorize('update', Permission::class);
+
         $validated = Validator::make([
             'name' => $name,
         ], [
@@ -26,6 +28,8 @@ class PermissionsTable extends Component
 
     public function delete(string $id): void
     {
+        $this->authorize('delete', Permission::class);
+        
         Permission::query()->findOrFail($id)->delete();
 
         $this->dispatch('flash-message', message: 'Permission Deleted');

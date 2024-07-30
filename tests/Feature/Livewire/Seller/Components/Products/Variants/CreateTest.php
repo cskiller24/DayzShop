@@ -5,12 +5,10 @@ declare(strict_types=1);
 use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Components\Products\Variants\Create;
 use App\Models\Product;
-use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Livewire;
-
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\withoutVite;
 
@@ -26,15 +24,10 @@ it('renders successfully', function () {
 it('creates a product variant', function () {
     Storage::fake();
 
-    $store = Store::factory()->create();
-    $seller = User::factory()
-        ->seller()
-        ->create(['active_store_id' => $store->id])
-        ->first();
+    seedSeller();
+    $seller = User::whereType('seller')->first();
 
-    $seller->stores()->sync($store);
-
-    $product = Product::factory()->state(['store_id' => $store->id])->createQuietly();
+    $product = Product::whereStoreId($seller->active_store_id)->first();
 
     Livewire::actingAs($seller)
         ->test(Create::class, ['product' => $product])

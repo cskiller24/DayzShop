@@ -4,32 +4,29 @@ declare(strict_types=1);
 
 use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Pages\Products\Edit;
-use App\Models\Category;
 use App\Models\Product;
-use App\Models\Store;
-use App\Models\User;
 use Livewire\Livewire;
+use function Pest\Laravel\withoutVite;
+
+beforeEach(function () {
+    $this->seller = seedSeller();
+    setPermissionsTeamId($this->seller->active_store_id);
+    withoutVite();
+
+    $this->product = Product::whereStoreId($this->seller->active_store_id)->first();
+});
 
 it('renders successfully', function () {
-    Livewire::test(Edit::class, ['product' => Product::factory()->createQuietly()])
+    Livewire::actingAs($this->seller)
+        ->test(Edit::class, ['product' => $this->product])
         ->assertStatus(200);
 });
 
 it('edits a product', function () {
-    $store = Store::factory()->create();
+    $category = \App\Models\Category::whereStoreId($this->seller->active_store_id)->first();
 
-    $category = Category::factory()->createQuietly(['store_id' => $store->id]);
-    $product = Product::factory()->createQuietly(['store_id' => $store->id]);
-    $product->categories()->attach($category->id);
-
-    $seller = User::factory()
-        ->seller()
-        ->create(['active_store_id' => $store->id]);
-
-    $seller->stores()->save($store);
-
-    Livewire::actingAs($seller)
-        ->test(Edit::class, ['product' => $product])
+    Livewire::actingAs($this->seller)
+        ->test(Edit::class, ['product' => $this->product])
         ->set('name', fake()->name())
         ->set('description', fake()->words(asText: true))
         ->set('specifications', [

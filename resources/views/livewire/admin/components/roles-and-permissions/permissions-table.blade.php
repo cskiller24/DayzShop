@@ -52,7 +52,9 @@
             update(code) {
                 let name = prompt(`Name:`);
 
-                $wire.update(code, name);
+                if (name !== null) {
+                    $wire.update(code, name);
+                }
             },
         }
     })

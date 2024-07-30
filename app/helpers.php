@@ -16,3 +16,10 @@ if (! function_exists('toast')) {
         return pnotify()->timer(2000)->addFlash(type: $type, message: $message, title: $title, options: $options);
     }
 }
+
+if (! function_exists('reset_cached_permissions')) {
+    function reset_cached_permissions(): void
+    {
+        app(\Spatie\Permission\PermissionRegistrar::class)->forgetCachedPermissions();
+    }
+}

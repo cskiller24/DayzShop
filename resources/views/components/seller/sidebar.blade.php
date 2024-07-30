@@ -9,11 +9,13 @@
             'name' => 'Products',
             'url' => route('seller.products.index'),
             'icon' => 'brand-deno',
+            'permission' => 'product::list'
         ],
         [
             'name' => 'Categories',
             'url' => route('seller.categories.index'),
             'icon' => 'tag',
+            'permission' => 'category::list'
         ],
     ];
 @endphp
@@ -36,16 +38,31 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav">
                 @foreach ($links as $link)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <i class="ti ti-{{ $link['icon'] }} icon"></i>
-                            </span>
-                            <span class="nav-link-title">
-                                {{ $link['name'] }}
-                            </span>
-                        </a>
-                    </li>
+                    @if(empty($link['permission']))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-{{ $link['icon'] }} icon"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    {{ $link['name'] }}
+                                </span>
+                            </a>
+                        </li>
+                    @else
+                        @can($link['permission'])
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <i class="ti ti-{{ $link['icon'] }} icon"></i>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        {{ $link['name'] }}
+                                    </span>
+                                </a>
+                            </li>
+                        @endcan
+                    @endif
                 @endforeach
             </ul>
         </div>

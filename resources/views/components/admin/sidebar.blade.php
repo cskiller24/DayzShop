@@ -9,17 +9,20 @@
             'name' => 'Invites',
             'url' => route('admin.invites'),
             'icon' => 'send',
+            'permission' => 'invite::list',
         ],
         [
             'name' => 'Stores',
             'url' => route('admin.stores'),
-            'icon' => 'shopping-bag'
+            'icon' => 'shopping-bag',
+            'permission' => 'store::list',
         ],
         [
             'name' => 'Roles and Permissions',
             'url' => route('admin.roles-and-permissions'),
             'icon' => 'scale',
-        ]
+            'permission' => 'roles_permissions::list',
+        ],
     ];
 @endphp
 
@@ -237,16 +240,31 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav">
                 @foreach ($links as $link)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
-                            <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                <i class="ti ti-{{ $link['icon'] }} icon"></i>
-                            </span>
-                            <span class="nav-link-title">
-                                {{ $link['name'] }}
-                            </span>
-                        </a>
-                    </li>
+                    @if(empty($link['permission']))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
+                                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                    <i class="ti ti-{{ $link['icon'] }} icon"></i>
+                                </span>
+                                <span class="nav-link-title">
+                                    {{ $link['name'] }}
+                                </span>
+                            </a>
+                        </li>
+                    @else
+                        @can($link['permission'])
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ $link['url'] }}" wire:navigate>
+                                    <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                        <i class="ti ti-{{ $link['icon'] }} icon"></i>
+                                    </span>
+                                    <span class="nav-link-title">
+                                        {{ $link['name'] }}
+                                    </span>
+                                </a>
+                            </li>
+                        @endcan
+                    @endif
                 @endforeach
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="post">
