@@ -21,7 +21,8 @@
             {{ \Cknow\Money\Money::parse($total * 100) }}
         </div>
     </div>
-    <a class="btn btn-outline-success mt-2" href="">Proceed to checkout</a>
+    <a class="btn btn-outline-success mt-2" href="{{ route('customer.checkout-process') }}" wire:navigate>Proceed to
+        checkout</a>
 </div>
 
 @script

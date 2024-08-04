@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\Type;
 use App\Http\Middleware\AcceptsCustomerAndGuest;
 use App\Livewire\Customer;
 use App\Livewire\Customer\Pages\ProcessCart;
@@ -12,8 +13,12 @@ Route::group(['middleware' => AcceptsCustomerAndGuest::class, 'prefix' => '/shop
         ->name('customer');
 
     Route::get('process-cart', ProcessCart::class)
-        ->middleware('auth')
+        ->middleware(['auth', 'type:'.Type::CUSTOMER->value])
         ->name('customer.cart-process');
+
+    Route::get('/process-checkout', Customer\Pages\Checkout::class)
+        ->middleware(['auth', 'type:'.Type::CUSTOMER->value])
+        ->name('customer.checkout-process');
 
     Route::get('{product}', Customer\Pages\Products\Show::class)
         ->name('customer.products.show');
