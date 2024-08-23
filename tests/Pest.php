@@ -46,7 +46,7 @@ expect()->extend('toBeOne', function () {
 
 function seedAdmin(): \App\Models\User
 {
-    $seeder = new \Database\Seeders\AdminSeeder();
+    $seeder = new \Database\Seeders\AdminSeeder;
     $seeder->__invoke();
 
     return \App\Models\User::whereType(\App\Enums\Type::ADMIN)->firstOrFail();
@@ -54,10 +54,8 @@ function seedAdmin(): \App\Models\User
 
 function seedSeller(): \App\Models\User
 {
-    $seeder = new \Database\Seeders\SellerSeederWithoutImage();
+    $seeder = new \Database\Seeders\SellerSeederWithoutImage;
     $seeder->__invoke();
 
     return \App\Models\User::whereType(\App\Enums\Type::SELLER)->firstOrFail();
 }
-
-

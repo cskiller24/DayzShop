@@ -6,6 +6,7 @@ use App\Livewire\Components\Toaster;
 use App\Livewire\Seller\Pages\Products\Edit;
 use App\Models\Product;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

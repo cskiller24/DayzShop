@@ -33,7 +33,7 @@ class Permission extends SpatiePermission
     }
 
     /**
-     * @param  array<int, string> $permissions
+     * @param  array<int, string>  $permissions
      * @return array<int, string>
      */
     public static function bulkInsert(string $moduleName, array $permissions = Permission::VERBS): array
@@ -55,6 +55,7 @@ class Permission extends SpatiePermission
                         'created_at' => Carbon::now(),
                         'updated_at' => Carbon::now(),
                     ]);
+
                 return $id;
             })->toArray();
 

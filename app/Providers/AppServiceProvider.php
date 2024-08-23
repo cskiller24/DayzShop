@@ -36,9 +36,9 @@ class AppServiceProvider extends ServiceProvider
         $this->bindDependencies();
 
         if (! $this->app->isProduction()) {
-            fake()->addProvider(new RandomImage());
-            fake()->addProvider(new Dictionary());
-            fake()->addProvider(new NumberDivisibleBy());
+            fake()->addProvider(new RandomImage);
+            fake()->addProvider(new Dictionary);
+            fake()->addProvider(new NumberDivisibleBy);
         }
 
         Model::shouldBeStrict(! app()->isProduction());

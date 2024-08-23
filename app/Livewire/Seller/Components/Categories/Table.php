@@ -32,7 +32,7 @@ class Table extends Component
     public function delete(string $id): void
     {
         $this->authorize('delete', Category::class);
-        
+
         Category::query()
             ->findOrFail($id)
             ->delete();

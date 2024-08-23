@@ -21,7 +21,7 @@ class Table extends Component
     public function mount(Product $product): void
     {
         $this->authorize('viewAny', Product::class);
-        
+
         $this->product = $product;
     }
 

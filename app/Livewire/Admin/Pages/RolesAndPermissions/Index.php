@@ -16,6 +16,7 @@ class Index extends Component
     {
         $this->authorize('viewAny', Role::class);
     }
+
     public function render(): View
     {
         return view('livewire.admin.pages.roles-and-permissions.index');

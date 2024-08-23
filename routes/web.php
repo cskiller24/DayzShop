@@ -51,7 +51,9 @@ Route::get('/email-verification/verify/{id}/{hash}', [EmailVerificationControlle
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
 
-Route::get('/settings', Settings::class)->middleware(['auth', 'verified'])->name('settings');
+Route::get('/settings', Settings::class)
+    ->middleware(['auth', 'verified'])
+    ->name('settings');
 
 Route::get('limbo', LimboController::class)
     ->middleware(['auth', 'verified'])
@@ -62,5 +64,4 @@ Route::get('/invitation/{invite:code}/use', UseInvitation::class)
     ->name('invitation.use');
 
 Route::get('test', Test::class);
-Route::get('/auth', function (): void {
-})->middleware(['auth', 'verified']);
+Route::get('/auth', function (): void {})->middleware(['auth', 'verified']);

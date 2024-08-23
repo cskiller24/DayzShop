@@ -16,6 +16,7 @@ class Index extends Component
     {
         $this->authorize('viewAny', Product::class);
     }
+
     public function render(): View
     {
         return view('livewire.seller.pages.products.index');

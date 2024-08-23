@@ -144,9 +144,9 @@ return [
         ],
         ExplicitStringVariableFixer::class => [
             'exclude' => [
-                'app\Livewire\Customer\Components\CartCard.php'
-            ]
-        ]
+                'app\Livewire\Customer\Components\CartCard.php',
+            ],
+        ],
     ],
 
     /*

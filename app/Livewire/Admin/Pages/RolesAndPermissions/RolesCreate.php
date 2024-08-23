@@ -29,7 +29,7 @@ class RolesCreate extends Component
     public function create(): void
     {
         $this->authorize('create', Role::class);
-        
+
         $data = $this->validate();
 
         Role::query()->create(['name' => $data['name']])->syncPermissions($data['permissions']);

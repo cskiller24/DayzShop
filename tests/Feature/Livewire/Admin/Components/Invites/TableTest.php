@@ -6,6 +6,7 @@ use App\Models\Invite;
 use Flasher\Prime\Notification\NotificationInterface;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

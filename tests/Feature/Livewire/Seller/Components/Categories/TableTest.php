@@ -7,6 +7,7 @@ use App\Livewire\Seller\Components\Categories\Table;
 use App\Models\Category;
 use App\Models\User;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

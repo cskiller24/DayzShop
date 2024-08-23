@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Livewire\Customer\Pages\Checkout;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

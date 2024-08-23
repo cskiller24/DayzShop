@@ -6,6 +6,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Settings extends Component
@@ -23,9 +24,15 @@ class Settings extends Component
             ->layout($this->getLayout());
     }
 
+    #[Computed]
+    public function isEligibleForAddress(): bool
+    {
+        return $this->user->isSeller() || $this->user->isCustomer();
+    }
+
     public function getLayout(): string
     {
-        return match(true) {
+        return match (true) {
             $this->user->isAdmin() => 'components.layouts.roles.admin',
             $this->user->isSeller() => 'components.layouts.roles.seller',
             $this->user->isCustomer() => 'components.layouts.roles.customer',

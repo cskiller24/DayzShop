@@ -9,9 +9,11 @@ use Illuminate\Database\Seeder;
 
 class RolesAndPermissionSeeder extends Seeder
 {
-    public const string DAYZSHOP_ADMIN = "dayzshop.admin";
-    public const string DAYZSHOP_CUSTOMER = "customer";
-    public const string DAYZSHOP_SELLER = "seller";
+    public const string DAYZSHOP_ADMIN = 'dayzshop.admin';
+
+    public const string DAYZSHOP_CUSTOMER = 'customer';
+
+    public const string DAYZSHOP_SELLER = 'seller';
 
     public function run(): void
     {
@@ -28,6 +30,4 @@ class RolesAndPermissionSeeder extends Seeder
         Role::create(['name' => self::DAYZSHOP_ADMIN])
             ->syncPermissions(array_merge($inviteIds, $storeIds, $roleIds, $permissionsIds));
     }
-
-
 }
