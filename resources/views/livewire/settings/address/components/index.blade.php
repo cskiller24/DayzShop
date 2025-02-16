@@ -15,8 +15,8 @@
                     <div @class(['card', 'border', 'border-success' => $address->is_active, 'border-white' => ! $address->is_active])>
                         <div class="card-body">
                             @if(! $address->is_active)
-                                <div class="d-flex justify-content-end">
-                                    <div title="Set address as active" wire:click="setAsActive({{ $address->id }})">
+                                <div class="d-flex justify-content-end cursor-pointer">
+                                    <div title="Set address as active" wire:click="setAsActive('{{ $address->id }}')">
                                         <i class="ti ti-circle-dashed-check icon fs-1"></i>
                                     </div>
                                 </div>
@@ -30,5 +30,5 @@
     @else
         <h2 class="text-center mb-3">Empty Address</h2>
     @endif
-    <livewire:settings.address.create/>
+    <livewire:settings.address.create />
 </div>

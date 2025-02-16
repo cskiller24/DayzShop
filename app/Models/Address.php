@@ -102,8 +102,6 @@ class Address extends Model
         if ($activeCount > 1) {
             $model->addresses()->update(['is_active' => false]);
             $model->addresses()->first()->update(['is_active' => true]);
-
-            return;
         }
 
         if ($activeCount === 0 && $inactiveCount > 0) {

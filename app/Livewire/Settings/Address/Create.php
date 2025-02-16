@@ -40,9 +40,13 @@ class Create extends Component
     {
         $data = $this->validate();
 
+        $x = array_merge($data, $this->fromWho());
+
         Address::create(array_merge($data, $this->fromWho()));
 
         $this->flashMessage('Address added successfully');
+
+        $this->dispatch(self::EVENT);
 
         $this->closeModal(self::MODAL_ID);
     }

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 
-class MacroServiceProvider extends ServiceProvider
+final class MacroServiceProvider extends ServiceProvider
 {
     /**
      * @return array<string, string>
@@ -38,7 +38,7 @@ class MacroServiceProvider extends ServiceProvider
         $this->validator();
     }
 
-    protected function vite(): void
+    private function vite(): void
     {
         Vite::macro('image', function (string $asset) {
             /** @var \Illuminate\Foundation\Vite $this */
@@ -48,7 +48,7 @@ class MacroServiceProvider extends ServiceProvider
         });
     }
 
-    protected function redirect(): void
+    private function redirect(): void
     {
         Redirect::macro('toRole', function (?User $user = null) {
             /** @var \Illuminate\Routing\Redirector $this */
@@ -72,7 +72,7 @@ class MacroServiceProvider extends ServiceProvider
         });
     }
 
-    protected function livewire(): void
+    private function livewire(): void
     {
         \Livewire\Component::macro('redirectToRole', function (?User $user = null, bool $navigate = false) {
             /** @var \Livewire\Component $this */
@@ -120,14 +120,14 @@ class MacroServiceProvider extends ServiceProvider
         });
     }
 
-    public function str(): void
+    private function str(): void
     {
         Str::macro('initials', fn (string $value, string $sep = ' ', string $glue = ''): string => trim(collect(explode($sep, $value))->map(function ($segment) { // @phpstan-ignore-line
             return $segment[0] ?? '';
         })->join($glue)));
     }
 
-    public function validator(): void
+    private function validator(): void
     {
         Validator::extend('money', function ($attribute, $value, $validator) {
             if (! is_string($value) && ! is_numeric($value)) {

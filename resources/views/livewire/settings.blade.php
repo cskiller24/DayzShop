@@ -9,7 +9,7 @@
 
     @if($this->isEligibleForAddress)
         <div class="my-3">
-            <livewire:settings.address.components.index />
+            <livewire:settings.address.components.index :type="$this->parseForAddressType" />
         </div>
     @endif
 </div>

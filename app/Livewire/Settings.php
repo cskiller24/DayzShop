@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Enums\Type;
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\View\View;
 use Livewire\Attributes\Computed;
@@ -11,7 +13,7 @@ use Livewire\Component;
 
 class Settings extends Component
 {
-    protected User $user;
+    public User $user;
 
     public function mount(): void
     {
@@ -28,6 +30,16 @@ class Settings extends Component
     public function isEligibleForAddress(): bool
     {
         return $this->user->isSeller() || $this->user->isCustomer();
+    }
+
+    #[Computed]
+    public function parseForAddressType(): string
+    {
+        return match ($this->user->type) {
+            Type::SELLER => Address::STORE,
+            Type::CUSTOMER => Address::USER,
+            default => throw new \Exception('Invalid address parse type')
+        };
     }
 
     public function getLayout(): string

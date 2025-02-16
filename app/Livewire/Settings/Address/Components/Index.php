@@ -9,6 +9,7 @@ use App\Models\Address;
 use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -17,6 +18,9 @@ class Index extends Component
 {
     public string $type;
 
+    /**
+     * @throws \Exception
+     */
     public function mount(string $type = Address::USER): void
     {
         if (! Address::isValidType($type)) {
@@ -39,9 +43,18 @@ class Index extends Component
         };
     }
 
+    /**
+     * @throws \Throwable
+     */
     public function setAsActive(string $id): void
     {
-        Address::findOr($id)->update(['is_active' => true]);
+        DB::transaction(function () use ($id) {
+            /** @var User $user */
+            $user = auth()->user();
+
+            Address::whereNot('id', $id)->update(['is_active' => false]);
+            Address::where('id', $id)->update(['is_active' => true]);
+        });
 
         $this->flashMessage('Set as active successfully!');
     }
