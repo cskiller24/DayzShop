@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('region')->nullable();
             $table->text('country')->nullable();
             $table->text('zip_code')->nullable();
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

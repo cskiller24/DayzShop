@@ -29,7 +29,7 @@ class PermissionsTable extends Component
     public function delete(string $id): void
     {
         $this->authorize('delete', Permission::class);
-        
+
         Permission::query()->findOrFail($id)->delete();
 
         $this->dispatch('flash-message', message: 'Permission Deleted');

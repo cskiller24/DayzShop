@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // User::factory(10)->create();
-
         reset_cached_permissions();
 
         $this->call(AdminSeeder::class);
@@ -27,6 +25,5 @@ class DatabaseSeeder extends Seeder
             'name' => 'Unverified',
             'email' => 'unverified@dayzshop.com',
         ]);
-
     }
 }

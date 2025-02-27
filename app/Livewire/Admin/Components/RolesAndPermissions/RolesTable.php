@@ -13,7 +13,7 @@ class RolesTable extends Component
     public function delete(string $id): void
     {
         $this->authorize('delete', Role::class);
-        
+
         Role::query()->findOrFail($id)->delete();
 
         $this->dispatch('flash-message', message: 'Role deleted successfully.');

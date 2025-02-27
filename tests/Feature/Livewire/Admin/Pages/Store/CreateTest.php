@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Queue\CallQueuedClosure;
 use Illuminate\Support\Facades\Queue;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

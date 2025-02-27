@@ -30,7 +30,7 @@ class Create extends Component
     public function store(): void
     {
         $this->authorize('create', Product::class);
-        
+
         $this->form->setProduct($this->product)->store();
         $this->form->reset(['name', 'description', 'price', 'photo', 'quantity']);
 

@@ -22,6 +22,7 @@ class SetTeamPermissions
 
         if ($user === null) {
             setPermissionsTeamId(null);
+
             return $next($request);
         }
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Livewire\Seller\Pages\Products\Show;
 use App\Models\Product;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

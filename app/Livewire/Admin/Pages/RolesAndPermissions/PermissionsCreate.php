@@ -26,7 +26,7 @@ class PermissionsCreate extends Component
     public function create(): void
     {
         $this->authorize('create', Permission::class);
-        
+
         $data = $this->validate();
         $name = str($data['name'])->lower()->snake();
 

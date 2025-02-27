@@ -38,7 +38,7 @@ class SellerSeeder extends Seeder
         $productPermissionIds = Permission::bulkInsert('product');
         $categoryPermissionIds = Permission::bulkInsert('category');
 
-        $sellerRole = Role::create(['name' => "seller", 'team_id' => $store->id])
+        $sellerRole = Role::create(['name' => 'seller', 'team_id' => $store->id])
             ->syncPermissions(array_merge($productPermissionIds, $categoryPermissionIds));
 
         User::factory()

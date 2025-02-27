@@ -39,8 +39,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * @param  Type  $type
-     * @param  array<string, mixed> $attributes
+     * @param  array<string, mixed>  $attributes
      * @return $this
      */
     private function modifyType(Type $type, array $attributes = []): static

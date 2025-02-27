@@ -11,6 +11,7 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\UseInvitation;
+use App\Livewire\Settings;
 use App\Livewire\Test;
 use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +50,10 @@ Route::post('/email-verification/send', [EmailVerificationController::class, 'se
 Route::get('/email-verification/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
     ->middleware(['auth', 'signed'])
     ->name('verification.verify');
+
+Route::get('/settings', Settings::class)
+    ->middleware(['auth', 'verified'])
+    ->name('settings');
 
 Route::get('limbo', LimboController::class)
     ->middleware(['auth', 'verified'])

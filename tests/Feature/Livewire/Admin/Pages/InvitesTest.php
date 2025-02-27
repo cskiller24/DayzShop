@@ -2,6 +2,7 @@
 
 use App\Livewire\Admin\Pages\Invites;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {

@@ -4,6 +4,7 @@ use App\Enums\InvitationTypes;
 use App\Livewire\Admin\Components\Invites\Create;
 use App\Models\Invite;
 use Livewire\Livewire;
+
 use function Pest\Laravel\withoutVite;
 
 beforeEach(function () {
