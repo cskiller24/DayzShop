@@ -6,27 +6,31 @@ namespace App\Collections;
 
 use App\Models\Address;
 use Illuminate\Database\Eloquent\Collection;
-use Livewire\Exceptions\PublicPropertyNotFoundException;
 
 /**
  * @mixin \App\Models\Address
  */
 class AddressCollection extends Collection
 {
-    public function setAllAsInactive(): Collection
+    public function setAllAsInactive(): static
     {
         $this->toQuery()->update(['is_active' => false]);
 
         return $this;
     }
 
-    public function withoutActive(): Collection
+    /**
+     * @return static<int, Address>
+     */
+    public function withoutActive(): static
     {
-        return $this->filter(fn(Address $address): bool => ! $address->is_active);
+        // @phpstan-ignore-next-line
+        return $this->filter(fn (Address $address): bool => ! $address->is_active);
     }
 
-    public function onlyActive(): Address
+    public function onlyActive(): Address|null
     {
-        return $this->filter(fn(Address $address): bool => $address->is_active)->first();
+        // @phpstan-ignore-next-line
+        return $this->filter(fn (Address $address): bool => $address->is_active)->first();
     }
 }

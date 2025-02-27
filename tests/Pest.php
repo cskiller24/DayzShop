@@ -13,6 +13,11 @@ declare(strict_types=1);
 |
 */
 
+use App\Enums\Type;
+use App\Models\User;
+use Illuminate\Foundation\Testing\TestCase;
+use function Pest\Laravel\actingAs;
+
 uses(
     Tests\TestCase::class,
     Illuminate\Foundation\Testing\RefreshDatabase::class,
@@ -44,18 +49,63 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function seedAdmin(): \App\Models\User
+function seedAdmin(): User
 {
     $seeder = new \Database\Seeders\AdminSeeder;
     $seeder->__invoke();
 
-    return \App\Models\User::whereType(\App\Enums\Type::ADMIN)->firstOrFail();
+    return User::whereType(Type::ADMIN)->firstOrFail();
 }
 
-function seedSeller(): \App\Models\User
+function seedSeller(): User
 {
     $seeder = new \Database\Seeders\SellerSeederWithoutImage;
     $seeder->__invoke();
 
-    return \App\Models\User::whereType(\App\Enums\Type::SELLER)->firstOrFail();
+    return User::whereType(Type::SELLER)->firstOrFail();
+}
+
+/**
+ * @return array{0: User, 1: TestCase}
+ */
+function actAsUser(Type $type, User $user = null): array
+{
+    $user = $user ?? User::factory()->{$type->value}()->create();
+    return [$user, actingAs($user)];
+}
+
+/**
+ * @return array{0: User, 1: TestCase}
+ */
+function actAsSeller(User $user = null): array
+{
+    if($user && ! $user->isSeller()) {
+        throw new RuntimeException('The user assigned is not a seller');
+    }
+
+    return actAsUser(Type::SELLER, $user);
+}
+
+/**
+ * @return array{0: User, 1: TestCase}
+ */
+function actAsAdmin(User $user = null): array
+{
+    if($user && ! $user->isAdmin()) {
+        throw new RuntimeException('The user assigned is not a seller');
+    }
+
+    return actAsUser(Type::ADMIN, $user);
+}
+
+/**
+ * @return array{0: User, 1: TestCase}
+ */
+function actAsCustomer(User $user = null): array
+{
+    if($user && ! $user->isCustomer()) {
+        throw new RuntimeException('The user assigned is not a seller');
+    }
+
+    return actAsUser(Type::CUSTOMER, $user);
 }

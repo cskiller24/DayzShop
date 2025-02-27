@@ -19,7 +19,7 @@ class NumberDivisibleBy
     public function numberDivisibleBy(int $min, int $max, int $divisibleBy): int
     {
         $generatedArray = $this->generateRangedArray($min, $max, $divisibleBy);
-        $key = (new Randomizer)->pickArrayKeys($generatedArray, 1);
+        $key = (new Randomizer())->pickArrayKeys($generatedArray, 1);
 
         return $generatedArray[$key[0]];
     }

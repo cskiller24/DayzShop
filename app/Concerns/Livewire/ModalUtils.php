@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Concerns\Livewire;
 
 use Livewire\Component;
@@ -25,18 +27,19 @@ trait ModalUtils
         return $this->{$this->modalIdProperty};
     }
 
-    public function openModal(string $id = null): void
+    public function openModal(?string $id = null): void
     {
         $id = $id ?? $this->getModalId();
 
-        $this->js( "
+        $this->js(
+            "
                 let myModal = document.getElementById('{$id}');
                 let modalInstance = bootstrap.Modal.getInstance(myModal);
                 modalInstance.hide();
         ");
     }
 
-    public function closeModal(string $id = null): void
+    public function closeModal(?string $id = null): void
     {
         $id = $id ?? $this->getModalId();
 

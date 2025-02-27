@@ -40,8 +40,6 @@ class Create extends Component
     {
         $data = $this->validate();
 
-        $x = array_merge($data, $this->fromWho());
-
         Address::create(array_merge($data, $this->fromWho()));
 
         $this->flashMessage('Address added successfully');
@@ -51,15 +49,19 @@ class Create extends Component
         $this->closeModal(self::MODAL_ID);
     }
 
+    /**
+     * @return array<string, string|null>
+     * @throws ValidationException
+     */
     public function fromWho(): array
     {
         /** @var User $user */
         $user = auth()->user();
 
         return match (true) {
-            $user->isSeller() => ['addressable_type' => Store::class, 'addressable_id' => $user->store->id],
+            $user->isSeller() => ['addressable_type' => Store::class, 'addressable_id' => $user->store?->id],
             $user->isCustomer() => ['addressable_type' => User::class, 'addressable_id' => $user->id],
-            default => ValidationException::withMessages(['message' => 'Invalid authorizations'])
+            default => throw ValidationException::withMessages(['message' => 'Invalid authorizations'])
         };
     }
 

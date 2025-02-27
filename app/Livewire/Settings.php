@@ -17,6 +17,7 @@ class Settings extends Component
 
     public function mount(): void
     {
+        // @phpstan-ignore-next-line
         $this->user = auth()->user();
     }
 

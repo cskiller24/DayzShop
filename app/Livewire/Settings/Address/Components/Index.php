@@ -10,6 +10,7 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\UnauthorizedException;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -27,12 +28,12 @@ class Index extends Component
             throw new \Exception("Invalid address type. [{$type}] Given");
         }
 
-        Address::cleanUpAddress($this->relationToAddressType($type));
+        Address::cleanUpAddress($this->relationToAddressType($type)); // @phpstan-ignore-line
 
         $this->type = $type;
     }
 
-    private function relationToAddressType(string $type): User|Store
+    private function relationToAddressType(string $type): User|Store|null
     {
         /** @var User $user */
         $user = auth()->user();
@@ -40,6 +41,7 @@ class Index extends Component
         return match ($type) {
             Address::USER => $user,
             Address::STORE => $user->store,
+            default => throw new UnauthorizedException()
         };
     }
 
@@ -48,10 +50,7 @@ class Index extends Component
      */
     public function setAsActive(string $id): void
     {
-        DB::transaction(function () use ($id) {
-            /** @var User $user */
-            $user = auth()->user();
-
+        DB::transaction(function () use ($id): void {
             Address::whereNot('id', $id)->update(['is_active' => false]);
             Address::where('id', $id)->update(['is_active' => true]);
         });
@@ -74,7 +73,7 @@ class Index extends Component
     public function render(): View
     {
         /** @var Collection<int, Address> $addresses */
-        $addresses = $this->relationToAddressType($this->type)->addresses;
+        $addresses = $this->relationToAddressType($this->type)?->addresses;
 
         return view('livewire.settings.address.components.index', compact('addresses'));
     }

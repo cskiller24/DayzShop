@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Contracts\Addressable;
-use http\Exception\InvalidArgumentException;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * @property string $id
@@ -80,7 +80,7 @@ class Address extends Model
         );
     }
 
-    public function addressable(): MophTo
+    public function addressable(): MorphTo
     {
         return $this->morphTo();
     }
@@ -93,7 +93,7 @@ class Address extends Model
     public static function cleanUpAddress(Model $model): void
     {
         if (! $model instanceof Addressable) {
-            throw new InvalidArgumentException("The model {$model} doesn't have [App\Contracts\Addressable] interface.");
+            throw new \InvalidArgumentException("The model {$model} doesn't have [App\Contracts\Addressable] interface.");
         }
 
         $activeCount = $model->addresses()->where('is_active', true)->count();
@@ -101,11 +101,11 @@ class Address extends Model
 
         if ($activeCount > 1) {
             $model->addresses()->update(['is_active' => false]);
-            $model->addresses()->first()->update(['is_active' => true]);
+            $model->addresses()->first()?->update(['is_active' => true]);
         }
 
         if ($activeCount === 0 && $inactiveCount > 0) {
-            $model->addresses()->first()->update(['is_active' => true]);
+            $model->addresses()->first()?->update(['is_active' => true]);
         }
     }
 }

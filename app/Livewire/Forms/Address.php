@@ -41,7 +41,7 @@ class Address extends Form
             'city',
             'region',
             'country',
-            'zip_code'
+            'zip_code',
         ]));
 
         return $this;

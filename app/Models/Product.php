@@ -59,10 +59,7 @@ class Product extends Model implements HasMedia
 
     public function lowestVariantPrice(): Money
     {
-        /** @var Money $min */
-        $min = $this->variants->min('price');
-
-        return $min;
+        return $this->variants->min('price');
     }
 
     /**

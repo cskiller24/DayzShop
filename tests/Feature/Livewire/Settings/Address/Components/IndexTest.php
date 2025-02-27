@@ -12,6 +12,7 @@ beforeEach(function () {
 });
 
 it('renders successfully', function () {
+    actAsCustomer();
     Livewire::test(Index::class)
         ->assertStatus(200);
 });

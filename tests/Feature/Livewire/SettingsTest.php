@@ -12,6 +12,8 @@ beforeEach(function () {
 });
 
 it('renders successfully', function () {
+    [$user, $test] = actAsCustomer();
+
     Livewire::test(Settings::class)
         ->assertStatus(200);
 });

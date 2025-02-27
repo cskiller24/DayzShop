@@ -8,7 +8,6 @@ use App\Models\Permission;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Arr;
-
 use function Laravel\Prompts\multiselect;
 
 final class CreateModulePermission extends Command implements PromptsForMissingInput

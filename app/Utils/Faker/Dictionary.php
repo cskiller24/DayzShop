@@ -325,7 +325,7 @@ class Dictionary
      */
     public function dictionary(): array
     {
-        $keys = (new Randomizer)->pickArrayKeys($this->dictionaries, 1);
+        $keys = (new Randomizer())->pickArrayKeys($this->dictionaries, 1);
 
         return [$keys[0], $this->dictionaries[$keys[0]]];
     }

@@ -10,7 +10,7 @@
     </div>
     @if($addresses)
         <div class="row g-1">
-            @foreach($addresses as $address)
+            @foreach($addresses->sortBy(fn(\App\Models\Address $x) => $x->is_active == false) as $address)
                 <div class="col-3">
                     <div @class(['card', 'border', 'border-success' => $address->is_active, 'border-white' => ! $address->is_active])>
                         <div class="card-body">
