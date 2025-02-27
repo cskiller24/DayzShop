@@ -19,7 +19,6 @@ class Update extends Component
     public function mount(string $modalId = 'address-edit'): void
     {
         $this->modalId = $modalId;
-
     }
 
     #[On('address-edit')]

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Permission\Models\Role as SpatieRole;
 
 /**
- * 
- *
  * @property string $id
  * @property string|null $team_id
  * @property string $name

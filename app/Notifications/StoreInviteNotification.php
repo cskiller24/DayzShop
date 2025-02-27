@@ -13,7 +13,9 @@ class StoreInviteNotification extends Notification
 {
     use Queueable;
 
-    public function __construct(public Store $store) {}
+    public function __construct(public Store $store)
+    {
+    }
 
     /**
      * @return array<int, string>

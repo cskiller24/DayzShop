@@ -13,8 +13,6 @@ use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission as SpatiePermission;
 
 /**
- * 
- *
  * @property string $id
  * @property string $name
  * @property string $guard_name

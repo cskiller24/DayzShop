@@ -21,8 +21,6 @@ use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
- * 
- *
  * @property \App\Enums\Type $type
  * @property string $id
  * @property string|null $active_store_id

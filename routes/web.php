@@ -64,4 +64,5 @@ Route::get('/invitation/{invite:code}/use', UseInvitation::class)
     ->name('invitation.use');
 
 Route::get('test', Test::class);
-Route::get('/auth', function (): void {})->middleware(['auth', 'verified']);
+Route::get('/auth', function (): void {
+})->middleware(['auth', 'verified']);

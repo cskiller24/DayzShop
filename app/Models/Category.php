@@ -16,8 +16,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[ScopedBy(ByStoreIdScope::class)]
 #[ObservedBy(ApplyStoreIdObserver::class)]
 /**
- * 
- *
  * @property string $id
  * @property string $store_id
  * @property string $name
