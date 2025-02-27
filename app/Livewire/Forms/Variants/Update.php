@@ -51,7 +51,7 @@ class Update extends Form
         $this->fill([
             'name' => $variant->name,
             'description' => $variant->description,
-            'price' => str($variant->price->format())->substr(1)->toString(), // @phpstan-ignore-line
+            'price' => str($variant->price->format())->substr(1)->toString(),
             'quantity' => $variant->quantity,
             'photo' => $this->photo,
         ]);

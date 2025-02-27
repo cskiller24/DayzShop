@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
+ * 
+ *
  * @property string $id
  * @property string $name
  * @property string|null $description
@@ -23,7 +25,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
  * @property-read int|null $users_count
- *
  * @method static \Database\Factories\StoreFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Store newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Store newQuery()
@@ -36,7 +37,12 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Store whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Store wherePhoneNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Store whereUpdatedAt($value)
- *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Address> $addresses
+ * @property-read int|null $addresses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
+ * @property-read int|null $products_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
+ * @property-read int|null $roles_count
  * @mixin \Eloquent
  */
 class Store extends Model implements Addressable

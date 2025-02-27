@@ -32,7 +32,7 @@ class RolesUpdate extends Component
 
     public function mount(Role $role): void
     {
-        $this->id = $role->id; // @phpstan-ignore-line
+        $this->id = $role->id;
         $this->name = $role->name;
         $this->permissions = $role->permissions->pluck('id')->toArray(); // @phpstan-ignore-line
     }

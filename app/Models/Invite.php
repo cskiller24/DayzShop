@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * 
+ *
  * @property-read string $url
  * @property-read string $status
  * @property-read string $role_type
@@ -24,7 +26,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon $expire_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Database\Factories\InviteFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Invite newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Invite newQuery()
@@ -36,7 +37,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Invite whereIsUsed($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Invite whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Invite whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 #[ObservedBy(HandlesInviteCodeCreation::class)]
