@@ -124,14 +124,14 @@ class MacroServiceProvider extends ServiceProvider
 
     public function str(): void
     {
-        Str::macro('initials', fn (string $value, string $sep = ' ', string $glue = ''): string => trim(collect(explode($sep, $value))->map(function (array $segment): string { // @phpstan-ignore-line
+        Str::macro('initials', fn (string $value, string $sep = ' ', string $glue = ''): string => trim(collect(explode($sep, $value))->map(function (string $segment): string { // @phpstan-ignore-line
             return $segment[0] ?? '';
         })->join($glue)));
     }
 
     public function validator(): void
     {
-        Validator::extend('money', function (string $attribute, mixed $value, Validator $validator): bool {
+        Validator::extend('money', function (string $attribute, mixed $value, array $validator): bool {
             if (! is_string($value) && ! is_numeric($value)) {
                 return false;
             }
