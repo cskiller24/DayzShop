@@ -44,7 +44,7 @@ class Permission extends SpatiePermission
          * @var array<int, string> $toReturn
          */
         $toReturn = collect($permissions)
-            ->map(function ($permissionName) use ($parsedModuleName) {
+            ->map(function (string $permissionName) use ($parsedModuleName): string {
                 $separator = Permission::SEPARATOR;
                 $id = Str::orderedUuid()->toString();
                 DB::table('permissions')
